@@ -10,5 +10,11 @@
 		"emailAddress": "t@b.c",
 		"password": "xyz",
 		"fullName": "Thomas Edison"
+	},
+	{
+		"id": 3,
+		"emailAddress": "test@live.nl",
+		"password": "abc",
+		"fullName": "Maruf Rodjan"
 	}
 ]
