@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "XMJUUmb2MzEB0apByIaZ3ynYRI0/GuZl3FFNlxkfrK+iNy2JsyTQ6CzEq87IWRPrS82B1KGHvM72HPHIVhyRKQ==",
+  "dgSpecHash": "927ocRuysqsxMEdijOqyGEOpadleIIoaKFfditPhahIm1RLafLB8T7Zl7B6Ja1Mm8pL2A5hI5KXG6e7DFdJC8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\joelv\\OneDrive\\Documenten\\Hogeschool_Rotterdam\\ProjectB\\Project-B\\Project.csproj",
+  "projectFilePath": "C:\\Users\\henno\\OneDrive\\Documenten\\Project-B\\Project-B\\Project.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\joelv\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+    "C:\\Users\\henno\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
   ],
   "logs": []
 }

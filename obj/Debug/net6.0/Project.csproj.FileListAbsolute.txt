@@ -1,49 +1,17 @@
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\bin\Debug\net6.0\Project.exe
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\bin\Debug\net6.0\Project.deps.json
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\bin\Debug\net6.0\Project.runtimeconfig.json
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\bin\Debug\net6.0\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\bin\Debug\net6.0\Project.pdb
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.csproj.AssemblyReference.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.AssemblyInfoInputs.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.AssemblyInfo.cs
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.csproj.CoreCompileInputs.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\refint\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.pdb
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\Project.genruntimeconfig.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\Project-B\Project\obj\Debug\net6.0\ref\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\bin\Debug\net6.0\Project.exe
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\bin\Debug\net6.0\Project.deps.json
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\bin\Debug\net6.0\Project.runtimeconfig.json
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\bin\Debug\net6.0\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\bin\Debug\net6.0\Project.pdb
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.csproj.AssemblyReference.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.AssemblyInfoInputs.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.AssemblyInfo.cs
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.csproj.CoreCompileInputs.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\refint\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.pdb
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.genruntimeconfig.cache
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\ref\Project.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\maruf\OneDrive\Bureaublad\semester 2\ProjectB\obj\Debug\net6.0\Project.csproj.CopyComplete
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\bin\Debug\net6.0\Project.exe
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\bin\Debug\net6.0\Project.deps.json
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\bin\Debug\net6.0\Project.runtimeconfig.json
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\bin\Debug\net6.0\Project.dll
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\bin\Debug\net6.0\Project.pdb
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.csproj.AssemblyReference.cache
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.AssemblyInfoInputs.cache
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.AssemblyInfo.cs
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.csproj.CoreCompileInputs.cache
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.csproj.CopyComplete
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.dll
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\refint\Project.dll
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.pdb
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\Project.genruntimeconfig.cache
-C:\Users\joelv\OneDrive\Documenten\Hogeschool_Rotterdam\ProjectB\Project-B\obj\Debug\net6.0\ref\Project.dll
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\bin\Debug\net6.0\Project.exe
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\bin\Debug\net6.0\Project.deps.json
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\bin\Debug\net6.0\Project.runtimeconfig.json
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\bin\Debug\net6.0\Project.dll
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\bin\Debug\net6.0\Project.pdb
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.csproj.AssemblyReference.cache
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.AssemblyInfoInputs.cache
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.AssemblyInfo.cs
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.csproj.CoreCompileInputs.cache
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.csproj.CopyComplete
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.dll
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\refint\Project.dll
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.pdb
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\Project.genruntimeconfig.cache
+C:\Users\henno\OneDrive\Documenten\Project-B\Project-B\obj\Debug\net6.0\ref\Project.dll

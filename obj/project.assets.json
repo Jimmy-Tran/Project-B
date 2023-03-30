@@ -55,19 +55,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\joelv\\.nuget\\packages\\": {}
+    "C:\\Users\\henno\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\joelv\\OneDrive\\Documenten\\Hogeschool_Rotterdam\\ProjectB\\Project-B\\Project.csproj",
+      "projectUniqueName": "C:\\Users\\henno\\OneDrive\\Documenten\\Project-B\\Project-B\\Project.csproj",
       "projectName": "Project",
-      "projectPath": "C:\\Users\\joelv\\OneDrive\\Documenten\\Hogeschool_Rotterdam\\ProjectB\\Project-B\\Project.csproj",
-      "packagesPath": "C:\\Users\\joelv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\joelv\\OneDrive\\Documenten\\Hogeschool_Rotterdam\\ProjectB\\Project-B\\obj\\",
+      "projectPath": "C:\\Users\\henno\\OneDrive\\Documenten\\Project-B\\Project-B\\Project.csproj",
+      "packagesPath": "C:\\Users\\henno\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\henno\\OneDrive\\Documenten\\Project-B\\Project-B\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\joelv\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\henno\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
