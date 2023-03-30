@@ -1,10 +1,11 @@
 ﻿class Program
 {
-    static void Main(string[] args)
-    {
-        // begin met welkom
-        Welkom.welkom();
-        Menu.Start();
-    }
+  static void Main(string[] args)
+  {
+    // begin met welkom
+    //test
+    Welkom.welkom();
+    Menu.Start();
+  }
 }
 
