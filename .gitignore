@@ -1,3 +1,3 @@
-bin/
-obj/
-net6.0/
+*/bin/*
+*/obj/*
+*/net6.0/*
