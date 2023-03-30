@@ -1,5 +1,3 @@
-#ignore these folders
 bin/
-net6.0/
 obj/
-
+net6.0/
