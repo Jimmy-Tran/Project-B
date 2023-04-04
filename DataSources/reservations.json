@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "clientnumber": 1,
+        "name": "xyz",
+        "email": "Nikola Tesla",
+        "date": "23-04-2023",
+        "reservationcode": "",
+        "timeslot": "20:00:00",
+        "tables": [1, 2],
+        "amt_people": 0
+    },
+    {
+        "id": 2,
+        "clientnumber": 2,
+        "name": "abc",
+        "email": "Barack Obama",
+        "date": "24-04-2023",
+        "reservationcode": "",
+        "timeslot": "21:00:00",
+        "tables": [1, 2],
+        "amt_people": 0
+    }
+]

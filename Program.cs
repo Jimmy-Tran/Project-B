@@ -3,8 +3,9 @@
     static void Main(string[] args)
     {
         // begin met welkom
-        Welkom.welkom();
-        Menu.Start();
+        // Welkom.welkom();
+        // Menu.Start();
+        Reservation.GetReservation();
     }
 }
 
