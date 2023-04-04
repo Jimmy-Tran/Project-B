@@ -32,6 +32,10 @@ static class Menu
         {
             Show.Menu();
             Start();
+        } else if (input == "3")
+        {
+            Reservation res = new Reservation();
+            res.Reserveren();
         }
         else if (input == "4")
         {
