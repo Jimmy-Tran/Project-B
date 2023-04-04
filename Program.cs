@@ -1,3 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Welcome to this amazing program");
-Menu.Start();
+﻿class Program
+{
+  static void Main(string[] args)
+  {
+    // begin met welkom
+    //test
+    Welkom.welkom();
+    Menu.Start();
+  }
+}
+
