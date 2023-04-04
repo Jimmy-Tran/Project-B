@@ -8,6 +8,6 @@
         "reservationcode": "",
         "timeslot": 0,
         "tables": [1, 2],
-        "amt_people": ""
+        "amt_people": 0
     }
 ]
