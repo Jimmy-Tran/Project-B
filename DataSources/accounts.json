@@ -19,5 +19,12 @@
     "password": "abc",
     "fullName": "Maruf Rodjan",
     "level": 1
+  },
+  {
+    "id": 4,
+    "emailAddress": "Joelverveer@hotmail.com",
+    "password": "Abc@123.nl",
+    "fullName": "joel verveer",
+    "level": 0
   }
 ]

@@ -40,6 +40,11 @@ static class Menu
       CreateLocation().Show();
       Start();
     }
+    else if (input == "5")
+    {
+      // start de registratieproces
+      UserRegistration.Start();
+    }
     else if (input.ToLower() == "q")
     {
       // Stop de programma
