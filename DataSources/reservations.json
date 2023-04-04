@@ -1,0 +1,13 @@
+[
+    {
+        "id": 1,
+        "clientnumber": "n@b.c",
+        "name": "xyz",
+        "email": "Nikola Tesla",
+        "date": 0,
+        "reservationcode": "",
+        "timeslot": 0,
+        "tables": [1, 2],
+        "amt_people": ""
+    }
+]

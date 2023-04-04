@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Q8REQmbST8jZXOjVV6/N+ChFzlxjCIeNr30gHAJFMEp9/IZLFHNejwlz6UiNaxmuqjr/W0juPGI6QOyewFSL8g==",
+  "success": true,
+  "projectFilePath": "/Users/jimmytran/Documents/GitHub/Project-B/Project.csproj",
+  "expectedPackageFiles": [
+    "/Users/jimmytran/.nuget/packages/newtonsoft.json/13.0.2/newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
