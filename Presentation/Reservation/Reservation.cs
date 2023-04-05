@@ -28,7 +28,7 @@ public class Reservation {
             string jsonContent = File.ReadAllText("DataSources/reservations.json");
             List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonContent);
             
-            Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-10} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafels", "Aantal Personen");
+            Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-10} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafels", "Aantal Pers.");
             foreach (Reservation reservation in reservations) {
                 Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-10} {5,-10}",
                     reservation.ID, reservation.Name, reservation.Date, reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
