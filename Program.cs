@@ -5,7 +5,8 @@
         // begin met welkom
         // Welkom.welkom();
         // Menu.Start();
-        Reservation.GetReservation();
+        Reservation.DisplayReservation();
+        // Reservation.ChangeReservation("abc");
     }
 }
 
