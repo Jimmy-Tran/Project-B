@@ -21,6 +21,7 @@ static class Menu
         Console.WriteLine("[2] Zie menu kaart");
         Console.WriteLine("[3] Reserveer");
         Console.WriteLine("[4] Locatie");
+        Console.WriteLine("[5] Registreren");
         Console.WriteLine("[Q] Quit");
 
         string input = Console.ReadLine();
@@ -38,6 +39,11 @@ static class Menu
             // start de locatie class en show detail
             CreateLocation().Show();
             Start();
+        }
+        else if (input == "5")
+        {
+            // start de registratieproces
+            UserRegistration.Start();
         }
         else if (input.ToLower() == "q")
         {
