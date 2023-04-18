@@ -35,7 +35,7 @@ static class UserLogin
         }
         else
         {
-            Console.WriteLine("No account found with that email and password");
+            Console.WriteLine($"No account found with that email({email}) and password({password})");
             Start();
         }
     }
