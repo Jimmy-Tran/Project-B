@@ -5,8 +5,11 @@
         // begin met welkom
         // Welkom.welkom();
         // Menu.Start();
+        // Reservation.DisplayReservation();
+        // Reservation.ChangeReservation();
         Reservation.DisplayReservation();
-        // Reservation.ChangeReservation("abc");
+        Reservation.DeleteReservationWithID();
+        Reservation.DisplayReservation();
     }
 }
 

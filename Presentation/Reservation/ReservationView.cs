@@ -5,7 +5,7 @@ using Project_B.DataModels;
 public class Reservation {
 
     static public void DisplayReservation() {
-        List<ReservationModel> reservations = ReservationLogic.GetReservation();
+        List<ReservationModel> reservations = ReservationLogic.GetReservations();
         Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafel nummers", "Aantal Pers.");
         
         foreach (ReservationModel reservation in reservations) {
@@ -14,31 +14,69 @@ public class Reservation {
         }
     }
 
-    static public void ChangeReservation(string _Searchterm) {
-        // try {
-        //     string jsonContent = File.ReadAllText("DataSources/reservations.json");
-        //     List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonContent);
+    static public void ChangeReservation() {
+        // ReservationModel reservation = ReservationLogic.GetReservation(_Searchterm);
 
-        //     // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
+        // Console.WriteLine(reservation);
+        Console.WriteLine("Zoeken (Naam / Email): ");
+        string Searchterm = Console.ReadLine();
 
-        //     foreach (Reservation reservation in reservations) {
-        //         if (reservation.ID == Convert.ToInt32(_Searchterm) || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
-        //             Console.WriteLine("Vul in de nieuwe waarde (Enter om over te slaan.)");
-        //             Console.WriteLine($"Naam: {reservation.Name}");
-        //             Console.WriteLine($"Email: {reservation.Email}");
-        //             Console.WriteLine($"Date: {reservation.Date}");
-        //             Console.WriteLine($"Naam: {reservation.TimeSlot}");
-        //             // Console.WriteLine($"Naam: {.Join(reservation.Tables)}");
-        //             Console.WriteLine($"Naam: {reservation.Amt_People}");
-        //         }            
-        //     }
+        if (ReservationLogic.GetReservation(Searchterm) != null) {
+            Console.WriteLine("Naam");
+            string Name = Console.ReadLine();
 
-            
-        //     // string output = Newtonsoft.Json.JsonConvert.SerializeObject(reservations, Newtonsoft.Json.Formatting.Indented);
-        //     // File.WriteAllText("DataSources/reservations.json", output);
-        // }
-        // catch (Exception ex) {
-        //     Console.WriteLine($"Error: {ex.Message}"); 
-        // }
+            Console.WriteLine("Email");
+            string Email = Console.ReadLine();
+
+            Console.WriteLine("Date (DD-MM-JJJJ)");
+            string Date = Console.ReadLine();
+
+            Console.WriteLine("Time");
+            string TimeSlot = Console.ReadLine();
+
+            Console.WriteLine("Tafel nummers");
+            List<int> Tables = new List<int> ();
+            while (true) {
+                string Table_number = Console.ReadLine();
+                if (Table_number != "") {
+                    try {
+                        Tables.Add(Convert.ToInt32(Table_number));
+                    } catch {
+                        Console.WriteLine("Toevoegen mislukt, voer tafel nummers in!");
+                    }
+                } else {
+                    break;
+                }
+
+            }
+
+            Console.WriteLine("Aantal Personen");
+            int Amt_People = Convert.ToInt32(Console.ReadLine());
+
+            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, Date, TimeSlot, Tables, Amt_People);
+
+            if (ChangedValue != true) {
+                Console.WriteLine("Er is iets fouts gegaan!");
+            } else {
+                Console.WriteLine("Gelukt!");
+            }
+        } 
+        else {
+            Console.WriteLine("Niet gevonden");
+        }
+    }
+
+    public static void DeleteReservationWithID() {
+        Console.WriteLine("ID");
+        int ID = Convert.ToInt32(Console.ReadLine());
+
+        bool DeletedObject = ReservationLogic.DeleteReservation(ID);
+
+        if (DeletedObject != true) {
+            Console.WriteLine("Er is iets fouts gegaan!");
+        } 
+        else {
+            Console.WriteLine("Gelukt!");
+        }
     }
 }
