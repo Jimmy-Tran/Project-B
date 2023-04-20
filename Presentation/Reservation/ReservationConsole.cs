@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-class Reservation
+class ReservationConsole
 {
 
     public int id { get; set; }
@@ -41,13 +41,16 @@ class Reservation
 
             Console.WriteLine($"{name}, hoeveel mensen zullen er zijn?");
             bool validAmount = true;
-            while(validAmount is true) {
-                int amountPeople = int.Parse(Console.ReadLine());
-                amt_people = amountPeople;
-                if(amountPeople > 0) {
-                    validAmount = false;
-                } else {
+            while (validAmount)
+            {
+                if (!int.TryParse(Console.ReadLine(), out int amountPeople) || amountPeople <= 0)
+                {
                     Console.WriteLine("Graag een aantal groter dan 0 invullen.");
+                }
+                else
+                {
+                    amt_people = amountPeople;
+                    validAmount = false;
                 }
             }
 
@@ -55,7 +58,7 @@ class Reservation
             string json = File.ReadAllText("./DataSources/reservations.json");
 
         // Deserialize the JSON into a list of Reservation objects
-            List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(json);
+            List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
                         bool codeExists = true;
             string newCode = "";
             while (codeExists)
@@ -70,7 +73,7 @@ class Reservation
             int highestId = reservations.Max(reservation => reservation.id);
 
                     // Create a new Reservation object to add to the list
-            Reservation newReservation = new Reservation
+            ReservationConsole newReservation = new ReservationConsole
             {
                 id = highestId + 1,
                 clientnumber = 0,
