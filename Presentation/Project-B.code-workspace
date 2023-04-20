@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "../../../Documents/GitHub/Project-B"
+		},
+		{
+			"path": "../bin"
+		},
+		{
+			"path": "../DataAccess"
+		},
+		{
+			"path": "../DataModels"
+		},
+		{
+			"path": "../DataSources"
+		},
+		{
+			"path": "../Logic"
+		},
+		{
+			"path": "../net6.0"
+		},
+		{
+			"path": "../obj"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
