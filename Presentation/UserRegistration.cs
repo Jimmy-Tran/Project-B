@@ -10,7 +10,7 @@ static class UserRegistration
   public static void Start()
   {
     Console.WriteLine("Welkom bij de registratiepagina");
-    Console.WriteLine("[1] terug naar het startmenu");
+    Console.WriteLine("[1] terug naar het startmenu ");
 
     string Email;
     do
