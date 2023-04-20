@@ -1,23 +1,51 @@
-﻿[
-	{
-		"id": 1,
-		"emailAddress": "n@b.c",
-		"password": "xyz",
-		"fullName": "Nikola Tesla",
-		"level": 0
-	},
-	{
-		"id": 2,
-		"emailAddress": "t@b.c",
-		"password": "xyz",
-		"fullName": "Thomas Edison",
-		"level": 0
-	},
-	{
-		"id": 3,
-		"emailAddress": "admin@live.nl",
-		"password": "abc",
-		"fullName": "Maruf Rodjan",
-		"level": 1
-	}
+[
+  {
+    "id": 1,
+    "emailAddress": "n@b.c",
+    "password": "xyz",
+    "fullName": "Nikola Tesla",
+    "level": 0
+  },
+  {
+    "id": 2,
+    "emailAddress": "t@b.c",
+    "password": "xyz",
+    "fullName": "Thomas Edison",
+    "level": 0
+  },
+  {
+    "id": 3,
+    "emailAddress": "admin@live.nl",
+    "password": "abc",
+    "fullName": "Admin",
+    "level": 1
+  },
+  {
+    "id": 4,
+    "emailAddress": "Joelverveer@hotmail.com",
+    "password": "Abc@123.nl",
+    "fullName": "joel verveer",
+    "level": 0
+  },
+  {
+    "id": 5,
+    "emailAddress": "test@email.com",
+    "password": "Ttest123",
+    "fullName": "user user",
+    "level": 0
+  },
+  {
+    "id": 6,
+    "emailAddress": "test@gmail.com",
+    "password": "Ttest123",
+    "fullName": "test test",
+    "level": 0
+  },
+  {
+    "id": 7,
+    "emailAddress": "test@gmail.nl",
+    "password": "Ttest123",
+    "fullName": "user user",
+    "level": 0
+  }
 ]

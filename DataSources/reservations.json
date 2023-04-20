@@ -1,1 +1,13 @@
-[{"ID":1,"ClientNumber":1,"Name":"XYZ","Email":"XYZ@mail.com","Date":"19-04-2023","ReservationCode":"","TimeSlot":"21:00","Tables":[1,5],"Amt_People":7}]
+[
+    {
+        "id": 1,
+        "clientnumber": 1,
+        "name": "xyz",
+        "email": "Nikola Tesla",
+        "date": 0,
+        "reservationcode": "",
+        "timeslot": 0,
+        "tables": [1, 2],
+        "amt_people": 0
+    }
+]

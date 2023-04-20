@@ -21,6 +21,7 @@ static class Menu
         Console.WriteLine("[2] Zie menu kaart");
         Console.WriteLine("[3] Reserveer");
         Console.WriteLine("[4] Locatie");
+        Console.WriteLine("[5] Registreren");
         Console.WriteLine("[Q] Quit");
 
         string input = Console.ReadLine();
@@ -38,6 +39,11 @@ static class Menu
             // start de locatie class en show detail
             CreateLocation().Show();
             Start();
+        }
+        else if (input == "5")
+        {
+            // start de registratieproces
+            UserRegistration.Start();
         }
         else if (input.ToLower() == "q")
         {
@@ -111,19 +117,24 @@ static class Menu
     static public void Admin_menu(string username, int id)
     {
         Console.WriteLine("[1] Menu aanpassen");
-        Console.WriteLine("[2] Reserveren");
-        Console.WriteLine("[3] Locatie bekijken");
+        Console.WriteLine("[2] Menu bekijken");
+        Console.WriteLine("[3] Mederwerker toevoegen");
         Console.WriteLine("[L] Loguit");
 
         string input = Console.ReadLine();
         if (input == "1")
         {
             // Menu aanpassen (word nog lang niet aangemaakt)
-            Console.WriteLine("This feature has not been made yet.");
+            MenuAanpassen.EditMenu(username, id);
         }
         else if (input == "2")
         {
-            // Bekijk alle reserveringen
+            Show.Menu(username, id);
+            Admin_menu(username, id);
+        }
+        else if (input == "3")
+        {
+            Mederwerker.Toevoeg_Mederwerker_Menu(username, id);
         }
         else if (input.ToLower() == "l")
         {

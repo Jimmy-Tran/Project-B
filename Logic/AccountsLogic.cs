@@ -35,8 +35,8 @@ class AccountsLogic
             //add new model
             _accounts.Add(acc);
         }
-        AccountsAccess.WriteAll(_accounts);
 
+        AccountsAccess.WriteAll(_accounts);
     }
 
     public AccountModel GetById(int id)
@@ -53,8 +53,24 @@ class AccountsLogic
         CurrentAccount = _accounts.Find(i => i.EmailAddress == email && i.Password == password);
         return CurrentAccount;
     }
-}
 
+    public AccountModel CheckRegistration(string email)
+    {
+        if (email == null)
+        {
+            return null;
+        }
+
+        CurrentAccount = _accounts.Find(i => i.EmailAddress == email);
+        return CurrentAccount;
+    }
+
+    public int GetLastID()
+    {
+        return _accounts.Last().Id;
+    }
+
+}
 
 
 
