@@ -14,8 +14,19 @@ namespace Project_B.Logic
             string DateNow = DateTime.Now.ToString("dd-MM-yyyy");
             List<ReservationModel> reservations = ReservationLogic.GetReservations();
 
+            List<int> AvailableTables = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-            return new List<int> ();
+            foreach (ReservationModel reservartion in reservations) {
+                if (reservartion.Date == DateNow) {
+                    foreach (int i in reservartion.Tables) {
+                        AvailableTables.Remove(i);
+                    }
+                    
+                }
+            }
+
+            return AvailableTables;
+
         }
     }    
 }
