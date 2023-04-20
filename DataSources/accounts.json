@@ -40,5 +40,12 @@
     "password": "Ttest123",
     "fullName": "test test",
     "level": 0
+  },
+  {
+    "id": 7,
+    "emailAddress": "test@gmail.nl",
+    "password": "Ttest123",
+    "fullName": "user user",
+    "level": 0
   }
 ]
