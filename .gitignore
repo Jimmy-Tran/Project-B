@@ -983,6 +983,7 @@ $RECYCLE.BIN/
 ##
 
 # Left out all build files as the repository is for storage of solution files only.
-
+bin/
+obj/
 **/.vscode/*
 obj/Debug/net6.0/Project.GeneratedMSBuildEditorConfig.editorconfig
