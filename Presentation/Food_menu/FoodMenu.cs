@@ -7,7 +7,6 @@ public class MenuItem // losse item class
     public string Name { get; set; }
     public decimal Price { get; set; }
 }
-// test
 public class Foodmenu
 {
     // maak nu een lijst voor iedere gang en drinken

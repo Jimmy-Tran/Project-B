@@ -986,3 +986,6 @@ $RECYCLE.BIN/
 
 **/.vscode/*
 obj/Debug/net6.0/Project.GeneratedMSBuildEditorConfig.editorconfig
+obj/Project.csproj.nuget.dgspec.json
+obj/
+bin/

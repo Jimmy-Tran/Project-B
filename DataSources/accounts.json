@@ -17,7 +17,7 @@
     "id": 3,
     "emailAddress": "admin@live.nl",
     "password": "abc",
-    "fullName": "Admin",
+    "fullName": "Maruf Rodjan",
     "level": 1
   },
   {
@@ -25,6 +25,13 @@
     "emailAddress": "Joelverveer@hotmail.com",
     "password": "Abc@123.nl",
     "fullName": "joel verveer",
+    "level": 0
+  },
+  {
+    "id": 5,
+    "emailAddress": "jimmy@gmail.com",
+    "password": "Abc@12312.da",
+    "fullName": "Jimmy Tran",
     "level": 0
   }
 ]
