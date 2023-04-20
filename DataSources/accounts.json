@@ -26,5 +26,12 @@
     "password": "Abc@123.nl",
     "fullName": "joel verveer",
     "level": 0
+  },
+  {
+    "id": 5,
+    "emailAddress": "jimmy@gmail.com",
+    "password": "Abc@12312.da",
+    "fullName": "Jimmy Tran",
+    "level": 0
   }
 ]
