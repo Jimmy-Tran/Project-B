@@ -27,7 +27,8 @@ static class Menu
     string input = Console.ReadLine();
     if (input == "1")
     {
-      UserLogin.Start();
+        Restaurant restaurant = new Restaurant();
+        restaurant.InitializeTables();
     }
     else if (input == "2")
     {

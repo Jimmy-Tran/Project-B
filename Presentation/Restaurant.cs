@@ -9,7 +9,7 @@ class Restaurant
             Console.WriteLine();
         }
     }
-    static void InitializeTables(string[] args)
+    public void InitializeTables()
     {
         List<Table> tables = new List<Table>()
         {
