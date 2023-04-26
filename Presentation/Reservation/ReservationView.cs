@@ -18,21 +18,33 @@ public class Reservation {
         // ReservationModel reservation = ReservationLogic.GetReservation(_Searchterm);
 
         // Console.WriteLine(reservation);
-        Console.WriteLine("Zoeken (Naam / Email): ");
+        Console.Write("Zoeken (Naam / Email): ");
         string Searchterm = Console.ReadLine();
 
         if (ReservationLogic.GetReservation(Searchterm) != null) {
-            Console.WriteLine("Naam");
-            string Name = Console.ReadLine();
+            string Name;
+            do {
+                Console.Write("Naam: ");
+                Name = Console.ReadLine();
+            } while (Name.Length <= 3);
+            
+            string Email;
+            do {
+                Console.Write("Email: ");
+                Email = Console.ReadLine();
+            } while (ValidationLogic.IsValidEmail(Email) != true);
 
-            Console.WriteLine("Email");
-            string Email = Console.ReadLine();
+            string Date;
+            do {
+                Console.Write("Date (DD-MM-JJJJ): ");
+                Date = Console.ReadLine();
+            } while (ValidationLogic.IsValidDate(Date) != true);
 
-            Console.WriteLine("Date (DD-MM-JJJJ)");
-            string Date = Console.ReadLine();
-
-            Console.WriteLine("Time");
-            string TimeSlot = Console.ReadLine();
+            string TimeSlot;
+            do {
+                Console.Write("Time (00:00): ");
+                TimeSlot = Console.ReadLine();
+            } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
             Console.WriteLine("Tafel nummers");
             List<int> Tables = new List<int> ();
@@ -50,10 +62,14 @@ public class Reservation {
 
             }
 
-            Console.WriteLine("Aantal Personen");
-            int Amt_People = Convert.ToInt32(Console.ReadLine());
+            string Amt_People;
+            do {
+                Console.Write("Aantal Personen: ");
+                Amt_People = Console.ReadLine();
+            } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
-            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, Date, TimeSlot, Tables, Amt_People);
+            // All values has been checked and ready to be changed
+            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, Date, TimeSlot, Tables, Convert.ToInt32(Amt_People));
 
             if (ChangedValue != true) {
                 Console.WriteLine("Er is iets fouts gegaan!");
