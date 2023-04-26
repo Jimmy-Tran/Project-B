@@ -16,7 +16,7 @@ namespace Project_B.Logic
 
                 reservations.Add(new ReservationModel(_id, _clientnumber, _name, _email, _date, _reservationcode, _timeslot, _tables, _amt_people));
 
-                string updatedJson = JsonConvert.SerializeObject(reservations);
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
@@ -73,7 +73,7 @@ namespace Project_B.Logic
                     }            
                 }
 
-                string updatedJson = JsonConvert.SerializeObject(reservations);
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
@@ -91,7 +91,7 @@ namespace Project_B.Logic
 
                 reservations.RemoveAll(x => x.ID == _ID);
 
-                string updatedJson = JsonConvert.SerializeObject(reservations);
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 
                 return true;

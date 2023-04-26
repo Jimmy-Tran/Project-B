@@ -4,9 +4,9 @@
   {
     // begin met welkom
     //test
-    Welkom.welkom();
-    Menu.Start();
-    
+    // Welkom.welkom();
+    // Menu.Start();
+    Reservation.ChangeReservation();
   }
 }
 
