@@ -70,13 +70,39 @@ public class Reservation {
         Console.WriteLine("ID");
         int ID = Convert.ToInt32(Console.ReadLine());
 
-        bool DeletedObject = ReservationLogic.DeleteReservation(ID);
+        ReservationModel ReservationObject = ReservationLogic.GetReservation(Convert.ToString(ID));
 
-        if (DeletedObject != true) {
-            Console.WriteLine("Er is iets fouts gegaan!");
-        } 
-        else {
-            Console.WriteLine("Gelukt!");
+        if (ReservationObject == null) {
+            Console.WriteLine("Reservatie niet gevonden!");
+            return;
         }
+
+        Console.WriteLine($"\nID: {ReservationObject.ID}");
+        Console.WriteLine($"Name: {ReservationObject.Name}");
+        Console.WriteLine($"Email: {ReservationObject.Email}");
+        Console.WriteLine($"\nWeet u zeker dat deze reservering wordt verwijderd?"); 
+
+        string DeleteObjectbool = ""; 
+        do {
+            Console.WriteLine($"(J/N)");
+            DeleteObjectbool = Console.ReadLine().ToUpper();
+        }
+        while (DeleteObjectbool != "J" && DeleteObjectbool != "N");
+
+        if (DeleteObjectbool == "J") {
+            bool DeletedObject = ReservationLogic.DeleteReservation(ID);
+
+            if (DeletedObject != true) {
+                Console.WriteLine("Er is iets fouts gegaan!");
+            } 
+            else {
+                Console.WriteLine("Gelukt!");
+            }
+        } else if (DeleteObjectbool == "N") {
+            Console.WriteLine("Geannuleerd.");
+        }
+        
+
+        
     }
 }
