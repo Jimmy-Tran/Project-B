@@ -9,7 +9,7 @@ namespace Project_B.Logic
 {
     public static class ReservationLogic
     {
-        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, string _date, string _reservationcode, string _timeslot, List<int> _tables, int _amt_people) {
+        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<int> _tables, int _amt_people) {
             try {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
@@ -57,7 +57,7 @@ namespace Project_B.Logic
             }
         }
 
-        public static bool ChangeReservation(string _Searchterm, string _name, string _email, string _date, string _timeslot, List<int> _tables, int _amt_people) {
+        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<int> _tables, int _amt_people) {
             try {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
@@ -101,5 +101,13 @@ namespace Project_B.Logic
                 return false;
             }
         }
+
+        public static int GetLastID() {
+            string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+            return reservations.Last().ID;
+        }
+
     }    
 }

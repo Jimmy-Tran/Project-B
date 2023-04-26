@@ -6,7 +6,8 @@
     //test
     // Welkom.welkom();
     // Menu.Start();
-    Reservation.ChangeReservation();
+    Reservation.MakeReservation();
+    
   }
 }
 

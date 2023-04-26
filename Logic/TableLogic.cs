@@ -17,7 +17,7 @@ namespace Project_B.Logic
             List<int> AvailableTables = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 
             foreach (ReservationModel reservartion in reservations) {
-                if (reservartion.Date == DateNow) {
+                if (Convert.ToString(reservartion.Date) == DateNow) {
                     foreach (int i in reservartion.Tables) {
                         AvailableTables.Remove(i);
                     }
