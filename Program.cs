@@ -1,12 +1,12 @@
-﻿class Program
+﻿namespace Project_B.Logic;
+class Program
 {
   static void Main(string[] args)
   {
     // begin met welkom
-    // Welkom.welkom();
-    // Menu.Start();
-    Reservation.MakeReservation();
-    
+    //test
+    Menu.Start();
+
   }
 }
 
