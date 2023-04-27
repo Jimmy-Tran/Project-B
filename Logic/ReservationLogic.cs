@@ -9,6 +9,22 @@ namespace Project_B.Logic
 {
     public static class ReservationLogic
     {
+        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<int> _tables, int _amt_people) {
+            try {
+                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+                reservations.Add(new ReservationModel(_id, _clientnumber, _name, _email, _date, _reservationcode, _timeslot, _tables, _amt_people));
+
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                return true;
+            }
+            catch (Exception ex) {
+                return false;
+            }
+        }
+
         public static List<ReservationModel> GetReservations() {
             try {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
@@ -30,19 +46,18 @@ namespace Project_B.Logic
                 // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
                 foreach (ReservationModel reservation in reservations) {
-                    if (reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
                         return reservation;
                     }            
                 }
                 return null;
             }
             catch (Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}"); 
                 return null;
             }
         }
 
-        public static bool ChangeReservation(string _Searchterm, string _name, string _email, string _date, string _timeslot, List<int> _tables, int _amt_people) {
+        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<int> _tables, int _amt_people) {
             try {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
@@ -58,7 +73,7 @@ namespace Project_B.Logic
                     }            
                 }
 
-                string updatedJson = JsonConvert.SerializeObject(reservations);
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
@@ -76,7 +91,7 @@ namespace Project_B.Logic
 
                 reservations.RemoveAll(x => x.ID == _ID);
 
-                string updatedJson = JsonConvert.SerializeObject(reservations);
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 
                 return true;
@@ -86,5 +101,13 @@ namespace Project_B.Logic
                 return false;
             }
         }
+
+        public static int GetLastID() {
+            string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+            return reservations.Last().ID;
+        }
+
     }    
 }

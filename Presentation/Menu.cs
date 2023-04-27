@@ -1,3 +1,5 @@
+namespace Project_B.Logic;
+
 static class Menu
 {
   // start menu, niet ingelogd.
@@ -17,40 +19,35 @@ static class Menu
   }
   static public void Start()
   {
-    Console.WriteLine("[1] Login");
-    Console.WriteLine("[2] Zie menu kaart");
-    Console.WriteLine("[3] Reserveer");
-    Console.WriteLine("[4] Locatie");
-    Console.WriteLine("[5] Registreren");
-    Console.WriteLine("[Q] Quit");
-
-    string input = Console.ReadLine();
-    if (input == "1")
+    Console.Clear();
+    int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, "Login", "Menu Kaart", "Reserveren", "Locatie", 
+    "Registreren", "Stoppen");
+    if (selectedClass == 0)
     {
       UserLogin.Start();
     }
-    else if (input == "2")
+    else if (selectedClass == 1)
     {
       Show.Menu();
       Start();
     }
-    else if (input == "3")
+    else if (selectedClass == 2)
     {
       ReservationConsole res = new ReservationConsole();
       res.Reserveren();
     }
-    else if (input == "4")
+    else if (selectedClass == 3)
     {
       // start de locatie class en show detail
       CreateLocation().Show();
       Start();
     }
-    else if (input == "5")
+    else if (selectedClass == 4)
     {
       // start de registratieproces
       UserRegistration.Start();
     }
-    else if (input.ToLower() == "q")
+    else if (selectedClass == 5)
     {
       // Stop de programma
       Environment.Exit(0);
@@ -70,41 +67,32 @@ static class Menu
   }
   static public void Start(string username, int id) // ingelogd geef parameter's mee om aan te geven dat de persoon is ingelogd
   {
-    Console.WriteLine("[1] Menu bekijken");
-    Console.WriteLine("[2] Reserveren");
-    Console.WriteLine("[3] Locatie bekijken");
-    Console.WriteLine("[L] Log uit");
 
-    string input = Console.ReadLine();
-    if (input == "1")
+    int selectedClass = MenuLogic.MultipleChoice(true, "", 1, "Menu bekijken", "Reserveren", "Locatie bekijken", "Log uit");
+    if (selectedClass == 0)
     {
       // voor stellen om een foto te laten up poppen van een menu kaart, anders vraag wat precies geshowed moet worden
       Show.Menu();
       Start(username, id);
     }
-    else if (input == "2")
+    else if (selectedClass == 1)
     {
       // ga naar reserveren waar je een paar optie's weer krijgt
       // Reservatie res = new Reservatie();
       // res.Res_menu(username, id);
     }
-    else if (input == "3")
+    else if (selectedClass == 2)
     {
       // start de locatie class en show detail
       CreateLocation().Show();
       Start();
     }
-    else if (input.ToLower() == "l")
+    else if (selectedClass == 3)
     {
       // roep welkom aan sinds je word uitgelogd
       Welkom.welkom();
       // je word gestuurd naar start aka je bent uitgelogd'
       Start();
-    }
-    else
-    {
-      Console.WriteLine("Invalid input");
-      Start(username, id);
     }
 
   }

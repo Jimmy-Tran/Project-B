@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
+namespace Project_B.Logic;
+
 static class UserRegistration
 {
     static private AccountsLogic accountsLogic = new AccountsLogic();

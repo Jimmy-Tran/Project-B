@@ -1,3 +1,4 @@
+namespace Project_B.Logic;
 public class MenuAanpassen
 {
     public static void EditMenu(string username, int id)
