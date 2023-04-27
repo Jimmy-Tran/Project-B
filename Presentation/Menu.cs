@@ -24,7 +24,8 @@ static class Menu
     "Registreren", "Stoppen");
     if (selectedClass == 0)
     {
-      UserLogin.Start();
+        Restaurant restaurant = new Restaurant();
+        restaurant.InitializeTables();
     }
     else if (selectedClass == 1)
     {

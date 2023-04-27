@@ -8,31 +8,45 @@ namespace Project_B.DataModels
 {
     public class ReservationModel
     {
-        [JsonPropertyName("id")]
+        [JsonPropertyName("ID")]
         public int ID {get; set;}
 
-        [JsonPropertyName("clientnumber")]
+        [JsonPropertyName("ClientNumber")]
         public int ClientNumber {get; set;}
 
-        [JsonPropertyName("name")]
+        [JsonPropertyName("Name")]
         public string Name {get; set;}
 
-        [JsonPropertyName("email")]
+        [JsonPropertyName("Email")]
         public string Email {get; set;}
 
-        [JsonPropertyName("date")]
-        public string Date {get; set;}
+        [JsonPropertyName("Date")]
+        public DateTime Date {get; set;}
 
-        [JsonPropertyName("reservationcode")]
+        [JsonPropertyName("ReservationCode")]
         public string ReservationCode {get; set;}
 
-        [JsonPropertyName("timeslot")]
-        public string TimeSlot {get; set;}
+        [JsonPropertyName("TimeSlot")]
+        public TimeSpan TimeSlot {get; set;}
 
-        [JsonPropertyName("tables")]
+        [JsonPropertyName("Tables")]
         public List<int> Tables {get; set;}
         
-        [JsonPropertyName("amt_people")]
+        [JsonPropertyName("Amt_People")]
         public int Amt_People {get; set;}
+
+        public ReservationModel(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<int> _tables, int _amt_people) {
+            ID = _id;
+            ClientNumber = _clientnumber;
+            Name = _name;
+            Email = _email;
+            Date = _date;
+            ReservationCode = _reservationcode;
+            TimeSlot = _timeslot;
+            Tables = _tables;
+            Amt_People = _amt_people;
     }
+    }
+
+    
 }

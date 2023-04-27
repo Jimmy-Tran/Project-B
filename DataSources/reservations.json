@@ -1,394 +1,110 @@
 [
   {
-    "id": 0,
-    "clientnumber": 911,
-    "name": "adad",
-    "email": "jimada@ad.com",
-    "date": "0",
-    "reservationcode": "DHRRRL",
-    "timeslot": "",
-    "tables": [
+    "ID": 0,
+    "ClientNumber": 911,
+    "Name": "adad",
+    "Email": "jimada@ad.com",
+    "Date": "2023-05-26T00:00:00",
+    "ReservationCode": "DHRRRL",
+    "TimeSlot": "20:00:00",
+    "Tables": [
       3,
       4
     ],
-    "amt_people": 2301
+    "Amt_People": 4
   },
   {
-    "id": 12,
-    "clientnumber": 0,
-    "name": "Jimmy",
-    "email": "Jimmy@gmail.com",
-    "date": "0",
-    "reservationcode": "CLRNYB",
-    "timeslot": "",
-    "tables": [
+    "ID": 13,
+    "ClientNumber": 0,
+    "Name": "jada",
+    "Email": "2dadka@gmail.com",
+    "Date": "2023-05-27T00:00:00",
+    "ReservationCode": "ULXJPH",
+    "TimeSlot": "20:00:00",
+    "Tables": [
       3,
       4
     ],
-    "amt_people": 2
+    "Amt_People": 2
   },
   {
-    "id": 13,
-    "clientnumber": 0,
-    "name": "jada",
-    "email": "2dadka@gmail.com",
-    "date": "0",
-    "reservationcode": "ULXJPH",
-    "timeslot": "",
-    "tables": [
+    "ID": 14,
+    "ClientNumber": 0,
+    "Name": "jaada",
+    "Email": "jada@gmail.com",
+    "Date": "2023-05-28T00:00:00",
+    "ReservationCode": "CXYSQD",
+    "TimeSlot": "20:00:00",
+    "Tables": [
       3,
       4
     ],
-    "amt_people": 2
+    "Amt_People": 6
   },
   {
-    "id": 14,
-    "clientnumber": 0,
-    "name": "jaada",
-    "email": "jada@gmail.com",
-    "date": "0",
-    "reservationcode": "CXYSQD",
-    "timeslot": "",
-    "tables": [
+    "ID": 15,
+    "ClientNumber": 0,
+    "Name": "Jimmy Tran",
+    "Email": "jadja@",
+    "Date": "2023-05-29T00:00:00",
+    "ReservationCode": "BWVTZJ",
+    "TimeSlot": "20:00:00",
+    "Tables": [
       3,
       4
     ],
-    "amt_people": 2
+    "Amt_People": 2
   },
   {
-    "id": 15,
-    "clientnumber": 0,
-    "name": "Jimmy",
-    "email": "jadja@",
-    "date": "0",
-    "reservationcode": "BWVTZJ",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
+    "ID": 16,
+    "ClientNumber": 0,
+    "Name": "Henno Passchier",
+    "Email": "henno@gmail.com",
+    "Date": "2023-05-05T00:00:00",
+    "ReservationCode": "HFQYGD",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      1
     ],
-    "amt_people": 2
+    "Amt_People": 2
   },
   {
-    "id": 16,
-    "clientnumber": 0,
-    "name": "",
-    "email": "dada@gmail.com",
-    "date": "0",
-    "reservationcode": "HFQYGD",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
+    "ID": 17,
+    "ClientNumber": 5,
+    "Name": "Jimmy Tran",
+    "Email": "jimmy@gmail.com",
+    "Date": "2023-05-07T00:00:00",
+    "ReservationCode": "",
+    "TimeSlot": "22:00:00",
+    "Tables": [
+      1
     ],
-    "amt_people": 3
+    "Amt_People": 2
   },
   {
-    "id": 17,
-    "clientnumber": 0,
-    "name": "Jimmy",
-    "email": "jaada@",
-    "date": "0",
-    "reservationcode": null,
-    "timeslot": "",
-    "tables": [
-      3,
-      4
+    "ID": 18,
+    "ClientNumber": 5,
+    "Name": "Jimmy Tran",
+    "Email": "jimmy@gmail.com",
+    "Date": "2023-05-05T00:00:00",
+    "ReservationCode": "",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      2
     ],
-    "amt_people": 30
+    "Amt_People": 2
   },
   {
-    "id": 18,
-    "clientnumber": 0,
-    "name": "Jada",
-    "email": "ada@",
-    "date": "0",
-    "reservationcode": null,
-    "timeslot": "",
-    "tables": [
-      3,
-      4
+    "ID": 19,
+    "ClientNumber": 5,
+    "Name": "Jimmy Tran",
+    "Email": "jimmy@gmail.com",
+    "Date": "2023-05-05T00:00:00",
+    "ReservationCode": "",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      8
     ],
-    "amt_people": 3
-  },
-  {
-    "id": 19,
-    "clientnumber": 0,
-    "name": "ada",
-    "email": "k@",
-    "date": "0",
-    "reservationcode": null,
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 20,
-    "clientnumber": 0,
-    "name": "ada",
-    "email": "kfa@",
-    "date": "0",
-    "reservationcode": null,
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 21,
-    "clientnumber": 0,
-    "name": "daad",
-    "email": "dad@",
-    "date": "0",
-    "reservationcode": null,
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 3
-  },
-  {
-    "id": 22,
-    "clientnumber": 0,
-    "name": "jada",
-    "email": "2ada@",
-    "date": "0",
-    "reservationcode": null,
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 23,
-    "clientnumber": 0,
-    "name": "ada",
-    "email": "lkda@",
-    "date": "0",
-    "reservationcode": "GTBNOL",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 24,
-    "clientnumber": 0,
-    "name": "Jolo",
-    "email": "jolo@d",
-    "date": "0",
-    "reservationcode": "IKVOHF",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 25,
-    "clientnumber": 0,
-    "name": "Joebama",
-    "email": "Joebama@gmada.com",
-    "date": "0",
-    "reservationcode": "SVUWAQ",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 3
-  },
-  {
-    "id": 26,
-    "clientnumber": 0,
-    "name": "ladoa",
-    "email": "adla@",
-    "date": "0",
-    "reservationcode": "TPIZL1",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 27,
-    "clientnumber": 0,
-    "name": "Joe",
-    "email": "Nada@",
-    "date": "0",
-    "reservationcode": "RLLLB2",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 3
-  },
-  {
-    "id": 28,
-    "clientnumber": 0,
-    "name": "jad",
-    "email": "alada@",
-    "date": "0",
-    "reservationcode": "HKAXO7",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 29,
-    "clientnumber": 0,
-    "name": "kadald",
-    "email": "kada@",
-    "date": "0",
-    "reservationcode": "XBRBN5",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 23
-  },
-  {
-    "id": 30,
-    "clientnumber": 0,
-    "name": "jdadla",
-    "email": "laddla@",
-    "date": "0",
-    "reservationcode": "RVHWO6",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 3
-  },
-  {
-    "id": 31,
-    "clientnumber": 0,
-    "name": "Ldaa",
-    "email": "lada@damc",
-    "date": "0",
-    "reservationcode": "OUUPP1",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 32,
-    "clientnumber": 0,
-    "name": "ada",
-    "email": "ada@",
-    "date": "0",
-    "reservationcode": "SYWAP8",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 33,
-    "clientnumber": 0,
-    "name": "lada",
-    "email": "ldad@",
-    "date": "0",
-    "reservationcode": "DXVFX7",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 34,
-    "clientnumber": 0,
-    "name": "loa",
-    "email": "lada@",
-    "date": "0",
-    "reservationcode": "MTKVT4",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
-  },
-  {
-    "id": 35,
-    "clientnumber": 0,
-    "name": "ladoa",
-    "email": "lada@",
-    "date": "0",
-    "reservationcode": "EJBSX8",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 1
-  },
-  {
-    "id": 36,
-    "clientnumber": 0,
-    "name": null,
-    "email": null,
-    "date": "0",
-    "reservationcode": "SOPWZ1",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 0
-  },
-  {
-    "id": 37,
-    "clientnumber": 0,
-    "name": null,
-    "email": "ada@ada.com",
-    "date": "0",
-    "reservationcode": "RBXKR4",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 0
-  },
-  {
-    "id": 38,
-    "clientnumber": 0,
-    "name": null,
-    "email": "ada@ada.com",
-    "date": "0",
-    "reservationcode": "OBCFU8",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 2
+    "Amt_People": 4
   }
 ]

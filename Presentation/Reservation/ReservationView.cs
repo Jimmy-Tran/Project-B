@@ -3,6 +3,7 @@ using Project_B.Logic;
 using Project_B.DataModels;
 
 public class Reservation {
+    static private AccountsLogic accountsLogic = new AccountsLogic();
 
     static public void DisplayReservation() {
         List<ReservationModel> reservations = ReservationLogic.GetReservations();
@@ -10,29 +11,138 @@ public class Reservation {
         
         foreach (ReservationModel reservation in reservations) {
             Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}",
-                reservation.ID, reservation.Name, reservation.Date, reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
+                reservation.ID, reservation.Name, reservation.Date.ToString("dd-MM-yyyy"), reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
+        }
+    }
+
+    static public void MakeReservation() {
+        string HasAccount;
+        do {
+            Console.Write("Heeft de klant een account? (J/N): ");
+            HasAccount = Console.ReadLine().ToUpper();
+        } while (HasAccount != "J" && HasAccount != "N");
+
+        string ClientNumber = "0";
+        string Name = "";
+        string Email = "";
+
+
+        if (HasAccount == "J") {
+            string SearchTerm;
+            do {
+                Console.Write("Zoeken naar account (Email): ");
+                SearchTerm = Console.ReadLine().ToLower();
+            } while (SearchTerm.Length == 0);
+
+            try {
+                AccountModel AccountData = accountsLogic.GetByEmail(SearchTerm);
+                
+                ClientNumber = Convert.ToString(AccountData.Id);
+                Name = AccountData.FullName;
+                Email = AccountData.EmailAddress;
+
+            } catch (Exception e) {
+                Console.WriteLine("Account niet gevonden!");
+                HasAccount = "N";
+            }
+
+            
+        }
+        if (HasAccount == "N") {
+            do {
+                Console.Write("Naam: ");
+                Name = Console.ReadLine();
+            } while (Name.Length <= 3);
+            
+
+            do {
+                Console.Write("Email: ");
+                Email = Console.ReadLine();
+            } while (ValidationLogic.IsValidEmail(Email) != true);
+        }
+
+        string Date;
+        do {
+            Console.Write("Date (DD-MM-JJJJ): ");
+            Date = Console.ReadLine();
+        } while (ValidationLogic.IsValidDate(Date) != true);
+
+
+        string TimeSlot;
+        do {
+            Console.Write("Time (00:00): ");
+            TimeSlot = Console.ReadLine();
+        } while (ValidationLogic.IsValidTime(TimeSlot) != true);
+
+
+        string Amt_People;
+        do {
+            Console.Write("Aantal Personen: ");
+            Amt_People = Console.ReadLine();
+        } while (ValidationLogic.IsNumeric(Amt_People) != true);
+
+
+        List<int> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date));
+        Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", AvailableTables));
+
+        Console.WriteLine("Tafel nummers (klaar ENTER)");
+        List<int> Tables = new List<int> ();
+        while (true) {
+            string Table_number = Console.ReadLine();
+
+            // Keep looping until user pressed ENTER, only numeric
+            if (Table_number != "") {
+                try {
+                    Tables.Add(Convert.ToInt32(Table_number));
+                } catch {
+                    Console.WriteLine("Toevoegen mislukt, voer tafel nummers in!");
+                }
+            } else {
+                break;
+            }
+
+        }
+
+
+        // All values has been checked and ready to be added
+        bool ChangedValue = ReservationLogic.AddReservation((ReservationLogic.GetLastID() + 1), Convert.ToInt32(ClientNumber), Name, Email, DateTime.Parse(Date), "", TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));
+
+        // Reservation returns a boolean of the process
+        if (ChangedValue != true) {
+            Console.WriteLine("Er is iets fouts gegaan!");
+        } else {
+            Console.WriteLine("Gelukt!");
         }
     }
 
     static public void ChangeReservation() {
-        // ReservationModel reservation = ReservationLogic.GetReservation(_Searchterm);
-
-        // Console.WriteLine(reservation);
-        Console.WriteLine("Zoeken (Naam / Email): ");
+        Console.Write("Zoeken (ID / Naam / Email): ");
         string Searchterm = Console.ReadLine();
 
         if (ReservationLogic.GetReservation(Searchterm) != null) {
-            Console.WriteLine("Naam");
-            string Name = Console.ReadLine();
+            string Name;
+            do {
+                Console.Write("Naam: ");
+                Name = Console.ReadLine();
+            } while (Name.Length <= 3);
+            
+            string Email;
+            do {
+                Console.Write("Email: ");
+                Email = Console.ReadLine();
+            } while (ValidationLogic.IsValidEmail(Email) != true);
 
-            Console.WriteLine("Email");
-            string Email = Console.ReadLine();
+            string Date;
+            do {
+                Console.Write("Date (DD-MM-JJJJ): ");
+                Date = Console.ReadLine();
+            } while (ValidationLogic.IsValidDate(Date) != true);
 
-            Console.WriteLine("Date (DD-MM-JJJJ)");
-            string Date = Console.ReadLine();
-
-            Console.WriteLine("Time");
-            string TimeSlot = Console.ReadLine();
+            string TimeSlot;
+            do {
+                Console.Write("Time (00:00): ");
+                TimeSlot = Console.ReadLine();
+            } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
             Console.WriteLine("Tafel nummers");
             List<int> Tables = new List<int> ();
@@ -50,10 +160,14 @@ public class Reservation {
 
             }
 
-            Console.WriteLine("Aantal Personen");
-            int Amt_People = Convert.ToInt32(Console.ReadLine());
+            string Amt_People;
+            do {
+                Console.Write("Aantal Personen: ");
+                Amt_People = Console.ReadLine();
+            } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
-            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, Date, TimeSlot, Tables, Amt_People);
+            // All values has been checked and ready to be changed
+            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));
 
             if (ChangedValue != true) {
                 Console.WriteLine("Er is iets fouts gegaan!");
@@ -70,13 +184,39 @@ public class Reservation {
         Console.WriteLine("ID");
         int ID = Convert.ToInt32(Console.ReadLine());
 
-        bool DeletedObject = ReservationLogic.DeleteReservation(ID);
+        ReservationModel ReservationObject = ReservationLogic.GetReservation(Convert.ToString(ID));
 
-        if (DeletedObject != true) {
-            Console.WriteLine("Er is iets fouts gegaan!");
-        } 
-        else {
-            Console.WriteLine("Gelukt!");
+        if (ReservationObject == null) {
+            Console.WriteLine("Reservatie niet gevonden!");
+            return;
         }
+
+        Console.WriteLine($"\nID: {ReservationObject.ID}");
+        Console.WriteLine($"Name: {ReservationObject.Name}");
+        Console.WriteLine($"Email: {ReservationObject.Email}");
+        Console.WriteLine($"\nWeet u zeker dat deze reservering wordt verwijderd?"); 
+
+        string DeleteObjectbool = ""; 
+        do {
+            Console.WriteLine($"(J/N)");
+            DeleteObjectbool = Console.ReadLine().ToUpper();
+        }
+        while (DeleteObjectbool != "J" && DeleteObjectbool != "N");
+
+        if (DeleteObjectbool == "J") {
+            bool DeletedObject = ReservationLogic.DeleteReservation(ID);
+
+            if (DeletedObject != true) {
+                Console.WriteLine("Er is iets fouts gegaan!");
+            } 
+            else {
+                Console.WriteLine("Gelukt!");
+            }
+        } else if (DeleteObjectbool == "N") {
+            Console.WriteLine("Geannuleerd.");
+        }
+        
+
+        
     }
 }
