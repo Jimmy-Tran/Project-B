@@ -75,7 +75,17 @@ public class Reservation {
         } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
 
-        Console.WriteLine("Tafel nummers");
+        string Amt_People;
+        do {
+            Console.Write("Aantal Personen: ");
+            Amt_People = Console.ReadLine();
+        } while (ValidationLogic.IsNumeric(Amt_People) != true);
+
+
+        List<int> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date));
+        Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", AvailableTables));
+
+        Console.WriteLine("Tafel nummers (klaar ENTER)");
         List<int> Tables = new List<int> ();
         while (true) {
             string Table_number = Console.ReadLine();
@@ -92,12 +102,6 @@ public class Reservation {
             }
 
         }
-
-        string Amt_People;
-        do {
-            Console.Write("Aantal Personen: ");
-            Amt_People = Console.ReadLine();
-        } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
 
         // All values has been checked and ready to be added
