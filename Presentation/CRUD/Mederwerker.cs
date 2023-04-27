@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+namespace Project_B.Logic;
 public class Mederwerker
 {
     private const string ACCOUNT_FILE = @"DataSources/accounts.json";
