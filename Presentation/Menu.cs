@@ -53,12 +53,6 @@ static class Menu
         Console.WriteLine($"Welkom {username}, je id is: {id}");
         CustomerMenu.Start(username, id);
     }
-
-    static public void Reserveren(string username, int id)
-    {
-        // navragen wat gepushed moet worden naar console
-    }
-
     // admin gedeelte ------------------------------------------------------------------------- admin gedeelte
     static public void Admin(int id, string username)
     {
