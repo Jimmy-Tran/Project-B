@@ -118,7 +118,7 @@ class ReservationConsole
 
 
         Console.ForegroundColor = ConsoleColor.Cyan;
-
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
         Console.WriteLine("╔════════════════════════════════════════╗");
         Console.WriteLine("║                Entrance                ║");
         Console.WriteLine("╚════════════════════════════════════════╝");

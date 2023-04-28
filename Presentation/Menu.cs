@@ -10,8 +10,9 @@ static class Menu
         "Registreren", "Stoppen");
         if (selectedClass == 0)
         {
-            Restaurant restaurant = new Restaurant();
-            restaurant.InitializeTables();
+            // Restaurant restaurant = new Restaurant();
+            // restaurant.InitializeTables();
+            Admin(1, "maruf");
         }
         else if (selectedClass == 1)
         {
