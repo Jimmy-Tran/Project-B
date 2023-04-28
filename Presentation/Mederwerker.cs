@@ -18,7 +18,7 @@ public class Mederwerker
                 Mederwerker_gegevens(username, id);
                 break;
             case "T":
-                Menu.Admin_menu(username, id);// zodat je terug gaat
+                ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
                 // code block
                 break;
             default:
@@ -47,7 +47,7 @@ public class Mederwerker
         accountsLogic.UpdateList(newEmployee);
 
         Console.WriteLine("Nieuwe medewerker is toegevoegd.");
-        Menu.Admin_menu(username, id); // zodat je terug gaat
+        ManagerMenu.Admin_menu(username, id); // zodat je terug gaat
     }
 
 

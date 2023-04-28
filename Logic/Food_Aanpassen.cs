@@ -17,7 +17,7 @@ public class MenuAanpassen
                 RemoveItem(username, id);
                 break;
             case "T":
-                Menu.Admin_menu(username, id);// zodat je terug gaat
+                ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
                 break;
             default:
                 Console.WriteLine("Ongeldige optie. Kies opnieuw.");
@@ -78,15 +78,7 @@ public class MenuAanpassen
         MenuImporter.AddMenuItem(menu, newItem, filenaam);
 
         Console.WriteLine("Item succesvol toegevoegd!");
-        Menu.Admin_menu(username, id);// zodat je terug gaat
-    }
-
-    public static void DisplayMenuItems(List<MenuItem> items)
-    {
-        foreach (MenuItem item in items)
-        {
-            Console.WriteLine($"ID: {item.ID} | Name: {item.Name} | Price: {item.Price:C}");
-        }
+        ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
     }
 
     public static void RemoveItem(string username, int user_id)
@@ -161,6 +153,6 @@ public class MenuAanpassen
         MenuImporter.SaveMenuToJson(menu, filenaam);
 
         Console.WriteLine($"Item {itemToRemove.Name} met ID {itemToRemove.ID} is succesvol verwijderd uit de categorie {category}.");
-        Menu.Admin_menu(username, user_id);// zodat je terug gaat
+        ManagerMenu.Admin_menu(username, user_id);// zodat je terug gaat
     }
 }
