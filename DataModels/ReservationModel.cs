@@ -21,21 +21,21 @@ namespace Project_B.DataModels
         public string Email {get; set;}
 
         [JsonPropertyName("Date")]
-        public DateTime Date {get; set;}
+        public string Date {get; set;}
 
         [JsonPropertyName("ReservationCode")]
         public string ReservationCode {get; set;}
 
         [JsonPropertyName("TimeSlot")]
-        public TimeSpan TimeSlot {get; set;}
+        public int TimeSlot {get; set;}
 
         [JsonPropertyName("Tables")]
-        public List<int> Tables {get; set;}
+        public List<string> Tables {get; set;}
         
         [JsonPropertyName("Amt_People")]
         public int Amt_People {get; set;}
 
-        public ReservationModel(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<int> _tables, int _amt_people) {
+        public ReservationModel(int _id, int _clientnumber, string _name, string _email, string _date, string _reservationcode, int _timeslot, List<string> _tables, int _amt_people) {
             ID = _id;
             ClientNumber = _clientnumber;
             Name = _name;

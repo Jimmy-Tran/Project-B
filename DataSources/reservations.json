@@ -4,106 +4,126 @@
     "ClientNumber": 911,
     "Name": "adad",
     "Email": "jimada@ad.com",
-    "Date": "2023-05-26T00:00:00",
+    "Date": "12/09/2023",
     "ReservationCode": "DHRRRL",
-    "TimeSlot": "20:00:00",
+    "TimeSlot": 1,
     "Tables": [
-      3,
-      4
+      "_4D",
+      "_4E"
     ],
     "Amt_People": 4
   },
   {
-    "ID": 13,
+    "ID": 0,
     "ClientNumber": 0,
-    "Name": "jada",
-    "Email": "2dadka@gmail.com",
-    "Date": "2023-05-27T00:00:00",
-    "ReservationCode": "ULXJPH",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      3,
-      4
-    ],
+    "Name": null,
+    "Email": "adada@gmail.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "JELVHH",
+    "TimeSlot": 2,
+    "Tables": null,
     "Amt_People": 2
   },
   {
-    "ID": 14,
+    "ID": 0,
     "ClientNumber": 0,
-    "Name": "jaada",
-    "Email": "jada@gmail.com",
-    "Date": "2023-05-28T00:00:00",
-    "ReservationCode": "CXYSQD",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      3,
-      4
-    ],
-    "Amt_People": 6
+    "Name": null,
+    "Email": "ada@gmai.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "INCQGH",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
   },
   {
-    "ID": 15,
+    "ID": 0,
     "ClientNumber": 0,
-    "Name": "Jimmy Tran",
-    "Email": "jadja@",
-    "Date": "2023-05-29T00:00:00",
-    "ReservationCode": "BWVTZJ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      3,
-      4
-    ],
-    "Amt_People": 2
+    "Name": null,
+    "Email": "ladlald@adkda.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "NLVYZT",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
   },
   {
-    "ID": 16,
+    "ID": 0,
     "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "HFQYGD",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      1
-    ],
-    "Amt_People": 2
+    "Name": null,
+    "Email": "2adaa@dada.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "MXFVJC",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
   },
   {
-    "ID": 17,
-    "ClientNumber": 5,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy@gmail.com",
-    "Date": "2023-05-07T00:00:00",
-    "ReservationCode": "",
-    "TimeSlot": "22:00:00",
-    "Tables": [
-      1
-    ],
-    "Amt_People": 2
+    "ID": 0,
+    "ClientNumber": 0,
+    "Name": null,
+    "Email": "akdkda@ada.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "GCWLYW",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
   },
   {
-    "ID": 18,
-    "ClientNumber": 5,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      2
-    ],
-    "Amt_People": 2
+    "ID": 0,
+    "ClientNumber": 0,
+    "Name": null,
+    "Email": "adad@aad.con",
+    "Date": "12/09/2023",
+    "ReservationCode": "ZEYYDC",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
   },
   {
-    "ID": 19,
-    "ClientNumber": 5,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "",
-    "TimeSlot": "20:00:00",
+    "ID": 0,
+    "ClientNumber": 0,
+    "Name": null,
+    "Email": "adalad@ad.comm",
+    "Date": "12/09/2023",
+    "ReservationCode": "YDYSJY",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
+  },
+  {
+    "ID": 0,
+    "ClientNumber": 0,
+    "Name": null,
+    "Email": "adad@adac.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "THDHSK",
+    "TimeSlot": 1,
+    "Tables": null,
+    "Amt_People": 4
+  },
+  {
+    "ID": 0,
+    "ClientNumber": 0,
+    "Name": null,
+    "Email": "adada@ada.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "NXUQXZ",
+    "TimeSlot": 1,
     "Tables": [
-      8
+      "_4A"
+    ],
+    "Amt_People": 4
+  },
+  {
+    "ID": 0,
+    "ClientNumber": 0,
+    "Name": null,
+    "Email": "adada@ada.com",
+    "Date": "12/09/2023",
+    "ReservationCode": "AALDEU",
+    "TimeSlot": 1,
+    "Tables": [
+      "_4B"
     ],
     "Amt_People": 4
   }

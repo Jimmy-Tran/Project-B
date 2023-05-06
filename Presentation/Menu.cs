@@ -22,12 +22,8 @@ static class Menu
     Console.Clear();
     int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, "Login", "Menu Kaart", "Reserveren", "Locatie", 
     "Registreren", "Stoppen");
-    if (selectedClass == 0)
-    {
-        Restaurant restaurant = new Restaurant();
-        restaurant.InitializeTables();
-    }
-    else if (selectedClass == 1)
+    
+    if (selectedClass == 1)
     {
       Show.Menu();
       Start();
