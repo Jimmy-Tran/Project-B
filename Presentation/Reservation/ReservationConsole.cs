@@ -51,6 +51,7 @@ class ReservationConsole
             Console.WriteLine("[1] Reservering maken met een account.");
             Console.WriteLine("[2] Reservering maken zonder een account.");
             string option = Console.ReadLine();
+            
             if (option == "1" || option == "2") {
                 fieldValid = true;
                 if (option == "1") {
@@ -80,13 +81,13 @@ class ReservationConsole
                                         int timeslotCheck = Convert.ToInt32(Console.ReadLine());
                                         if(timeslotCheck == 1) {
                                             field4Valid = true;
-                                            timeslot = "16:00 - 18:00";
+                                            timeslot = "16:00";
                                         } else if (timeslotCheck == 2) {
                                             field4Valid = true;
-                                            timeslot = "18:00 - 20:00";
+                                            timeslot = "18:00";
                                         } else if (timeslotCheck == 3) {
                                             field4Valid = true;
-                                            timeslot = "20:00 - 22:00";
+                                            timeslot = "20:00";
                                         }
                                     }
                                 } else if(amountpeopleCheck == 1 || amountpeopleCheck > 6) {
@@ -101,6 +102,7 @@ class ReservationConsole
 
 
             Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Console.WriteLine("╔════════════════════════════════════════╗");
             Console.WriteLine("║                Entrance                ║");

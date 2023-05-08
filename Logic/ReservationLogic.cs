@@ -102,6 +102,32 @@ namespace Project_B.Logic
             }
         }
 
+
+        public static string CodeGenerator()
+                {
+                // Creating object of random class
+                Random rand = new Random();
+
+                int randValue;
+                string str = "";
+                char letter;
+                for (int i = 0; i < 6; i++)
+                {
+
+                    // Generating a random number.
+                    randValue = rand.Next(0, 26);
+
+                    // Generating random character by converting
+                    // the random number into character.
+                    letter = Convert.ToChar(randValue + 65);
+
+                    // Appending the letter to string.
+                    str = str + letter;
+
+                }
+                return str;
+            }  
+
         public static int GetLastID() {
             string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
