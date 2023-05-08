@@ -12,7 +12,7 @@ static class Menu
         {
             // Restaurant restaurant = new Restaurant();
             // restaurant.InitializeTables();
-            Admin(1, "maruf");
+            UserLogin.Start();
         }
         else if (selectedClass == 1)
         {
