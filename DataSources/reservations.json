@@ -1,130 +1,110 @@
 [
   {
-    "ID": 0,
-    "ClientNumber": 911,
-    "Name": "adad",
-    "Email": "jimada@ad.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "DHRRRL",
-    "TimeSlot": 1,
-    "Tables": [
-      "_4D",
-      "_4E"
+    "id": 0,
+    "clientnumber": 911,
+    "name": "adad",
+    "email": "jimada@ad.com",
+    "date": "2023-05-26T00:00:00",
+    "reservationcode": "DHRRRL",
+    "timeslot": "20:00:00",
+    "tables": [
+      3,
+      4
     ],
-    "Amt_People": 4
+    "amt_people": 4
   },
   {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "adada@gmail.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "JELVHH",
-    "TimeSlot": 2,
-    "Tables": null,
-    "Amt_People": 2
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "ada@gmai.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "INCQGH",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "ladlald@adkda.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "NLVYZT",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "2adaa@dada.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "MXFVJC",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "akdkda@ada.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "GCWLYW",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "adad@aad.con",
-    "Date": "12/09/2023",
-    "ReservationCode": "ZEYYDC",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "adalad@ad.comm",
-    "Date": "12/09/2023",
-    "ReservationCode": "YDYSJY",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "adad@adac.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "THDHSK",
-    "TimeSlot": 1,
-    "Tables": null,
-    "Amt_People": 4
-  },
-  {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "adada@ada.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "NXUQXZ",
-    "TimeSlot": 1,
-    "Tables": [
-      "_4A"
+    "id": 13,
+    "clientnumber": 0,
+    "name": "jada",
+    "email": "2dadka@gmail.com",
+    "date": "2023-05-27T00:00:00",
+    "reservationcode": "ULXJPH",
+    "timeslot": "20:00:00",
+    "tables": [
+      3,
+      4
     ],
-    "Amt_People": 4
+    "amt_people": 2
   },
   {
-    "ID": 0,
-    "ClientNumber": 0,
-    "Name": null,
-    "Email": "adada@ada.com",
-    "Date": "12/09/2023",
-    "ReservationCode": "AALDEU",
-    "TimeSlot": 1,
-    "Tables": [
-      "_4B"
+    "id": 14,
+    "clientnumber": 0,
+    "name": "jaada",
+    "email": "jada@gmail.com",
+    "date": "2023-05-28T00:00:00",
+    "reservationcode": "CXYSQD",
+    "timeslot": "20:00:00",
+    "tables": [
+      3,
+      4
     ],
-    "Amt_People": 4
+    "amt_people": 6
+  },
+  {
+    "id": 15,
+    "clientnumber": 0,
+    "name": "Jimmy Tran",
+    "email": "jadja@",
+    "date": "2023-05-29T00:00:00",
+    "reservationcode": "BWVTZJ",
+    "timeslot": "20:00:00",
+    "tables": [
+      3,
+      4
+    ],
+    "amt_people": 2
+  },
+  {
+    "id": 16,
+    "clientnumber": 0,
+    "name": "Henno Passchier",
+    "email": "henno@gmail.com",
+    "date": "2023-05-05T00:00:00",
+    "reservationcode": "HFQYGD",
+    "timeslot": "20:00:00",
+    "tables": [
+      1
+    ],
+    "amt_people": 2
+  },
+  {
+    "id": 17,
+    "clientnumber": 5,
+    "name": "Jimmy Tran",
+    "email": "jimmy@gmail.com",
+    "date": "2023-05-07T00:00:00",
+    "reservationcode": "",
+    "timeslot": "22:00:00",
+    "tables": [
+      1
+    ],
+    "amt_people": 2
+  },
+  {
+    "id": 18,
+    "clientnumber": 5,
+    "name": "Jimmy Tran",
+    "email": "jimmy@gmail.com",
+    "date": "2023-05-05T00:00:00",
+    "reservationcode": "",
+    "timeslot": "20:00:00",
+    "tables": [
+      2
+    ],
+    "amt_people": 2
+  },
+  {
+    "id": 19,
+    "clientnumber": 5,
+    "name": "Jimmy Tran",
+    "email": "jimmy@gmail.com",
+    "date": "2023-05-05T00:00:00",
+    "reservationcode": "",
+    "timeslot": "20:00:00",
+    "tables": [
+      8
+    ],
+    "amt_people": 4
   }
 ]

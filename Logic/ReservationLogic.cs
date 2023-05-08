@@ -133,7 +133,7 @@ namespace Project_B.Logic
                 return false;
             }
         }
-
+        
         public static void UpdateTableAvailability(List<string> TablesList)
         {
             _6A = TablesList.Contains("_6A") ? available : unavailable;

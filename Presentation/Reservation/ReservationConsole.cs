@@ -29,6 +29,7 @@ class ReservationConsole
             Console.WriteLine("[1] Reservering maken met een account.");
             Console.WriteLine("[2] Reservering maken zonder een account.");
             string option = Console.ReadLine();
+            
             if (option == "1" || option == "2") {
                 fieldValid = true;
                 if (option == "1") {
@@ -95,6 +96,7 @@ class ReservationConsole
                 }
             }
         }
+
             Console.WriteLine(date);
             ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
             Console.WriteLine("email: " + email);
