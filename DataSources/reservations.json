@@ -106,47 +106,5 @@
       8
     ],
     "amt_people": 4
-  },
-  {
-    "id": 20,
-    "clientnumber": 0,
-    "name": null,
-    "email": null,
-    "date": "0",
-    "reservationcode": "OVSYZD",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 0
-  },
-  {
-    "id": 21,
-    "clientnumber": 0,
-    "name": null,
-    "email": null,
-    "date": "0",
-    "reservationcode": "HFIAHT",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 0
-  },
-  {
-    "id": 22,
-    "clientnumber": 0,
-    "name": null,
-    "email": null,
-    "date": "0",
-    "reservationcode": "EAXVPD",
-    "timeslot": "",
-    "tables": [
-      3,
-      4
-    ],
-    "amt_people": 0
   }
 ]

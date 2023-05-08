@@ -10,23 +10,48 @@ namespace Project_B.Logic
 {
     public static class TableLogic
     {
-        public static List<int> CheckTables(DateTime date) {
-            string Date = date.ToString("dd-MM-yyyy");
-            List<ReservationModel> reservations = ReservationLogic.GetReservations();
 
-            List<int> AvailableTables = new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        public static List<string> AvailableTables = new List<string> {"_6A", "_6B", "_4A", "_4B", "_4C", "_4D", "_4E", "_1", "_2", "_3", "_4", "_5", "_6", "_7", "_8", "A", "B", "C", "D", "E", "F", "G", "H" };
 
-            foreach (ReservationModel reservartion in reservations) {
-                if (reservartion.Date.ToString("dd-MM-yyyy") == Date) {
-                    foreach (int i in reservartion.Tables) {
-                        AvailableTables.Remove(i);
+
+
+
+        public static List<string> CheckTables(string date, int timeslot, int persons) {
+            List<ReservationModel> res = ReservationLogic.GetReservations();
+            foreach (ReservationModel reservartion in res) {
+                if (reservartion.Date == date && reservartion.TimeSlot == timeslot) {
+                    if(reservartion.Tables != null) {
+                        foreach (string i in reservartion.Tables) {
+                            Console.WriteLine(i);
+                            AvailableTables.Remove($"{i}");
+                        }
                     }
                     
                 }
             }
 
+        
+
+            if (persons == 6 || persons == 5) {
+                AvailableTables = AvailableTables.Where(table => table.StartsWith("_6") && table.Length == 3).ToList();
+            } else if (persons == 4 || persons == 3) {
+                AvailableTables = AvailableTables.Where(table => table.StartsWith("_4") && table.Length == 3).ToList();
+            } else if (persons == 2) {
+                AvailableTables = AvailableTables.Where(table => table.Length == 2).ToList();
+            } else if (persons == 1) {
+                AvailableTables = AvailableTables.Where(table => char.IsLetter(table[0])).ToList();
+            }
+
             return AvailableTables;
 
+        }
+
+        public static bool TableChecker(string table) {
+            if(AvailableTables.Contains(table)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }    
 }
