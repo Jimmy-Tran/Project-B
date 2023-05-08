@@ -23,9 +23,12 @@ namespace Project_B.Logic
             return DateTime.TryParse(date, out tempDate);
         }
 
-        public static bool IsValidTime(string time) {
-            TimeSpan tempTime;
-            return TimeSpan.TryParse(time, out tempTime);
+        public static bool IsValidTime(int time) {
+            if (time < 3 && time > 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public static bool IsNumeric(string number) {
