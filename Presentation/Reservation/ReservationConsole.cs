@@ -22,118 +22,145 @@ class ReservationConsole
     
 
 
-    public void Reserveren()
+    public int Id { get; set; }
+    public int ClientNumber { get; set; }
+    public string? Name { get; set; }
+    public string? Email { get; set; }
+    public string? Date { get; set; }
+    public string? ReservationCode { get; set; }
+    public int TimeSlot { get; set; }
+    public int AmountOfPeople { get; set; }
+    public List<string> Tables { get; set; } = new List<string>();
+
+    public void Reserve()
     {
-        bool fieldValid = false;
-        while(fieldValid is false) {
-            Console.WriteLine("[1] Reservering maken met een account.");
-            Console.WriteLine("[2] Reservering maken zonder een account.");
-            string option = Console.ReadLine();
-            if (option == "1" || option == "2") {
-                fieldValid = true;
-                if (option == "1") {
-                    
-                } else {
-                    bool field2Valid = false;
-                    while(field2Valid is false) {
-                        Console.WriteLine("Wat is uw email adres? (bijv. John.Doe@gmail.com)");
-                        string emailCheck = Console.ReadLine();
-                        string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-                        if(emailCheck.Length > 4 && Regex.IsMatch(emailCheck, pattern)){
-                            email = emailCheck; 
-                            field2Valid = true;
-                            bool field3Valid = false;
-                            while(field3Valid is false) {
-                                Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
-                                int amountpeopleCheck = Convert.ToInt32(Console.ReadLine());
-                                if(amountpeopleCheck > 0) {
-                                    field3Valid = true;
-                                    amt_people = amountpeopleCheck;
-                                    bool field4Valid = false;
-                                    while(field4Valid is false) {
-                                    Console.WriteLine("Welke datum wilt u reserveren? (DD/MM/YYYY):");
-                                    string dateCheck = Console.ReadLine();
-                                    DateTime d;
-                                    if (DateTime.TryParseExact(dateCheck, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out d))
-                                    {
-                                        if (d.Date < DateTime.Today)
-                                        {
-                                            Console.WriteLine("The date entered is before the current date.");
-                                        }
-                                        else
-                                        {
-                                            field4Valid = true;
-                                            Console.WriteLine("The input is a valid date.");
-                                            date = dateCheck;
-                                            bool field5Valid = false;
-                                            while(field5Valid is false) {
-                                                Console.WriteLine("Selecteer een tijdslot:");
-                                                Console.WriteLine("[1] 16:00 - 18:00");
-                                                Console.WriteLine("[2] 18:00 - 20:00");
-                                                Console.WriteLine("[3] 20:00 - 22:00");
-                                                int timeslotCheck = Convert.ToInt32(Console.ReadLine());
-                                                if(timeslotCheck == 1 || timeslotCheck == 2 || timeslotCheck == 3) {
-                                                    field5Valid = true;
-                                                    timeslot = timeslotCheck;
-                                                }
-                                            }
-                                        }
-                                    }
+        Console.WriteLine("[1] Reservering maken met een account.");
+        Console.WriteLine("[2] Reservering maken zonder een account.");
+        int option = GetValidOption("Kies een optie (1-2): ", new List<int> {1, 2});
 
-                                    else
-                                        {
-                                            // The input is not a valid date
-                                            Console.WriteLine("Ongeldige datum. Voer een geldige datum in (DD/MM/YYYY).");
-                                        }
-                                    }
-                                } else if(amountpeopleCheck > 6) {
-                                    Console.WriteLine("Graag contact met ons opnemen via telefoon 063828192");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        if (option == 1)
+        {
+            // Handle reservation with account
         }
-            Console.WriteLine(date);
-            ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
-            Console.WriteLine("email: " + email);
-            string json = File.ReadAllText("./DataSources/reservations.json");
-            // Deserialize the JSON into a list of Reservation objects
-            List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
-            bool codeExists = true;
-            while (codeExists)
-            {
-                string text = ReservationLogic.CodeGenerator();
-                if (!reservations.Any(r => r.reservationcode == text))
-                {
-                    reservationcode = text;
-                    codeExists = false;
-                }
-            }
-            int highestId = reservations.Max(reservation => reservation.id);
-            Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
-            string tableCheck = Console.ReadLine();
-            bool field6Valid = false;
-            while(field6Valid is false) {
-                Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
-                if(tableCheck.Length == 2) {
-                    tableCheck = $"_{tableCheck.ToUpper()}";
-                    Console.WriteLine(tableCheck);
-                    field6Valid = true;
-                    if(TableLogic.TableChecker(tableCheck) is true) {
-                        tables.Add(tableCheck);
-                        ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
-                        field6Valid = true;
-                    }
-                } else {
-                    Console.Write("wrong");
-                }
-
-            }
+        else
+        {
+            Email = GetValidEmail();
+            AmountOfPeople = GetValidAmountOfPeople();
+            Date = GetValidDate();
+            TimeSlot = GetValidTimeSlot();
+            ReservationLogic.ShowTablesAvailability(Date, TimeSlot, AmountOfPeople);
+            Tables.Add(GetValidTable());
+            ReservationCode = ReservationLogic.CodeGenerator();
+            ReservationLogic.AddReservation(Id, ClientNumber, Name, Email, Date, ReservationCode, TimeSlot, Tables, AmountOfPeople);
         }
-
-
-
     }
+
+    private int GetValidOption(string prompt, List<int> validOptions)
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            if (int.TryParse(Console.ReadLine(), out int option) && validOptions.Contains(option))
+            {
+                return option;
+            }
+            Console.WriteLine("Ongeldige invoer. Probeer het opnieuw.");
+        }
+    }
+
+    private string GetValidEmail()
+    {
+        while (true)
+        {
+            Console.WriteLine("Wat is uw e-mailadres? (bijv. John.Doe@gmail.com)");
+            string email = Console.ReadLine()?.Trim();
+            if (string.IsNullOrWhiteSpace(email) || !IsValidEmail(email))
+            {
+                Console.WriteLine("Ongeldige invoer. Voer een geldig e-mailadres in.");
+            }
+            else
+            {
+                return email;
+            }
+        }
+    }
+
+    private bool IsValidEmail(string email)
+    {
+        string pattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        return Regex.IsMatch(email, pattern);
+    }
+
+    private int GetValidAmountOfPeople()
+        {
+        while (true)
+            {
+            Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
+            if (int.TryParse(Console.ReadLine(), out int amount) && amount > 0 && amount <= 6)
+            {
+                return amount;
+            }
+            Console.WriteLine("Ongeldige invoer. Voer een getal tussen 1 en 6 in.");
+            }
+        }
+
+        private string GetValidDate()
+{
+    while (true)
+    {
+        Console.WriteLine("Welke datum wilt u reserveren? (DD/MM/YYYY)");
+        string dateStr = Console.ReadLine()?.Trim();
+        if (DateTime.TryParseExact(dateStr, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+        {
+            if (date.Date < DateTime.Today)
+            {
+                Console.WriteLine("De ingevoerde datum is voor de huidige datum.");
+            }
+            else
+            {
+                return dateStr;
+            }
+        }
+        Console.WriteLine("Ongeldige invoer. Voer een geldige datum in (DD/MM/YYYY).");
+    }
+}
+
+private int GetValidTimeSlot()
+{
+    while (true)
+    {
+        Console.WriteLine("Selecteer een tijdslot:");
+        Console.WriteLine("[1] 16:00 - 18:00");
+        Console.WriteLine("[2] 18:00 - 20:00");
+        Console.WriteLine("[3] 20:00 - 22:00)");
+
+        if (int.TryParse(Console.ReadLine(), out int timeSlot) && timeSlot >= 1 && timeSlot <= 3)
+        {
+            return timeSlot;
+        }
+        Console.WriteLine("Ongeldige invoer. Voer een getal tussen 1 en 3 in.");
+    }
+}
+
+private string GetValidTable()
+{
+    while (true)
+    {
+        Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
+        string table = Console.ReadLine()?.Trim();
+        if (table?.Length == 2)
+        {
+            table = $"_{table.ToUpper()}";
+            if (TableLogic.TableChecker(table))
+            {
+                return table;
+            }
+            Console.WriteLine("De tafel is al bezet. Kies een andere tafel.");
+        }
+        Console.WriteLine("Ongeldige invoer. Voer een geldige tafel in.");
+    }
+}
+
+}
+
 

@@ -31,7 +31,7 @@ static class Menu
     else if (selectedClass == 2)
     {
       ReservationConsole res = new ReservationConsole();
-      res.Reserveren();
+      res.Reserve();
     }
     else if (selectedClass == 3)
     {
