@@ -7,6 +7,10 @@ public class ManagerMenu
         Console.WriteLine("[1] Menu aanpassen");
         Console.WriteLine("[2] Menu bekijken");
         Console.WriteLine("[3] Mederwerker toevoegen");
+        Console.WriteLine("[4] Reserveringen bekijken");
+        Console.WriteLine("[5] Reservering maken");
+        Console.WriteLine("[6] Reservering aanpassen");
+        Console.WriteLine("[7] Reservering verwijderen");
         Console.WriteLine("[L] Loguit");
 
         string input = Console.ReadLine();
@@ -23,6 +27,27 @@ public class ManagerMenu
         else if (input == "3")
         {
             Mederwerker.Toevoeg_Mederwerker_Menu(username, id);
+        }
+        else if (input == "4")
+        {
+            Reservation.DisplayReservation();
+            Admin_menu(username, id);
+        }
+        else if (input == "5")
+        {
+            Reservation.MakeReservation();
+            Admin_menu(username, id);
+        }
+        else if (input == "6")
+        {
+            Console.WriteLine("Nog niet beschikbaar");
+            // Reservation.ChangeReservation();
+            Admin_menu(username, id);
+        }
+        else if (input == "7")
+        {
+            Reservation.DeleteReservationWithID();
+            Admin_menu(username, id);
         }
         else if (input.ToLower() == "l")
         {
