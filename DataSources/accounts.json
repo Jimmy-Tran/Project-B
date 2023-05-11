@@ -33,5 +33,12 @@
     "password": "Abc@12312.da",
     "fullName": "Jimmy Tran",
     "level": 0
+  },
+  {
+    "id": 6,
+    "emailAddress": "test@test.nl",
+    "password": "Test123",
+    "fullName": "test test",
+    "level": 0
   }
 ]
