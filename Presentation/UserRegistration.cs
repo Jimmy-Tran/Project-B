@@ -38,12 +38,7 @@ static class UserRegistration
       Console.WriteLine("De juiste syntax is minimaal 6 tekens lang, 1 hoofdletter en 1 cijfer");
       Password = Console.ReadLine();
 
-      if (!Regex.IsMatch(Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"))
-      {
-        Console.WriteLine("Het wachtwoord heeft niet de juiste syntax, probeer het opnieuw");
-      }
-
-    } while (!Regex.IsMatch(Password, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"));
+    } while (ValidationLogic.IsValidPassword(Password) != true);
 
     Console.WriteLine("Graag hier je volledige naam invullen:");
     string FullName = Console.ReadLine();

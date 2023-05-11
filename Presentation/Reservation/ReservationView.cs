@@ -11,7 +11,7 @@ public class Reservation {
         
         foreach (ReservationModel reservation in reservations) {
             Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}",
-                reservation.ID, reservation.Name, reservation.Date, reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
+                reservation.ID, reservation.Name, reservation.Date.ToString("dd-MM-yyyy"), reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
         }
     }
 
@@ -68,10 +68,10 @@ public class Reservation {
         } while (ValidationLogic.IsValidDate(Date) != true);
 
 
-        int TimeSlot;
+        string TimeSlot;
         do {
             Console.Write("Time (00:00): ");
-            TimeSlot = Convert.ToInt32(Console.ReadLine());
+            TimeSlot = Console.ReadLine();
         } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
 
@@ -79,10 +79,10 @@ public class Reservation {
         do {
             Console.Write("Aantal Personen: ");
             Amt_People = Convert.ToInt32(Console.ReadLine());
-        } while (Amt_People < 0);
+        } while (Amt_People <= 0);
 
 
-        List<string> AvailableTables = TableLogic.CheckTables(Date, TimeSlot, Amt_People);
+        List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
         Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", AvailableTables));
 
         Console.WriteLine("Tafel nummers (klaar ENTER)");
@@ -105,7 +105,7 @@ public class Reservation {
 
 
         // All values has been checked and ready to be added
-        bool ChangedValue = ReservationLogic.AddReservation((ReservationLogic.GetLastID() + 1), Convert.ToInt32(ClientNumber), Name, Email, Date, "", TimeSlot, Tables, Convert.ToInt32(Amt_People));
+        bool ChangedValue = ReservationLogic.AddReservation((ReservationLogic.GetLastID() + 1), Convert.ToInt32(ClientNumber), Name, Email, DateTime.Parse(Date), ReservationLogic.CodeGenerator(), TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));
 
         // Reservation returns a boolean of the process
         if (ChangedValue != true) {
@@ -138,10 +138,10 @@ public class Reservation {
                 Date = Console.ReadLine();
             } while (ValidationLogic.IsValidDate(Date) != true);
 
-            int TimeSlot;
+            string TimeSlot;
             do {
                 Console.Write("Time (00:00): ");
-                TimeSlot = Convert.ToInt32(Console.ReadLine());
+                TimeSlot = Console.ReadLine();
             } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
             Console.WriteLine("Tafel nummers");
@@ -167,7 +167,7 @@ public class Reservation {
             } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
             // All values has been checked and ready to be changed
-            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, Date, TimeSlot, Tables, Convert.ToInt32(Amt_People));
+            bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));
 
             if (ChangedValue != true) {
                 Console.WriteLine("Er is iets fouts gegaan!");

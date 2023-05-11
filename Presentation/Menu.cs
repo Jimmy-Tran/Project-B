@@ -1,4 +1,4 @@
-namespace Project_B.Logic;
+using Project_B.Logic;
 
 static class Menu
 {
