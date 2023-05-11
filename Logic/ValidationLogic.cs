@@ -12,7 +12,7 @@ namespace Project_B.Logic
     {
         public static bool IsValidEmail(string email) {
             if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.(com|net|org|gov|nl)$")) {
-                Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
+                Console.WriteLine("Uw email voldoet niet aan de juiste syntax! probeer het opnieuw.");
                 return false;
 
             } else return true;

@@ -22,8 +22,7 @@ namespace Project_B.Logic
                 if (reservartion.Date == date && reservartion.TimeSlot == timeslot) {
                     if(reservartion.Tables != null) {
                         foreach (string i in reservartion.Tables) {
-                            Console.WriteLine(i);
-                            AvailableTables.Remove($"{i}");
+                            AvailableTables.Remove($"_{i}");
                         }
                     }
                     

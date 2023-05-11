@@ -79,7 +79,7 @@ public class Reservation {
         do {
             Console.Write("Aantal Personen: ");
             Amt_People = Convert.ToInt32(Console.ReadLine());
-        } while (Amt_People < 0);
+        } while (Amt_People <= 0);
 
 
         List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
