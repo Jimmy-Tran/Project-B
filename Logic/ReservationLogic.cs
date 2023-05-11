@@ -41,7 +41,7 @@ namespace Project_B.Logic
     static string G = unavailable;
     static string H = unavailable;
 
-        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, string _date, string _reservationcode, int _timeslot, List<string> _tables, int _amt_people) {
+        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             try {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
@@ -89,7 +89,7 @@ namespace Project_B.Logic
             }
         }
 
-        public static bool ChangeReservation(string _Searchterm, string _name, string _email, string _date, int _timeslot, List<string> _tables, int _amt_people) {
+        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             try {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
@@ -133,7 +133,7 @@ namespace Project_B.Logic
                 return false;
             }
         }
-
+        
         public static void UpdateTableAvailability(List<string> TablesList)
         {
             _6A = TablesList.Contains("_6A") ? available : unavailable;
@@ -161,7 +161,7 @@ namespace Project_B.Logic
             H = TablesList.Contains("H") ? available : unavailable;
         }
 
-        public static void ShowTablesAvailability(string date, int timeslot, int persons)
+        public static void ShowTablesAvailability(DateTime date, TimeSpan timeslot, int persons)
         {
         if (date == null) {
         // handle the case where date is null
@@ -177,6 +177,7 @@ namespace Project_B.Logic
         public static void ShowTables()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Console.WriteLine("╔════════════════════════════════════════╗");
             Console.WriteLine("║                Entrance                ║");
