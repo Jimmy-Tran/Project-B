@@ -15,7 +15,8 @@ public class CustomerMenu
         {
             // ga naar reserveren waar je een paar optie's weer krijgt
             // Reservatie res = new Reservatie();
-            // res.Res_menu(username, id);
+            ReservationConsole res = new ReservationConsole();
+            res.Reserveren(id, username);
         }
         else if (selectedClass == 2)
         {
