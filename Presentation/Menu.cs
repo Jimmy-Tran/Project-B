@@ -6,7 +6,7 @@ static class Menu
     static public void Start()
     {
         Console.Clear();
-        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, "Login", "Menu Kaart", "Reserveren", "Locatie",
+        int selectedClass = MenuLogic.MultipleChoice(true, true, "○", 1, "Login", "Menu Kaart", "Reserveren", "Locatie",
         "Registreren", "Stoppen");
         if (selectedClass == 0)
         {

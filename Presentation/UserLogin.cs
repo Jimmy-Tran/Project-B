@@ -14,7 +14,7 @@ static class UserLogin
         bool passwordNull = true;
         bool accountNull = true;
         while(accountNull is true) {
-            int selectedClass = MenuLogic.MultipleChoice(true, "", 1, $"Email: {email}", $"Wachtwoord: {password}", "", "Login", "Annuleren");
+            int selectedClass = MenuLogic.MultipleChoice(true, true, "", 1, $"Email: {email}", $"Wachtwoord: {password}", "", "Login", "Annuleren");
         if(selectedClass == 0 && emailNull is true) {
             Console.WriteLine("Graag uw email invullen.");
             email = Console.ReadLine();

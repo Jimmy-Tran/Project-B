@@ -1,6 +1,6 @@
 public class MenuLogic
 {
-    public static int MultipleChoice(bool canCancel, string symbol, int opl, params string[] options)
+    public static int MultipleChoice(bool canClear, bool canCancel, string symbol, int opl, params string[] options)
     {
         const int startX = 0;
         const int startY = 10;
@@ -16,6 +16,7 @@ public class MenuLogic
 
         do
         {
+            // if (canClear == true) Console.Clear();
             Console.Clear();
             Welkom.welkom();
             Console.WriteLine("\n");
