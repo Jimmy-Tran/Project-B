@@ -11,38 +11,40 @@ namespace Project_B.Logic
 {
     public static class ReservationLogic
     {
-    static string unavailable = "\u001b[31m";
-    static string available = "\u001b[32m";
-    static string cyan = "\u001b[36m";
+        static string unavailable = "\u001b[31m";
+        static string available = "\u001b[32m";
+        static string cyan = "\u001b[36m";
 
-    public static List<string> availableTables = new List<string>();
+        public static List<string> availableTables = new List<string>();
 
-    static string _6A = unavailable;
-    static string _6B = unavailable;
-    static string _4A = unavailable;
-    static string _4B = unavailable;
-    static string _4C = unavailable;
-    static string _4D = unavailable;
-    static string _4E = unavailable;
-    static string _1 = unavailable;
-    static string _2 = unavailable;
-    static string _3 = unavailable;
-    static string _4 = unavailable;
-    static string _5 = unavailable;
-    static string _6 = unavailable;
-    static string _7 = unavailable;
-    static string _8 = unavailable;
-    static string A = unavailable;
-    static string B = unavailable;
-    static string C = unavailable;
-    static string D = unavailable;
-    static string E = unavailable;
-    static string F = unavailable;
-    static string G = unavailable;
-    static string H = unavailable;
+        static string _6A = unavailable;
+        static string _6B = unavailable;
+        static string _4A = unavailable;
+        static string _4B = unavailable;
+        static string _4C = unavailable;
+        static string _4D = unavailable;
+        static string _4E = unavailable;
+        static string _1 = unavailable;
+        static string _2 = unavailable;
+        static string _3 = unavailable;
+        static string _4 = unavailable;
+        static string _5 = unavailable;
+        static string _6 = unavailable;
+        static string _7 = unavailable;
+        static string _8 = unavailable;
+        static string A = unavailable;
+        static string B = unavailable;
+        static string C = unavailable;
+        static string D = unavailable;
+        static string E = unavailable;
+        static string F = unavailable;
+        static string G = unavailable;
+        static string H = unavailable;
 
-        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
-            try {
+        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people)
+        {
+            try
+            {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
@@ -52,72 +54,88 @@ namespace Project_B.Logic
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return false;
             }
         }
 
-        public static List<ReservationModel> GetReservations() {
-            try {
+        public static List<ReservationModel> GetReservations()
+        {
+            try
+            {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
                 return reservations;
-            
-                }
-            catch (Exception ex) {
-                    Console.WriteLine($"Error: {ex.Message}"); 
-                }
-            return new List<ReservationModel> ();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return new List<ReservationModel>();
         }
 
-        public static ReservationModel GetReservation(string _Searchterm) {
-            try {
+        public static ReservationModel GetReservation(string _Searchterm)
+        {
+            try
+            {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
                 // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
-                foreach (ReservationModel reservation in reservations) {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm)
+                    {
                         return reservation;
-                    }            
+                    }
                 }
                 return null;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return null;
             }
         }
 
-        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
-            try {
+        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people)
+        {
+            try
+            {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
-                foreach (ReservationModel reservation in reservations) {
-                    if (reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (reservation.Name == _Searchterm || reservation.Email == _Searchterm)
+                    {
                         reservation.Name = _name;
                         reservation.Email = _email;
                         reservation.Date = _date;
                         reservation.TimeSlot = _timeslot;
                         reservation.Tables = _tables;
                         reservation.Amt_People = _amt_people;
-                    }            
+                    }
                 }
 
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
-            catch (Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}"); 
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
                 return false;
             }
         }
 
-        public static bool DeleteReservation(int _ID) {
+        public static bool DeleteReservation(int _ID)
+        {
             //Todo: Add a parameter to GetReservation called ID. ID will also return a Object.
-            try {
+            try
+            {
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
@@ -125,15 +143,16 @@ namespace Project_B.Logic
 
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
-                
+
                 return true;
-            } 
-            catch (Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}"); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
                 return false;
             }
         }
-        
+
         public static void UpdateTableAvailability(List<string> TablesList)
         {
             _6A = TablesList.Contains("_6A") ? available : unavailable;
@@ -163,14 +182,17 @@ namespace Project_B.Logic
 
         public static void ShowTablesAvailability(DateTime date, TimeSpan timeslot, int persons)
         {
-        if (date == null) {
-        // handle the case where date is null
-        return;
-        } else {
+            if (date == null)
+            {
+                // handle the case where date is null
+                return;
+            }
+            else
+            {
                 List<string> TablesList = TableLogic.CheckTables(date, timeslot, persons);
                 UpdateTableAvailability(TablesList);
                 ShowTables();
-        }
+            }
         }
 
 
@@ -178,17 +200,13 @@ namespace Project_B.Logic
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-
-            Console.WriteLine("╔════════════════════════════════════════╗");
-            Console.WriteLine("║                Entrance                ║");
-            Console.WriteLine("╚════════════════════════════════════════╝");
             Console.WriteLine("");
             Console.WriteLine("╔════════════════════════════════════════╗");
             Console.WriteLine($"║          ╭──────────────────╮          {cyan}║");
             Console.WriteLine($"║          │     Bar Area     │          {cyan}║");
             Console.WriteLine($"║          ╰──────────────────╯          {cyan}║");
-            Console.WriteLine($"║            {A}○ {B}○ {C}○ {D}○ {E}○ {F}○ {G}○ {H}○            {cyan}║");
-            Console.WriteLine($"║            {A}A {B}B {C}C {D}D {E}E {F}F {G}G H            {cyan}║");
+            Console.WriteLine($"║            {A}○ {B}○ {C}○ {D}○ {E}○ {F}○ {G}○ {H}○             {cyan}║");
+            Console.WriteLine($"║            {A}A {B}B {C}C {D}D {E}E {F}F {G}G H             {cyan}║");
             Console.WriteLine("║                                        ║");
             Console.WriteLine($"║      {_6A}  ○ ○ ○  {_6B}            ○ ○ ○        {cyan}║");
             Console.WriteLine($"║      {_6A}╭───────╮{_6B}          ╭───────╮      {cyan}║");
@@ -215,44 +233,51 @@ namespace Project_B.Logic
             Console.WriteLine($"║{_5}    ╰───╯{_6}    ╰───╯{_7}    ╰───╯{_8}    ╰───╯    {cyan}║");
             Console.WriteLine($"║{_5}      ○  {_6}      ○  {_7}      ○  {_8}      ○      {cyan}║");
             Console.WriteLine("╚════════════════════════════════════════╝");
-            Console.WriteLine();
+            Console.WriteLine("╔════════════════════════════════════════╗");
+            Console.WriteLine("║                Entrance                ║");
+            Console.WriteLine("╚════════════════════════════════════════╝");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public static int GetLastID() {
+        public static int GetLastID()
+        {
             string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+            List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
             return reservations.Last().ID;
         }
-
         public static string CodeGenerator()
         {
-        // Creating object of random class
-        Random rand = new Random();
+            // Creating object of random class
+            Random rand = new Random();
 
-        int randValue;
-        string str = "";
-        char letter;
-        for (int i = 0; i < 6; i++)
-        {
+            int randValue;
+            string str = "";
+            char letter;
+            for (int i = 0; i < 6; i++)
+            {
 
-            // Generating a random number.
-            randValue = rand.Next(0, 26);
+                // Generating a random number.
+                randValue = rand.Next(0, 26);
+                if (i == 2 || i == 4)
+                {
+                    str += $"{rand.Next(1, 9)}";
+                }
+                else
+                {
+                    // Generating random character by converting
+                    // the random number into character.
+                    letter = Convert.ToChar(randValue + 65);
 
-            // Generating random character by converting
-            // the random number into character.
-            letter = Convert.ToChar(randValue + 65);
-
-            // Appending the letter to string.
-            str = str + letter;
-
+                    // Appending the letter to string.
+                    str += letter;
+                }
+            }
+            return str;
         }
-        return str;
-    }  
 
     }
- 
+
 }
 
 
