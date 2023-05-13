@@ -31,7 +31,7 @@ static class Menu
     else if (selectedClass == 2)
     {
       ReservationConsole res = new ReservationConsole();
-      res.Reserve();
+      res.Reserveren();
     }
     else if (selectedClass == 3)
     {
@@ -55,83 +55,17 @@ static class Menu
       Start();
     }
 
-  }
-  static public void Continue(int id, string username)
-  {
-    // je bent ingelogd
-    Console.WriteLine($"Welkom {username}, je id is: {id}");
-    Start(username, id);
-  }
-  static public void Start(string username, int id) // ingelogd geef parameter's mee om aan te geven dat de persoon is ingelogd
-  {
-
-    int selectedClass = MenuLogic.MultipleChoice(true, "", 1, "Menu bekijken", "Reserveren", "Locatie bekijken", "Log uit");
-    if (selectedClass == 0)
-    {
-      // voor stellen om een foto te laten up poppen van een menu kaart, anders vraag wat precies geshowed moet worden
-      Show.Menu();
-      Start(username, id);
     }
-    else if (selectedClass == 1)
+    static public void Continue(int id, string username)
     {
-      // ga naar reserveren waar je een paar optie's weer krijgt
-      // Reservatie res = new Reservatie();
-      // res.Res_menu(username, id);
+        // je bent ingelogd
+        Console.WriteLine($"Welkom {username}, je id is: {id}");
+        CustomerMenu.Start(username, id);
     }
-    else if (selectedClass == 2)
+    // admin gedeelte ------------------------------------------------------------------------- admin gedeelte
+    static public void Admin(int id, string username)
     {
-      // start de locatie class en show detail
-      CreateLocation().Show();
-      Start();
+        Console.WriteLine($"Welkom admin : {username}");
+        ManagerMenu.Admin_menu(username, id);
     }
-    else if (selectedClass == 3)
-    {
-      // roep welkom aan sinds je word uitgelogd
-      Welkom.welkom();
-      // je word gestuurd naar start aka je bent uitgelogd'
-      Start();
-    }
-
-  }
-  static public void Reserveren(string username, int id)
-  {
-    // navragen wat gepushed moet worden naar console
-  }
-
-  // admin gedeelte ------------------------------------------------------------------------- admin gedeelte
-  static public void Admin(int id, string username)
-  {
-    Console.WriteLine($"Welkom admin : {username}");
-    Admin_menu(username, id);
-  }
-  static public void Admin_menu(string username, int id)
-  {
-    Console.WriteLine("[1] Menu aanpassen");
-    Console.WriteLine("[2] Reserveren");
-    Console.WriteLine("[3] Locatie bekijken");
-    Console.WriteLine("[L] Loguit");
-
-    string input = Console.ReadLine();
-    if (input == "1")
-    {
-      // Menu aanpassen (word nog lang niet aangemaakt)
-      Console.WriteLine("This feature has not been made yet.");
-    }
-    else if (input == "2")
-    {
-      // Bekijk alle reserveringen
-    }
-    else if (input.ToLower() == "l")
-    {
-      // roep welkom aan sinds je word uitgelogd
-      Welkom.welkom();
-      // je word gestuurd naar start aka je bent uitgelogd'
-      Start();
-    }
-    else
-    {
-      Console.WriteLine("Invalid input");
-      Admin_menu(username, id);
-    }
-  }
 }

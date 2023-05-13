@@ -16,7 +16,7 @@ namespace Project_B.Logic
 
 
 
-        public static List<string> CheckTables(string date, int timeslot, int persons) {
+        public static List<string> CheckTables(DateTime date, TimeSpan timeslot, int persons) {
             List<ReservationModel> res = ReservationLogic.GetReservations();
             foreach (ReservationModel reservartion in res) {
                 if (reservartion.Date == date && reservartion.TimeSlot == timeslot) {
