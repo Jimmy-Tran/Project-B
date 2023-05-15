@@ -6,13 +6,12 @@ static class Menu
     static public void Start()
     {
         Console.Clear();
-        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, "Login", "Menu Kaart", "Reserveren", "Locatie",
+        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {}, "Login", "Menu Kaart", "Reserveren", "Locatie",
         "Registreren", "Stoppen");
         if (selectedClass == 0)
         {
-            // Restaurant restaurant = new Restaurant();
-            // restaurant.InitializeTables();
-            UserLogin.Start();
+            MyReservation.ReservationInfo("VBMBEJ");
+            // UserLogin.Start();
         }
         else if (selectedClass == 1)
         {
@@ -38,7 +37,7 @@ static class Menu
         }
         else if (selectedClass == 5)
         {
-            // Stop de programma
+            // Stop program
             Environment.Exit(0);
         }
         else
