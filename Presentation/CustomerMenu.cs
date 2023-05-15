@@ -4,7 +4,7 @@ public class CustomerMenu
     static public void Start(string username, int id) // ingelogd geef parameter's mee om aan te geven dat de persoon is ingelogd
     {
 
-        int selectedClass = MenuLogic.MultipleChoice(true, "", 1, "Menu bekijken", "Reserveren", "Locatie bekijken", "Log uit");
+        int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, "Menu bekijken", "Reserveren", "Locatie bekijken", "Log uit");
         if (selectedClass == 0)
         {
             // voor stellen om een foto te laten up poppen van een menu kaart, anders vraag wat precies geshowed moet worden
