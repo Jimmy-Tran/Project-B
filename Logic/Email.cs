@@ -305,11 +305,11 @@ public static class Email
         htmlBody += "                                                                        <!-- via c# naam meesturen -->\n";
         htmlBody += "                                                                    </h1>\n";
         htmlBody += "                                                                    <p class=\"text-center\"\n";
-        htmlBody += "                                                                        style=\"padding-top: 50px; color: darkgray; padding-bottom: 20px; font-weight: 400; vertical-align: baseline; font-size: 18px; line-height: 33.6px; margin: 0;\"\n";
-        htmlBody += "                                                                        align=\"center\">Met deze code kunt u uw\n";
-        htmlBody += "                                                                        reserverings gegevens ophalen in het systeem.\n";
-        htmlBody += "                                                                        heeft u een account? kunt u inloggen en ziet u\n";
-        htmlBody += "                                                                        het onder \"mijn reserveringen\"</p>\n";
+        htmlBody += "                                                                        style=\"padding-top: 50px; color: darkgray; padding-bottom: 20px; font-weight: 400; vertical-align: baseline; font-size: 16px; line-height: 33.6px; margin: 0;\"\n";
+        htmlBody += "                                                                        align=\"center\">Met deze code kunt u uw reservering\n";
+        htmlBody += "                                                                        gegevens ophalen in het systeem. Bevestig uw reservering nu anders wordt het automatisch bevestigd\n";
+        htmlBody += "                                                                        24 uur van tevoren. Heeft u een account? Kunt u inloggen en ziet u het\n";
+        htmlBody += "                                                                        onder \"Mijn reserveringen\".</p>\n";
         htmlBody += "                                                                    <table class=\"s-6 w-full\" role=\"presentation\"\n";
         htmlBody += "                                                                        border=\"0\" cellpadding=\"0\" cellspacing=\"0\"\n";
         htmlBody += "                                                                        style=\"width: 100%;\" width=\"100%\">\n";
@@ -350,6 +350,10 @@ public static class Email
         htmlBody += "<p style=\"line-height: 24px; font-size: 16px; color:darkgray; width: 100%; margin: 0;\"\n";
         htmlBody += "align=\"left\">Als u vragen heeft kun u ons\n";
         htmlBody += "bellen via: 06-485768857\n";
+        htmlBody += "</p>\n";
+        htmlBody += "<p style=\"line-height: 24px; font-size: 16px; color:darkgray; color: red; width: 100%; margin: 0;\"\n";
+        htmlBody += "align=\"left\">Vergeet niet te laat of niet te komen!\n";
+        htmlBody += "Dit kan leiden tot een boete\n";
         htmlBody += "</p>\n";
         htmlBody += "</td>\n";
         htmlBody += "</tr>\n";
@@ -395,5 +399,15 @@ public static class Email
         };
 
         smtpClient.Send(message);
+    }
+    public static void warning()
+    {
+        // zet console op rood
+        Console.ForegroundColor = ConsoleColor.Red;
+        // plaats nu de warning
+        Console.WriteLine($"Warning!: Vergeet niet om op tijd te komen.");
+        Console.WriteLine($"Warning!: Als u te laat komt of helemaal niet kunt u een boete verwachten.");
+        // terug naar de normale kleur
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }
