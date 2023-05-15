@@ -149,6 +149,7 @@ class ReservationConsole
                 ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Gelukt!");
                 Email.sendmail(email, name, date, timeslot);
+                Email.warning();
             }
             catch
             {
@@ -273,6 +274,7 @@ class ReservationConsole
                 ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Geluk!");
                 Email.sendmail(email, name, date, timeslot);
+                Email.warning();
             }
             catch (Exception e)
             {
