@@ -43,13 +43,19 @@ class ReservationConsole
         email = emailCheck;
 
 
-    public void Reserveren()
-    {
-        bool fieldValid = false;
-        while(fieldValid is false) {
-            Console.WriteLine("[1] Reservering maken met een account.");
-            Console.WriteLine("[2] Reservering maken zonder een account.");
-            string option = Console.ReadLine();
+        int amountPeopleCheck;
+        do {
+            Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
+            amountPeopleCheck = Convert.ToInt32(Console.ReadLine());
+        } while (amountPeopleCheck <= 0 );
+
+        amt_people = amountPeopleCheck;
+
+        //Todo: Cancel the reservation if the Amt of people is more than 6 or something else....?
+
+        // if (amountPeopleCheck > 6) {
+        //     Console.ForegroundColor = ConsoleColor.Yellow;
+        //     Console.WriteLine("We zien dat u meer dan 6 personen heeft.");
             
         //     Console.WriteLine("Wilt u nogsteeds een reservering maken met meer dan 6 personen? Graag met ons contact opnemen via telefoon 063828192");
         //     Console.ForegroundColor = ConsoleColor.Gray;
@@ -102,19 +108,13 @@ class ReservationConsole
             Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
             ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
             Console.WriteLine("email: " + email);
-            string json = File.ReadAllText("./DataSources/reservations.json");
-            // Deserialize the JSON into a list of Reservation objects
-            List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
-            bool codeExists = true;
-            while (codeExists)
-            {
-                string text = ReservationLogic.CodeGenerator();
-                if (!reservations.Any(r => r.reservationcode == text))
-                {
-                    reservationcode = text;
-                    codeExists = false;
-                }
-            }
+
+            string text;
+            do {
+                text = ReservationLogic.CodeGenerator();
+            } while (ValidationLogic.CodeExists(text) != true);
+
+            reservationcode = text;
 
             string tableCheck;
             do {
@@ -122,7 +122,7 @@ class ReservationConsole
                 tableCheck = Console.ReadLine();
             } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
                 
-            id = reservations.Max(reservation => reservation.id) + 1;
+            id = ReservationLogic.GetLastID() + 1;
 
             if(TableLogic.TableChecker($"_{tableCheck.ToUpper()}")) {
                 tables.Add(tableCheck);
@@ -212,42 +212,32 @@ class ReservationConsole
             Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
             ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
             Console.WriteLine("email: " + email);
-            string json = File.ReadAllText("./DataSources/reservations.json");
-            // Deserialize the JSON into a list of Reservation objects
-            List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
-            bool codeExists = true;
-            while (codeExists)
-            {
-                Console.WriteLine("De ingevoerde datum is voor de huidige datum.");
-            }
-            else
-            {
-                return dateStr;
-            }
-            int highestId = reservations.Max(reservation => reservation.id);
-            Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
-            string tableCheck = Console.ReadLine();
-            bool field6Valid = false;
-            while(field6Valid is false) {
+            
+            string text;
+            do {
+                text = ReservationLogic.CodeGenerator();
+            } while (ValidationLogic.CodeExists(text) != true);
+
+            reservationcode = text;
+
+            string tableCheck;
+            do {
                 Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
-                if(tableCheck.Length == 2) {
-                    tableCheck = $"_{tableCheck.ToUpper()}";
-                    Console.WriteLine(tableCheck);
-                    field6Valid = true;
-                    if(TableLogic.TableChecker(tableCheck) is true) {
-                        tables.Add(tableCheck);
-                        ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
-                        field6Valid = true;
-                    }
-                } else {
-                    Console.Write("wrong");
+                tableCheck = Console.ReadLine();
+            } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
+                
+            id = ReservationLogic.GetLastID() + 1;
+
+            if(TableLogic.TableChecker($"_{tableCheck.ToUpper()}")) {
+                tables.Add(tableCheck);
+                try {
+                    ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
+                    Console.WriteLine("Geluk!");
+                } catch (Exception e) {
+                    Console.WriteLine("Niet Geluk!");
+                    return;
                 }
-
+                
             }
-            Console.WriteLine("De tafel is al bezet. Kies een andere tafel.");
         }
-
-
-
-    }
-
+}
