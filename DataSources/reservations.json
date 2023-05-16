@@ -1,60 +1,5 @@
 [
   {
-    "ID": 13,
-    "ClientNumber": 0,
-    "Name": "jada",
-    "Email": "2dadka@gmail.com",
-    "Date": "2023-05-27T00:00:00",
-    "ReservationCode": "ULXJPH",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "3",
-      "4"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 14,
-    "ClientNumber": 0,
-    "Name": "jaada",
-    "Email": "jada@gmail.com",
-    "Date": "2023-05-28T00:00:00",
-    "ReservationCode": "CXYSQD",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "3",
-      "4"
-    ],
-    "Amt_People": 6
-  },
-  {
-    "ID": 15,
-    "ClientNumber": 0,
-    "Name": "Jimmy Tran",
-    "Email": "jadja@",
-    "Date": "2023-05-29T00:00:00",
-    "ReservationCode": "BWVTZJ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "3",
-      "4"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 16,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "HFQYGD",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "1"
-    ],
-    "Amt_People": 2
-  },
-  {
     "ID": 17,
     "ClientNumber": 5,
     "Name": "Jimmy Tran",
@@ -65,7 +10,8 @@
     "Tables": [
       "1"
     ],
-    "Amt_People": 2
+    "Amt_People": 2,
+    "Verified": false
   },
   {
     "ID": 18,
@@ -78,7 +24,8 @@
     "Tables": [
       "2"
     ],
-    "Amt_People": 2
+    "Amt_People": 2,
+    "Verified": false
   },
   {
     "ID": 19,
@@ -91,7 +38,8 @@
     "Tables": [
       "8"
     ],
-    "Amt_People": 4
+    "Amt_People": 4,
+    "Verified": false
   },
   {
     "ID": 20,
@@ -104,7 +52,8 @@
     "Tables": [
       "4"
     ],
-    "Amt_People": 2
+    "Amt_People": 2,
+    "Verified": false
   },
   {
     "ID": 21,
@@ -117,7 +66,8 @@
     "Tables": [
       "2"
     ],
-    "Amt_People": 2
+    "Amt_People": 2,
+    "Verified": false
   },
   {
     "ID": 22,
@@ -130,7 +80,8 @@
     "Tables": [
       "6"
     ],
-    "Amt_People": 2
+    "Amt_People": 2,
+    "Verified": false
   },
   {
     "ID": 23,
@@ -143,19 +94,7 @@
     "Tables": [
       "4A"
     ],
-    "Amt_People": 4
-  },
-  {
-    "ID": 24,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "VBMBEJ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "7"
-    ],
-    "Amt_People": 2
+    "Amt_People": 4,
+    "Verified": false
   }
 ]
