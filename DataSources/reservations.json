@@ -96,19 +96,5 @@
     ],
     "Amt_People": 4,
     "Verified": false
-  },
-  {
-    "ID": 24,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "VBMBEJ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "7"
-    ],
-    "Amt_People": 2,
-    "Verified": true
   }
 ]

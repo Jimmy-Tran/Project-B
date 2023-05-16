@@ -10,8 +10,7 @@ static class Menu
         "Registreren", "Stoppen");
         if (selectedClass == 0)
         {
-            MyReservation.ReservationInfo("VBMBEJ");
-            // UserLogin.Start();
+            UserLogin.Start();
         }
         else if (selectedClass == 1)
         {

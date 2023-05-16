@@ -2,11 +2,22 @@ using Newtonsoft.Json;
 using Project_B.Logic;
 using Project_B.DataModels;
 using System.Threading;
+using Project_B.Logic;
 
 public class MyReservation {
     static private AccountsLogic accountsLogic = new AccountsLogic();
 
-    static public void ReservationInfo(string _ReservationCode) {
+    public static void GetReservationCode() {
+        string ReservationCode;
+        do {
+            Console.WriteLine($"Vul uw reserveringscode in.");
+            ReservationCode = Console.ReadLine();
+        } while (ValidationLogic.CodeExcistsInReservation(ReservationCode) != true);
+
+        ShowReservationInfo(ReservationCode);
+    }
+
+    static public void ShowReservationInfo(string _ReservationCode) {
         
         List<ReservationModel> reservations = ReservationLogic.GetReservations();
 
@@ -22,7 +33,7 @@ public class MyReservation {
                             Console.WriteLine("Reservering is al bevestigd! \nDruk op iets om door te gaan...");
                             Console.ReadKey();
 
-                            ReservationInfo(_ReservationCode);
+                            ShowReservationInfo(_ReservationCode);
                             break;
                         }
                         ConsoleKey Confirmed;
@@ -39,13 +50,13 @@ public class MyReservation {
                                 Console.WriteLine("Bevestiging gelukt! \nDruk op iets om door te gaan...");
                                 Console.ReadKey();
 
-                                ReservationInfo(_ReservationCode);
+                                ShowReservationInfo(_ReservationCode);
                                 break;
                             case ConsoleKey.Backspace:
                                 Console.WriteLine("Bevestiging geannuleerd! \nDruk op iets om door te gaan...");
                                 Console.ReadKey();
 
-                                ReservationInfo(_ReservationCode);
+                                ShowReservationInfo(_ReservationCode);
                                 break;
                         }
                         break;
@@ -69,7 +80,7 @@ public class MyReservation {
                                 }
                                 break;
                             case ConsoleKey.Backspace:
-                                ReservationInfo(_ReservationCode);
+                                ShowReservationInfo(_ReservationCode);
                                 break;
                         }
 
