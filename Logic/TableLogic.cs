@@ -17,12 +17,12 @@ namespace Project_B.Logic
 
 
         public static List<string> CheckTables(DateTime date, TimeSpan timeslot, int persons) {
-            List<ReservationModel> res = ReservationLogic.GetReservations();
+            List<ReservationModel> res = ReservationLogic.GetReservations(); //Get the reservations in an object and loop throught it
             foreach (ReservationModel reservartion in res) {
-                if (reservartion.Date == date && reservartion.TimeSlot == timeslot) {
-                    if(reservartion.Tables != null) {
+                if (reservartion.Date == date && reservartion.TimeSlot == timeslot) { //Only select the reservation that are given by Date/Time
+                    if(reservartion.Tables != null) { //Check if the reservation has tablenumbers in it
                         foreach (string i in reservartion.Tables) {
-                            AvailableTables.Remove($"_{i}");
+                            AvailableTables.Remove($"_{i}"); //Remove the tablenumber from the available table list
                         }
                     }
                     
@@ -46,6 +46,7 @@ namespace Project_B.Logic
         }
 
         public static bool TableChecker(string table) {
+            //Check if the tablenumber excist
             if(AvailableTables.Contains(table)) {
                 return true;
             } else {

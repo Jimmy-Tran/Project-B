@@ -1,9 +1,9 @@
 public class MenuLogic
 {
-    public static int MultipleChoice(bool canCancel, string symbol, int opl, params string[] options)
+    public static int MultipleChoice(bool canCancel, string symbol, int opl, string[] notChoosableOptions, params string[] options)
     {
         const int startX = 0;
-        const int startY = 10;
+        int startY = (notChoosableOptions.Count() > 0 ? notChoosableOptions.Count() + 1 : 10);
         int optionsPerLine = opl;
         const int spacingPerLine = 20;
 
@@ -17,19 +17,25 @@ public class MenuLogic
         do
         {
             Console.Clear();
-            Welkom.welkom();
-            Console.WriteLine("\n");
             Console.ForegroundColor = ConsoleColor.White;
+
+            foreach (string i in notChoosableOptions) {
+                Console.WriteLine(i);
+            }
+            
 
             for (int i = 0; i < options.Length; i++)
             {
                 Console.SetCursorPosition(startX + (i % optionsPerLine) * spacingPerLine, startY + i / optionsPerLine);
 
-                if(i == currentSelection)
+                if (i == currentSelection) {
                     Console.ForegroundColor = ConsoleColor.Blue;
-
-                Console.WriteLine($"{symbol} " + options[i]);
-
+                    Console.WriteLine($"> " + options[i] + "\n");
+                } else {
+                    Console.WriteLine($"{symbol} " + options[i] + "\n");
+                }
+                    
+                
                 Console.ResetColor();
             }
 

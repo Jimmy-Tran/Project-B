@@ -43,22 +43,26 @@ namespace Project_B.Logic
 
         public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
+                //Add an item to the list
                 reservations.Add(new ReservationModel(_id, _clientnumber, _name, _email, _date, _reservationcode, _timeslot, _tables, _amt_people));
 
+                //Serialize the list to an object and write it back to the JSON file. Return true when all went good
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
-            catch (Exception ex) {
+            catch (Exception ex) { // Catch the error and return false
                 return false;
             }
         }
 
         public static List<ReservationModel> GetReservations() {
             try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
                 return reservations;
@@ -72,17 +76,19 @@ namespace Project_B.Logic
 
         public static ReservationModel GetReservation(string _Searchterm) {
             try {
+                //Try to get the reservation and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
                 // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
+                //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
                     if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
-                        return reservation;
+                        return reservation; //Return the reservation
                     }            
                 }
-                return null;
+                return null; //Return nothing if nothing came out
             }
             catch (Exception ex) {
                 return null;
@@ -91,11 +97,14 @@ namespace Project_B.Logic
 
         public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
+                //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
                     if (reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                        //Change the old value to the new value
                         reservation.Name = _name;
                         reservation.Email = _email;
                         reservation.Date = _date;
@@ -105,6 +114,7 @@ namespace Project_B.Logic
                     }            
                 }
 
+                //Serialize the list and write it back to JSON file
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
@@ -118,10 +128,30 @@ namespace Project_B.Logic
         public static bool DeleteReservation(int _ID) {
             //Todo: Add a parameter to GetReservation called ID. ID will also return a Object.
             try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
                 reservations.RemoveAll(x => x.ID == _ID);
+
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                
+                return true;
+            } 
+            catch (Exception ex) {
+                Console.WriteLine($"Error: {ex.Message}"); 
+                return false;
+            }
+        }
+
+        public static bool VerifyingReservation(int _ID) {
+            try {
+                //Try to get the reservations and convert them into a list
+                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+                reservations.Where(x => x.ID == _ID).ToList().ForEach(x => x.Verified = true);
 
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);

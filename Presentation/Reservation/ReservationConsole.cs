@@ -83,7 +83,7 @@ class ReservationConsole
                 string TimeSlotCheck;
                 do {
                     Console.WriteLine("Selecteer een tijdslot:");
-                    int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
+                    int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {}, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
                     
                     switch (selectedClass) {
                         case 0:
@@ -193,7 +193,7 @@ class ReservationConsole
                 string TimeSlotCheck;
                 do {
                     Console.WriteLine("Selecteer een tijdslot:");
-                    int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
+                    int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {}, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
                     
                     switch (selectedClass) {
                         case 0:
