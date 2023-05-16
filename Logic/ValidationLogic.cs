@@ -59,5 +59,20 @@ namespace Project_B.Logic
       }
       return true;
     }
+
+        public static bool CodeExists(string code) {
+            string json = File.ReadAllText("./DataSources/reservations.json");
+            // Deserialize the JSON into a list of Reservation objects
+            List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
+                if (!reservations.Any(r => r.reservationcode == code))
+                {
+                    return true;
+                }
+                else {
+                  return false;
+                }
+        }
+
+
   }
 }
