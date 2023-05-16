@@ -40,5 +40,19 @@
     "password": "Test123",
     "fullName": "test test",
     "level": 0
+  },
+  {
+    "id": 7,
+    "emailAddress": "maruf@live.nl",
+    "password": "Mr22082003",
+    "fullName": "maruf",
+    "level": 0
+  },
+  {
+    "id": 8,
+    "emailAddress": "jan@live.nl",
+    "password": "wachtwoord",
+    "fullName": "jan jansen",
+    "level": 2
   }
 ]
