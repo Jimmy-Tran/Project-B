@@ -12,7 +12,7 @@ public class MyReservation {
         do {
             Console.WriteLine($"Vul uw reserveringscode in.");
             ReservationCode = Console.ReadLine();
-        } while (ValidationLogic.CodeExcistsInReservation(ReservationCode) != true);
+        } while (ValidationLogic.CodeExists(ReservationCode) != true);
 
         ShowReservationInfo(ReservationCode);
     }
