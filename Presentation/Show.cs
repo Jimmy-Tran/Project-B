@@ -3,50 +3,78 @@ public class MenuPresentation
     public static void Menu()
     {
         Foodmenu menu = MenuImporter.ImportFromJson(@"DataSources/menu.json");
-        Console.WriteLine("Voorgerecht:");
-        DisplayMenuItems(menu.Starters);
+        Console.WriteLine("╔════════════════════════════════════════╗");
+        Console.WriteLine("║            Restaurant Menu             ║");
+        Console.WriteLine("╚════════════════════════════════════════╝");
+        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Dessert ...................15,50");
+        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Dessert ...20,50");
+
+        Console.WriteLine("\nVoorgerecht:");
+        DisplayMenuItems(menu.Starters, includePrice: true);
 
         Console.WriteLine("\nHoofdgerecht:");
-        DisplayMenuItems(menu.Mains);
+        DisplayMenuItems(menu.Mains, includePrice: true);
 
         Console.WriteLine("\nDessert:");
-        DisplayMenuItems(menu.Desserts);
+        DisplayMenuItems(menu.Desserts, includePrice: true);
 
         Console.WriteLine("\nDrinks:");
-        DisplayMenuItems(menu.Drinks);
+        DisplayMenuItems(menu.Drinks, includePrice: true);
     }
 
     public static void Menu(string username, int id)
     {
         Foodmenu menu = MenuImporter.ImportFromJson(@"DataSources/menu.json");
-        Console.WriteLine("Voorgerecht:");
-        DisplayMenuItems(menu.Starters, username, id);
+        Console.WriteLine("╔════════════════════════════════════════╗");
+        Console.WriteLine("║            Restaurant Menu             ║");
+        Console.WriteLine("╚════════════════════════════════════════╝");
+        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Dessert ...................15,50");
+        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Dessert ...20,50");
+
+        Console.WriteLine("\nVoorgerecht:");
+        DisplayMenuItems(menu.Starters, username, id, includePrice: true);
 
         Console.WriteLine("\nHoofdgerecht:");
-        DisplayMenuItems(menu.Mains, username, id);
+        DisplayMenuItems(menu.Mains, username, id, includePrice: true);
 
         Console.WriteLine("\nDessert:");
-        DisplayMenuItems(menu.Desserts, username, id);
+        DisplayMenuItems(menu.Desserts, username, id, includePrice: true);
 
         Console.WriteLine("\nDrinks:");
-        DisplayMenuItems(menu.Drinks, username, id);
+        DisplayMenuItems(menu.Drinks, username, id, includePrice: true);
     }
 
-    private static void DisplayMenuItems(List<MenuItem> items)
+    private static void DisplayMenuItems(List<MenuItem> items, bool includePrice)
     {
         foreach (MenuItem item in items)
         {
-            Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2"));
+            if (includePrice)
+            {
+                Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
+            }
+            else
+            {
+                Console.WriteLine(item.Name.PadRight(30, '.') + " ID: " + item.ID);
+            }
         }
     }
-    private static void DisplayMenuItems(List<MenuItem> items, string naam, int id)
+
+    private static void DisplayMenuItems(List<MenuItem> items, string naam, int id, bool includePrice)
     {
         foreach (MenuItem item in items)
         {
-            Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
+            if (includePrice)
+            {
+                Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
+            }
+            else
+            {
+                Console.WriteLine(item.Name.PadRight(30, '.') + " ID: " + item.ID);
+            }
         }
     }
 }
+
 public class LocationPresentation
 {
     public static void ShowLocation(Location location)
