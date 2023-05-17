@@ -11,59 +11,58 @@ namespace Project_B.Logic
 {
     public static class ReservationLogic
     {
-        static string unavailable = "\u001b[31m";
-        static string available = "\u001b[32m";
-        static string cyan = "\u001b[36m";
+    static string unavailable = "\u001b[31m";
+    static string available = "\u001b[32m";
+    static string cyan = "\u001b[36m";
 
-        public static List<string> availableTables = new List<string>();
+    public static List<string> availableTables = new List<string>();
 
-        static string _6A = unavailable;
-        static string _6B = unavailable;
-        static string _4A = unavailable;
-        static string _4B = unavailable;
-        static string _4C = unavailable;
-        static string _4D = unavailable;
-        static string _4E = unavailable;
-        static string _1 = unavailable;
-        static string _2 = unavailable;
-        static string _3 = unavailable;
-        static string _4 = unavailable;
-        static string _5 = unavailable;
-        static string _6 = unavailable;
-        static string _7 = unavailable;
-        static string _8 = unavailable;
-        static string A = unavailable;
-        static string B = unavailable;
-        static string C = unavailable;
-        static string D = unavailable;
-        static string E = unavailable;
-        static string F = unavailable;
-        static string G = unavailable;
-        static string H = unavailable;
+    static string _6A = unavailable;
+    static string _6B = unavailable;
+    static string _4A = unavailable;
+    static string _4B = unavailable;
+    static string _4C = unavailable;
+    static string _4D = unavailable;
+    static string _4E = unavailable;
+    static string _1 = unavailable;
+    static string _2 = unavailable;
+    static string _3 = unavailable;
+    static string _4 = unavailable;
+    static string _5 = unavailable;
+    static string _6 = unavailable;
+    static string _7 = unavailable;
+    static string _8 = unavailable;
+    static string A = unavailable;
+    static string B = unavailable;
+    static string C = unavailable;
+    static string D = unavailable;
+    static string E = unavailable;
+    static string F = unavailable;
+    static string G = unavailable;
+    static string H = unavailable;
 
-        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people)
-        {
-            try
-            {
+        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
+            try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
+                //Add an item to the list
                 reservations.Add(new ReservationModel(_id, _clientnumber, _name, _email, _date, _reservationcode, _timeslot, _tables, _amt_people));
 
+                //Serialize the list to an object and write it back to the JSON file. Return true when all went good
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) { // Catch the error and return false
                 return false;
             }
         }
-
-        public static List<ReservationModel> GetReservations()
-        {
-            try
-            {
+          
+        public static List<ReservationModel> GetReservations() {
+            try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
                 return reservations;
@@ -76,23 +75,22 @@ namespace Project_B.Logic
             return new List<ReservationModel>();
         }
 
-        public static ReservationModel GetReservation(string _Searchterm)
-        {
-            try
-            {
+        public static ReservationModel GetReservation(string _Searchterm) {
+            try {
+                //Try to get the reservation and convert them into a list
+
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
                 // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
-                foreach (ReservationModel reservation in reservations)
-                {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm)
-                    {
-                        return reservation;
-                    }
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                        return reservation; //Return the reservation
+                    }            
                 }
-                return null;
+                return null; //Return nothing if nothing came out
             }
             catch (Exception ex)
             {
@@ -100,17 +98,16 @@ namespace Project_B.Logic
             }
         }
 
-        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people)
-        {
-            try
-            {
+        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
+            try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
-                foreach (ReservationModel reservation in reservations)
-                {
-                    if (reservation.Name == _Searchterm || reservation.Email == _Searchterm)
-                    {
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations) {
+                    if (reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                        //Change the old value to the new value
                         reservation.Name = _name;
                         reservation.Email = _email;
                         reservation.Date = _date;
@@ -120,6 +117,7 @@ namespace Project_B.Logic
                     }
                 }
 
+                //Serialize the list and write it back to JSON file
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 return true;
@@ -134,8 +132,8 @@ namespace Project_B.Logic
         public static bool DeleteReservation(int _ID)
         {
             //Todo: Add a parameter to GetReservation called ID. ID will also return a Object.
-            try
-            {
+            try {
+                //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
@@ -153,6 +151,25 @@ namespace Project_B.Logic
             }
         }
 
+        public static bool VerifyingReservation(int _ID) {
+            try {
+                //Try to get the reservations and convert them into a list
+                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+                reservations.Where(x => x.ID == _ID).ToList().ForEach(x => x.Verified = true);
+
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                
+                return true;
+            } 
+            catch (Exception ex) {
+                Console.WriteLine($"Error: {ex.Message}"); 
+                return false;
+            }
+        }
+        
         public static void UpdateTableAvailability(List<string> TablesList)
         {
             _6A = TablesList.Contains("_6A") ? available : unavailable;

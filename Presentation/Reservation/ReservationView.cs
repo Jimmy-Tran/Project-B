@@ -7,12 +7,19 @@ public class Reservation {
 
     static public void DisplayReservation() {
         List<ReservationModel> reservations = ReservationLogic.GetReservations();
-        Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafel nummers", "Aantal Pers.");
+
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine("Reservaties Tabel:");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("--------------------");
+        Console.WriteLine("{0,-5} {1,-30} {2,-15} {3,-15} {4,-15} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafel nummers", "Aantal Pers.");
         
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
         foreach (ReservationModel reservation in reservations) {
-            Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}",
-                reservation.ID, reservation.Name, reservation.Date.ToString("dd-MM-yyyy"), reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
+            Console.WriteLine("{0,-5} {1,-30} {2,-15} {3,-15} {4,-15} {5,-10}",
+                reservation.ID, reservation.Name, reservation.Date.ToString("dd-MM-yyyy"), reservation.TimeSlot.ToString(@"hh\:mm"), string.Join(", ", reservation.Tables), reservation.Amt_People);
         }
+        Console.ForegroundColor = ConsoleColor.Gray;
     }
 
     static public void MakeReservation() {
