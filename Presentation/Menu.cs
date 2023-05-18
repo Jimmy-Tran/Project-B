@@ -6,7 +6,7 @@ static class Menu
     static public void Start()
     {
         Console.Clear();
-        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {}, "Login", "Menu Kaart", "Reserveren", "Locatie",
+        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {}, "Login", "Menu Kaart", "Reserveren", "Reservering ophalen", "Restaurant Informatie",
         "Registreren", "Stoppen");
         if (selectedClass == 0)
         {
@@ -15,7 +15,6 @@ static class Menu
         else if (selectedClass == 1)
         {
             MenuPresentation.Menu();
-            Start();
         }
         else if (selectedClass == 2)
         {
@@ -24,17 +23,21 @@ static class Menu
         }
         else if (selectedClass == 3)
         {
+            MyReservation.ShowReservationInfo(MyReservation.GetReservationCode());
+        }
+        else if (selectedClass == 4)
+        {
             // start de locatie class en show detail
             Location location = Location.CreateLocation();
             LocationPresentation.ShowLocation(location);
             Start();
         }
-        else if (selectedClass == 4)
+        else if (selectedClass == 5)
         {
             // start de registratieproces
             UserRegistration.Start();
         }
-        else if (selectedClass == 5)
+        else if (selectedClass == 6)
         {
             // Stop program
             Environment.Exit(0);

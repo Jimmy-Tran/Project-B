@@ -7,14 +7,14 @@ using Project_B.Logic;
 public class MyReservation {
     static private AccountsLogic accountsLogic = new AccountsLogic();
 
-    public static void GetReservationCode() {
+    public static string GetReservationCode() {
         string ReservationCode;
         do {
-            Console.WriteLine($"Vul uw reserveringscode in.");
+            Console.WriteLine($"Vul uw reserveringscode in. (6 Karakters)");
             ReservationCode = Console.ReadLine();
-        } while (ValidationLogic.CodeExists(ReservationCode) != true);
+        } while (ReservationCode.Length != 6);
 
-        ShowReservationInfo(ReservationCode);
+        return ReservationCode;
     }
 
     static public void ShowReservationInfo(string _ReservationCode) {
@@ -51,12 +51,14 @@ public class MyReservation {
                                 Console.ReadKey();
 
                                 ShowReservationInfo(_ReservationCode);
+                                Menu.Start();
                                 break;
                             case ConsoleKey.Backspace:
                                 Console.WriteLine("Bevestiging geannuleerd! \nDruk op iets om door te gaan...");
                                 Console.ReadKey();
 
                                 ShowReservationInfo(_ReservationCode);
+                                Menu.Start();
                                 break;
                         }
                         break;
@@ -81,6 +83,7 @@ public class MyReservation {
                                 break;
                             case ConsoleKey.Backspace:
                                 ShowReservationInfo(_ReservationCode);
+                                Menu.Start();
                                 break;
                         }
 
@@ -89,6 +92,7 @@ public class MyReservation {
                         Menu.Start();
                         break;
                     default:
+                        Menu.Start();
                         break;
                 }
             }
@@ -96,7 +100,10 @@ public class MyReservation {
         }
 
         if (Found != true) {
-            Console.WriteLine("Geen reservering gevonden, heeft u de juiste code ingevoerd?");
+            Console.WriteLine("\nGeen reservering gevonden, heeft u de juiste code ingevoerd?\nDruk op iets om door te gaan...");
+            Console.ReadKey();
+            Menu.Start();
+
         }
         
     }
