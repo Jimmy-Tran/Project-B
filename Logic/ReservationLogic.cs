@@ -75,6 +75,31 @@ namespace Project_B.Logic
             return new List<ReservationModel>();
         }
 
+        public static List<ReservationModel> GetReservations(string _Searchterm) {
+            List<ReservationModel> ResList = new();
+            try {
+                //Try to get the reservation and convert them into a list
+
+                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+                // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
+
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                        ResList.Add(reservation); //Return the reservation
+                    }            
+                }
+                return ResList; //Return nothing if nothing came out
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return new List<ReservationModel>();
+        }
+
         public static ReservationModel GetReservation(string _Searchterm) {
             try {
                 //Try to get the reservation and convert them into a list

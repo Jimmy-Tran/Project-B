@@ -4,7 +4,7 @@ public class CustomerMenu
     static public void Start(string username, int id) // ingelogd geef parameter's mee om aan te geven dat de persoon is ingelogd
     {
 
-        int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, "Menu bekijken", "Reserveren", "Locatie bekijken", "Log uit");
+        int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, "Menu bekijken", "Reserveren", "Locatie bekijken", "Account gegevens", "Log uit");
         if (selectedClass == 0)
         {
             // voor stellen om een foto te laten up poppen van een menu kaart, anders vraag wat precies geshowed moet worden
@@ -26,6 +26,11 @@ public class CustomerMenu
             Start(username, id);
         }
         else if (selectedClass == 3)
+        {
+            AccountData.Start(id);
+        }
+
+        else if (selectedClass == 4)
         {
             // roep welkom aan sinds je word uitgelogd
             Welkom.welkom();

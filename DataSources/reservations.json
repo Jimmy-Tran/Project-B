@@ -7,9 +7,7 @@
     "Date": "2023-05-07T00:00:00",
     "ReservationCode": "",
     "TimeSlot": "22:00:00",
-    "Tables": [
-      "1"
-    ],
+    "Tables": ["1"],
     "Amt_People": 2,
     "Verified": false
   },
@@ -21,9 +19,7 @@
     "Date": "2023-05-05T00:00:00",
     "ReservationCode": "",
     "TimeSlot": "20:00:00",
-    "Tables": [
-      "2"
-    ],
+    "Tables": ["2"],
     "Amt_People": 2,
     "Verified": false
   },
@@ -35,9 +31,7 @@
     "Date": "2023-05-05T00:00:00",
     "ReservationCode": "",
     "TimeSlot": "20:00:00",
-    "Tables": [
-      "8"
-    ],
+    "Tables": ["8"],
     "Amt_People": 4,
     "Verified": false
   },
@@ -49,9 +43,7 @@
     "Date": "2023-05-11T00:00:00",
     "ReservationCode": "NWSGXB",
     "TimeSlot": "20:00:00",
-    "Tables": [
-      "4"
-    ],
+    "Tables": ["4"],
     "Amt_People": 2,
     "Verified": false
   },
@@ -63,9 +55,7 @@
     "Date": "2023-05-11T00:00:00",
     "ReservationCode": "MTETPV",
     "TimeSlot": "20:00:00",
-    "Tables": [
-      "2"
-    ],
+    "Tables": ["2"],
     "Amt_People": 2,
     "Verified": false
   },
@@ -77,9 +67,7 @@
     "Date": "2023-05-11T00:00:00",
     "ReservationCode": "GKCGEQ",
     "TimeSlot": "20:00:00",
-    "Tables": [
-      "6"
-    ],
+    "Tables": ["6"],
     "Amt_People": 2,
     "Verified": false
   },
@@ -91,9 +79,31 @@
     "Date": "2023-05-11T00:00:00",
     "ReservationCode": "TLUURZ",
     "TimeSlot": "20:00:00",
-    "Tables": [
-      "4A"
-    ],
+    "Tables": ["4A"],
+    "Amt_People": 4,
+    "Verified": false
+  },
+  {
+    "ID": 24,
+    "ClientNumber": 4,
+    "Name": "joel verveer",
+    "Email": "joelverveer@hotmail.com",
+    "Date": "2023-06-11T00:00:00",
+    "ReservationCode": "TLUIKZ",
+    "TimeSlot": "20:00:00",
+    "Tables": ["4A"],
+    "Amt_People": 4,
+    "Verified": false
+  },
+  {
+    "ID": 25,
+    "ClientNumber": 4,
+    "Name": "joel verveer",
+    "Email": "joelverveer@hotmail.com",
+    "Date": "2023-07-11T00:00:00",
+    "ReservationCode": "TLUIKZ",
+    "TimeSlot": "20:00:00",
+    "Tables": ["4A"],
     "Amt_People": 4,
     "Verified": false
   }
