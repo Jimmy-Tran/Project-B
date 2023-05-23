@@ -39,6 +39,13 @@ namespace Project_B.Logic
       return int.TryParse(number, out tempNumber);
     }
 
+    public static bool AmtPeopleCheck(int number) {
+      if (6 >= number && number >= 0) {
+        return true;
+      }
+      return false;
+    }
+
     public static bool IsValidPassword(string pass)
     {
       Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -63,19 +70,16 @@ namespace Project_B.Logic
       return true;
     }
 
-        public static bool CodeExists(string code) {
-            string json = File.ReadAllText("./DataSources/reservations.json");
-            // Deserialize the JSON into a list of Reservation objects
-            List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
-                if (!reservations.Any(r => r.reservationcode == code))
-                {
-                    return true;
-                }
-                else {
-                  return false;
-                }
-        }
-
-
+    public static bool CodeExists(string code) {
+      string json = File.ReadAllText("./DataSources/reservations.json");
+        // Deserialize the JSON into a list of Reservation objects
+        List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
+            if (!reservations.Any(r => r.reservationcode == code)) {
+                return true;
+            }
+            else {
+              return false;
+            }
+    }
   }
 }

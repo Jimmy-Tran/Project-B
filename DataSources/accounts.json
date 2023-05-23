@@ -54,5 +54,12 @@
     "password": "wachtwoord",
     "fullName": "jan jansen",
     "level": 2
+  },
+  {
+    "id": 9,
+    "emailAddress": "henno.passchier@gmail.com",
+    "password": "abc",
+    "fullName": "Henno Passchier",
+    "level": 0
   }
 ]
