@@ -75,6 +75,31 @@ namespace Project_B.Logic
             return new List<ReservationModel>();
         }
 
+        public static List<ReservationModel> GetReservations(string _Searchterm) {
+            List<ReservationModel> ResList = new();
+            try {
+                //Try to get the reservation and convert them into a list
+
+                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+                // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
+
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                        ResList.Add(reservation); //Return the reservation
+                    }            
+                }
+                return ResList; //Return nothing if nothing came out
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return new List<ReservationModel>();
+        }
+
         public static ReservationModel GetReservation(string _Searchterm) {
             try {
                 //Try to get the reservation and convert them into a list
@@ -137,6 +162,7 @@ namespace Project_B.Logic
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
+                //Remove the item in the list with equal IDs
                 reservations.RemoveAll(x => x.ID == _ID);
 
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
@@ -157,8 +183,10 @@ namespace Project_B.Logic
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
+                //Find the reservation by id and set Verified to true
                 reservations.Where(x => x.ID == _ID).ToList().ForEach(x => x.Verified = true);
 
+                //Send data back to JSON file
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
                 
@@ -166,6 +194,27 @@ namespace Project_B.Logic
             } 
             catch (Exception ex) {
                 Console.WriteLine($"Error: {ex.Message}"); 
+                return false;
+            }
+        }
+
+        public static bool AccessReservationSimulation(string _ReservationCode) {
+            try {
+                //Try to get the reservations and convert them into a list
+                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+
+                DateTime DateNow = DateTime.Now;
+
+                //Look in reservations for the reservationcode and if it is this day.
+                if (reservations.Any(r => r.ReservationCode == _ReservationCode && r.Date == DateNow.Date)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } 
+            catch (Exception ex) {
+                Console.WriteLine($"Kon geen reserveringen ophalen!");
                 return false;
             }
         }
@@ -265,7 +314,7 @@ namespace Project_B.Logic
         }
         public static string CodeGenerator()
         {
-            // Creating object of random class
+            //Creating object of random class
             Random rand = new Random();
 
             int randValue;
@@ -274,7 +323,7 @@ namespace Project_B.Logic
             for (int i = 0; i < 6; i++)
             {
 
-                // Generating a random number.
+                //Generating a random number.
                 randValue = rand.Next(0, 26);
                 if (i == 2 || i == 4)
                 {
@@ -282,11 +331,10 @@ namespace Project_B.Logic
                 }
                 else
                 {
-                    // Generating random character by converting
-                    // the random number into character.
+                    //Generating random character by converting the random number into character.
                     letter = Convert.ToChar(randValue + 65);
 
-                    // Appending the letter to string.
+                    //Appending the letter to string.
                     str += letter;
                 }
             }

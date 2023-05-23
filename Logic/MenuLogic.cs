@@ -9,6 +9,8 @@ public class MenuLogic
 
         int currentSelection = 0;
 
+        symbol = (symbol == "" ? " " : symbol);
+
         ConsoleKey key;
 
         Console.CursorVisible = false;
