@@ -48,6 +48,7 @@ namespace Project_B.Logic
 
     public static bool IsValidPassword(string pass)
     {
+      Console.ForegroundColor = ConsoleColor.DarkRed;
       if (!Regex.IsMatch(pass, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"))
       {
         if (!Regex.IsMatch(pass, "[0-9]"))
@@ -62,8 +63,10 @@ namespace Project_B.Logic
         {
           Console.WriteLine("Het wachtwoord moet minimaal 6 tekens lang zijn");
         }
+        Console.ForegroundColor = ConsoleColor.Gray;
         return false;
       }
+      Console.ForegroundColor = ConsoleColor.Gray;
       return true;
     }
 

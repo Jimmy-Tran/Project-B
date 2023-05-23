@@ -9,6 +9,7 @@ public class CustomerMenu
         {
             // voor stellen om een foto te laten up poppen van een menu kaart, anders vraag wat precies geshowed moet worden
             MenuPresentation.Menu();
+            Console.ReadKey();
             Start(username, id);
         }
         else if (selectedClass == 1)
@@ -31,6 +32,11 @@ public class CustomerMenu
             LocationPresentation.ShowLocation(location);
             Start(username, id);
         }
+        else if (selectedClass == 4)
+        {
+            AccountData.Start(id);
+        }
+
         else if (selectedClass == 4)
         {
             // roep welkom aan sinds je word uitgelogd

@@ -55,8 +55,16 @@ class ReservationConsole
         } while (amountPeopleCheck <= 0);
 
         amt_people = amountPeopleCheck;
-
         
+        // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
+        Gegevens begin = new Gegevens();
+        // nu heb je een lijst met gegevens van de mensen op basis van hoeveel mensen gaan geef je dat door met de int
+        List<Person> gegevens = begin.Gegevens_krijgen(amt_people);
+        Prijs geld = new Prijs();
+        List<double> betalen = geld.Prijs_berekenen(gegevens);
+        Console.WriteLine($"intotaal betaal je voor {gegevens.Count} mensen {betalen.Sum()} euro.");
+        //Todo: Cancel the reservation if the Amt of people is more than 6 or something else....?
+      
         if (amountPeopleCheck > 6) { // Check if the person has more than 6 which should not be allowed. We give the user the option to continue or cancel the reservation
             int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {"We zien dat u meer dan 6 personen heeft. Wilt u nogsteeds verder gaan met de reservering?", "Klik dan op \"Verder gaan\" en verander de hoeveelheid personen naar 6 of lager! Daarna heeft u de mogelijkheid om nog een reservering te maken met de overige personen.", "U kunt ook met ons contact opnemen via telefoon 063828192"}, "Reservering annuleren", "Verder gaan");
 
@@ -185,8 +193,17 @@ class ReservationConsole
         } while (amountPeopleCheck <= 0);
 
         amt_people = amountPeopleCheck;
-
-         if (amountPeopleCheck > 6) {
+      
+        // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
+        Gegevens begin = new Gegevens();
+        // nu heb je een lijst met gegevens van de mensen op basis van hoeveel mensen gaan geef je dat door met de int
+        List<Person> gegevens = begin.Gegevens_krijgen(amt_people);
+        Prijs geld = new Prijs();
+        List<double> betalen = geld.Prijs_berekenen(gegevens);
+        Console.WriteLine($"intotaal betaal je voor {gegevens.Count} mensen {betalen.Sum()} euro.");
+        //Todo: Cancel the reservation if the Amt of people is more than 6 or something else....?
+  
+        if (amountPeopleCheck > 6) {
             int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {"We zien dat u meer dan 6 personen heeft. Wilt u nogsteeds verder gaan met de reservering?", "Klik dan op \"Verder gaan\" en verander de hoeveelheid personen naar 6 of lager! Daarna heeft u de mogelijkheid om nog een reservering te maken met de overige personen.", "U kunt ook met ons contact opnemen via telefoon 063828192"}, "Reservering annuleren", "Verder gaan");
 
             switch (selectedClass) {
