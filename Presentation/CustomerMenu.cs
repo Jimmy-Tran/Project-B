@@ -21,8 +21,7 @@ public class CustomerMenu
         else if (selectedClass == 2)
         {
             // start de locatie class en show detail
-            Location location = Location.CreateLocation();
-            LocationPresentation.ShowLocation(location);
+            MyReservation.ShowReservationInfo(username, id, MyReservation.GetReservationCode(username, id));
             Start(username, id);
         }
         else if (selectedClass == 3)

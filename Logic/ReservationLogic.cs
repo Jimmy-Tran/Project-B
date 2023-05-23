@@ -173,23 +173,23 @@ namespace Project_B.Logic
             }
         }
 
-        public static bool AccessReservationSimulation(int _ID) {
+        public static bool AccessReservationSimulation(string _ReservationCode) {
             try {
                 //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
-                //Find the reservation by id and set Verified to true
-                reservations.Where(x => x.ID == _ID).ToList().ForEach(x => x.Verified = true);
+                DateTime DateNow = DateTime.Now;
 
-                //Send data back to JSON file
-                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
-                
-                return true;
+                //Look in reservations for the reservationcode and if it is this day.
+                if (reservations.Any(r => r.ReservationCode == _ReservationCode && r.Date == DateNow.Date)) {
+                    return true;
+                } else {
+                    return false;
+                }
             } 
             catch (Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}"); 
+                Console.WriteLine($"Kon geen reserveringen ophalen!");
                 return false;
             }
         }

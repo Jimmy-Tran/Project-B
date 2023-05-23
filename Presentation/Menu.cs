@@ -15,6 +15,7 @@ static class Menu
         else if (selectedClass == 1)
         {
             MenuPresentation.Menu();
+            Console.ReadKey();
         }
         else if (selectedClass == 2)
         {

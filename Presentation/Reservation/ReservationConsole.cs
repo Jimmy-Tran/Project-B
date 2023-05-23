@@ -168,6 +168,8 @@ class ReservationConsole
 
     public void Reserveren(int client_id, string username)
     {
+        Console.Clear();
+        
         clientnumber = client_id;
         name = username;
         AccountsLogic AccountData = new AccountsLogic();
