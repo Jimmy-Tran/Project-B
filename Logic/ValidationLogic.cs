@@ -74,12 +74,17 @@ namespace Project_B.Logic
       string json = File.ReadAllText("./DataSources/reservations.json");
         // Deserialize the JSON into a list of Reservation objects
         List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
+          if (reservations != null) {
             if (!reservations.Any(r => r.reservationcode == code)) {
                 return true;
             }
             else {
               return false;
             }
+          }
+
+          return true;
+            
     }
   }
 }

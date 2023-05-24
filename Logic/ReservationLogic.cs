@@ -310,7 +310,7 @@ namespace Project_B.Logic
             string jsonContent = File.ReadAllText("DataSources/reservations.json");
             List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
 
-            return reservations.Last().ID;
+            return reservations != null ? reservations.Last().ID : 0;
         }
         public static string CodeGenerator()
         {
