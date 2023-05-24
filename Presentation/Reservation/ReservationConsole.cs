@@ -293,7 +293,7 @@ class ReservationConsole
             tables.Add(tableCheck);
             try
             {
-                ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
+                ReservationLogic.AddReservation(id, clientnumber, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Geluk!");
                 Email.sendmail(email, name, date, timeslot);
                 Email.warning();

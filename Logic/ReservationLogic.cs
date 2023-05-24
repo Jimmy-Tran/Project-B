@@ -43,9 +43,8 @@ namespace Project_B.Logic
 
         public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             try {
-                //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 //Add an item to the list
                 reservations.Add(new ReservationModel(_id, _clientnumber, _name, _email, _date, _reservationcode, _timeslot, _tables, _amt_people));
@@ -65,7 +64,7 @@ namespace Project_B.Logic
                 //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText("DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
-                return reservations;
+                return reservations != null ? reservations : new List<ReservationModel>();
 
             }
             catch (Exception ex)
@@ -78,10 +77,8 @@ namespace Project_B.Logic
         public static List<ReservationModel> GetReservations(string _Searchterm) {
             List<ReservationModel> ResList = new();
             try {
-                //Try to get the reservation and convert them into a list
-
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
@@ -104,8 +101,8 @@ namespace Project_B.Logic
             try {
                 //Try to get the reservation and convert them into a list
 
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
@@ -125,9 +122,8 @@ namespace Project_B.Logic
 
         public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             try {
-                //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
@@ -158,9 +154,8 @@ namespace Project_B.Logic
         {
             //Todo: Add a parameter to GetReservation called ID. ID will also return a Object.
             try {
-                //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 //Remove the item in the list with equal IDs
                 reservations.RemoveAll(x => x.ID == _ID);
@@ -179,9 +174,8 @@ namespace Project_B.Logic
 
         public static bool VerifyingReservation(int _ID) {
             try {
-                //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 //Find the reservation by id and set Verified to true
                 reservations.Where(x => x.ID == _ID).ToList().ForEach(x => x.Verified = true);
@@ -200,9 +194,8 @@ namespace Project_B.Logic
 
         public static bool AccessReservationSimulation(string _ReservationCode) {
             try {
-                //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
                 DateTime DateNow = DateTime.Now;
 
@@ -307,8 +300,8 @@ namespace Project_B.Logic
 
         public static int GetLastID()
         {
-            string jsonContent = File.ReadAllText("DataSources/reservations.json");
-            List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+            //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
 
             return reservations != null ? reservations.Last().ID : 0;
         }
