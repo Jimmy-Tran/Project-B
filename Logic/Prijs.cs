@@ -6,7 +6,7 @@ public class Prijs
     public double gangenmenu_4 = 25.50;
 
     // Field for the discount percentage
-    public double discount = 0.9;
+    public double discount = 0.1;
 
     // Method to calculate the price
     public double prijs(int aantal)
