@@ -6,8 +6,9 @@ public class MenuPresentation
         Console.WriteLine("╔════════════════════════════════════════╗");
         Console.WriteLine("║            Restaurant Menu             ║");
         Console.WriteLine("╚════════════════════════════════════════╝");
-        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Dessert ...................15,50");
-        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Dessert ...20,50");
+        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Dessert .........................15,50");
+        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Dessert .........20,50");
+        Console.WriteLine("4 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht, 1x Dessert 1xextra ...25,50");
 
         Console.WriteLine("\nVoorgerecht:");
         DisplayMenuItems(menu.Starters, includePrice: true);
@@ -28,8 +29,9 @@ public class MenuPresentation
         Console.WriteLine("╔════════════════════════════════════════╗");
         Console.WriteLine("║            Restaurant Menu             ║");
         Console.WriteLine("╚════════════════════════════════════════╝");
-        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Dessert ...................15,50");
-        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Dessert ...20,50");
+        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Dessert .........................15,50");
+        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Dessert .........20,50");
+        Console.WriteLine("4 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht, 1x Dessert 1xextra ...25,50");
 
         Console.WriteLine("\nVoorgerecht:");
         DisplayMenuItems(menu.Starters, username, id, includePrice: true);
