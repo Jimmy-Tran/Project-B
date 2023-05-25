@@ -1,0 +1,16 @@
+[
+  {
+    "ID": 1,
+    "ClientNumber": 0,
+    "Name": "Henno",
+    "Email": "henno.passchier@gmail.com",
+    "Date": "2023-05-26T00:00:00",
+    "ReservationCode": "XF3S7M",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      "2"
+    ],
+    "Amt_People": 2,
+    "Verified": false
+  }
+]
