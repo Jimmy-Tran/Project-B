@@ -305,6 +305,7 @@ namespace Project_B.Logic
 
             return reservations.Count() != 0 ? reservations.Last().ID : 0;
         }
+        
         public static string CodeGenerator()
         {
             //Creating object of random class
