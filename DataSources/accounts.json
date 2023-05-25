@@ -22,8 +22,8 @@
   },
   {
     "id": 4,
-    "emailAddress": "Joelverveer@hotmail.com",
-    "password": "Abc@123.nl",
+    "emailAddress": "joelverveer@hotmail.com",
+    "password": "ABC@123.nl",
     "fullName": "joel verveer",
     "level": 0
   },
@@ -54,5 +54,12 @@
     "password": "wachtwoord",
     "fullName": "jan jansen",
     "level": 2
+  },
+  {
+    "id": 9,
+    "emailAddress": "henno.passchier@gmail.com",
+    "password": "abc",
+    "fullName": "Henno Passchier",
+    "level": 0
   }
 ]
