@@ -23,6 +23,7 @@ class ReservationConsole
     public List<string> tables = new List<string>();
 
     bool reserveValid = true;
+    public string phoneNumber {get; set;}
 
     public void Reserveren()
     {
@@ -36,6 +37,22 @@ class ReservationConsole
 
         // Change class propperty to given variable after conditions are correct
         name = nameCheck;
+
+        string phoneCheck;
+        string phonePattern = @"^(?:\+31|0)6\d{8}$";
+        do
+        {
+            Console.WriteLine("What is your phone number? (+31612345678 or 0612345678)");
+            phoneCheck = Console.ReadLine();
+
+
+            if (!Regex.IsMatch(phoneCheck, phonePattern))
+            {
+                Console.WriteLine("Invalid phone number. Please enter a valid phone number.");
+            }
+
+        } while (!Regex.IsMatch(phoneCheck, phonePattern));
+
 
         string emailCheck;
         do
