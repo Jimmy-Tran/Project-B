@@ -13,7 +13,23 @@ public class Prijs
     {
         // Prompt for the chosen gangen menu
         Console.WriteLine("Welke gangen menu gaat u nemen?");
-        int menu = Convert.ToInt32(Console.ReadLine());
+        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { "Welke gangen menu gaat u nemen?" }, "2", "3", "4");
+        int menu;
+        switch (selectedClass)
+        {
+            case 0:
+                menu = 2;
+                break;
+            case 1:
+                menu = 3;
+                break;
+            case 2:
+                menu = 4;
+                break;
+            default:
+                menu = 0;
+                break;
+        }
 
         // Prompt for the number of people under 12
         Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");

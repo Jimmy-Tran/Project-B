@@ -301,9 +301,9 @@ namespace Project_B.Logic
         public static int GetLastID()
         {
             //Get reservations from other function
-                List<ReservationModel> reservations = GetReservations();
+            List<ReservationModel> reservations = GetReservations();
 
-            return reservations != null ? reservations.Last().ID : 0;
+            return reservations.Count() != 0 ? reservations.Last().ID : 0;
         }
         
         public static string CodeGenerator()
