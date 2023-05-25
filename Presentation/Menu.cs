@@ -23,6 +23,7 @@ static class Menu
         {
             ReservationConsole res = new ReservationConsole();
             res.Reserveren();
+            Start();
         }
         else if (selectedClass == 3)
         {

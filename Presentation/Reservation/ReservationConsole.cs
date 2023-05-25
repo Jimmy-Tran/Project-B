@@ -86,6 +86,7 @@ class ReservationConsole
         bool field4Valid = false;
         while (field4Valid is false)
         {
+            Console.Clear();
             string DateCheck;
             do
             {
@@ -160,7 +161,7 @@ class ReservationConsole
             {
                 ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Gelukt!");
-                Email.sendmail(email, name, date, timeslot);
+                Email.sendmail(email, name, reservationcode, date, timeslot);
                 Email.warning();
             }
             catch
@@ -218,16 +219,14 @@ class ReservationConsole
 
 
         // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
-        // Gegevens begin = new Gegevens();
-        // // nu heb je een lijst met gegevens van de mensen op basis van hoeveel mensen gaan geef je dat door met de int
-        // List<Person> gegevens = begin.Gegevens_krijgen(amt_people);
-        // Prijs geld = new Prijs();
-        // List<double> betalen = geld.Prijs_berekenen(gegevens);
-        // Console.WriteLine($"intotaal betaal je voor {gegevens.Count} mensen {betalen.Sum()} euro.");
+        Prijs geld = new Prijs();
+        double money = geld.prijs(amt_people);
+        Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money} euro.");
 
         bool field4Valid = false;
         while (field4Valid is false)
         {
+            Console.Clear();
             string DateCheck;
             do
             {
@@ -302,7 +301,7 @@ class ReservationConsole
             {
                 ReservationLogic.AddReservation(id, clientnumber, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Geluk!");
-                Email.sendmail(email, name, date, timeslot);
+                Email.sendmail(email, name, reservationcode, date, timeslot);
                 Email.warning();
             }
             catch (Exception e)

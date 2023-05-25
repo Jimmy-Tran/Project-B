@@ -13,5 +13,20 @@
     "Amt_People": 2,
     "CourseMenu": 0,
     "Verified": false
+  },
+  {
+    "ID": 2,
+    "ClientNumber": 0,
+    "Name": "Henno Passchier",
+    "Email": "henno.passchier@gmail.com",
+    "Date": "2023-05-26T00:00:00",
+    "ReservationCode": "QN2G6V",
+    "TimeSlot": "16:00:00",
+    "Tables": [
+      "4D"
+    ],
+    "Amt_People": 4,
+    "CourseMenu": 0,
+    "Verified": false
   }
 ]
