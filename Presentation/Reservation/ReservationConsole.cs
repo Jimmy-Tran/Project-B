@@ -99,7 +99,8 @@ class ReservationConsole
         Prijs geld = new Prijs();
         double money = geld.prijs(amt_people);
         Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money} euro.");
-        Thread.Sleep(1000);
+        Console.WriteLine("Druk op iets om verder te gaan...");
+        Console.ReadKey();
 
         bool field4Valid = false;
         while (field4Valid is false)
@@ -240,7 +241,8 @@ class ReservationConsole
         Prijs geld = new Prijs();
         double money = geld.prijs(amt_people);
         Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money} euro.");
-        Thread.Sleep(1000);
+        Console.WriteLine("Druk op iets om verder te gaan...");
+        Console.ReadKey();
 
         bool field4Valid = false;
         while (field4Valid is false)
