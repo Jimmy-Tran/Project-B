@@ -18,6 +18,7 @@ public class MenuLogic
 
         do
         {
+            // if (canClear == true) Console.Clear();
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
 

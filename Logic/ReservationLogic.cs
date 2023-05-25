@@ -127,7 +127,7 @@ namespace Project_B.Logic
 
                 //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
-                    if (reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
                         //Change the old value to the new value
                         reservation.Name = _name;
                         reservation.Email = _email;
@@ -305,6 +305,7 @@ namespace Project_B.Logic
 
             return reservations.Count() != 0 ? reservations.Last().ID : 0;
         }
+        
         public static string CodeGenerator()
         {
             //Creating object of random class
