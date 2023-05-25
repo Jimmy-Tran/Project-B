@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Project_B.Logic;
 public static class Email
 {
-    public static void sendmail(string mail, string name, DateTime date, TimeSpan time)
+    public static void sendmail(string mail, string name, string ReservationCode, DateTime date, TimeSpan time)
     {
         string fromMail = "restaurantjake@gmail.com";
         string fromPassword = "luqouzdfclolntnn";
-        string randomcode = ReservationLogic.CodeGenerator();
+        string randomcode = ReservationCode;
         MailMessage message = new MailMessage();
         message.From = new MailAddress(fromMail);
         message.Subject = "Reservatie";
