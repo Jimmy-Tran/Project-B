@@ -35,6 +35,9 @@ namespace Project_B.DataModels
         [JsonPropertyName("Amt_People")]
         public int Amt_People {get; set;}
 
+        [JsonPropertyName("Course_Menu")]
+        public List<string> CourseMenu {get; set;}
+
         [JsonPropertyName("Verified")]
         public bool Verified {get; set;}
 
