@@ -151,6 +151,13 @@ public class Reservation {
                 TimeSlot = Console.ReadLine();
             } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
+            string Amt_People;
+            do {
+                Console.Write("Aantal Personen: ");
+                Amt_People = Console.ReadLine();
+            } while (ValidationLogic.IsNumeric(Amt_People) != true);
+
+            Console.WriteLine("Beschikbare tafels: " + string.Join(", " ,TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People))));
             Console.WriteLine("Tafel nummers");
             List<string> Tables = new List<string> ();
             while (true) {
@@ -166,12 +173,6 @@ public class Reservation {
                 }
 
             }
-
-            string Amt_People;
-            do {
-                Console.Write("Aantal Personen: ");
-                Amt_People = Console.ReadLine();
-            } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
             // All values has been checked and ready to be changed
             bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));

@@ -29,16 +29,24 @@ public class ManagerMenu
 
                 switch (selectedClass) {
                     case 0:
+                        Console.Clear();
                         Reservation.DisplayReservation();
+
+                        Console.WriteLine("Druk op iets om verder te gaan...");
+                        Console.ReadKey();
                         Admin_menu(username, id);
                         break;
                     case 1:
                         Reservation.MakeReservation();
+
+                        Console.WriteLine("Druk op iets om verder te gaan...");
+                        Console.ReadKey();
                         Admin_menu(username, id);
                         break;
                     case 2:
-                        Console.WriteLine("Nog niet beschikbaar");
-                        // Reservation.ChangeReservation();
+                        // Console.WriteLine("Nog niet beschikbaar");
+                        Reservation.ChangeReservation();
+                        Console.ReadKey();
                         Admin_menu(username, id);
                         break;
                     case 3:
