@@ -35,6 +35,12 @@ namespace Project_B.DataModels
         [JsonPropertyName("Amt_People")]
         public int Amt_People {get; set;}
 
+        [JsonPropertyName("Course_Menu")]
+        public int CourseMenu {get; set;}
+
+        [JsonPropertyName("Verified")]
+        public bool Verified {get; set;}
+
         public ReservationModel(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
             ID = _id;
             ClientNumber = _clientnumber;
@@ -45,6 +51,7 @@ namespace Project_B.DataModels
             TimeSlot = _timeslot;
             Tables = _tables;
             Amt_People = _amt_people;
+            Verified = false;
     }
     }
 

@@ -1,161 +1,17 @@
 [
   {
-    "ID": 13,
-    "ClientNumber": 0,
-    "Name": "jada",
-    "Email": "2dadka@gmail.com",
-    "Date": "2023-05-27T00:00:00",
-    "ReservationCode": "ULXJPH",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "3",
-      "4"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 14,
-    "ClientNumber": 0,
-    "Name": "jaada",
-    "Email": "jada@gmail.com",
-    "Date": "2023-05-28T00:00:00",
-    "ReservationCode": "CXYSQD",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "3",
-      "4"
-    ],
-    "Amt_People": 6
-  },
-  {
-    "ID": 15,
-    "ClientNumber": 0,
-    "Name": "Jimmy Tran",
-    "Email": "jadja@",
-    "Date": "2023-05-29T00:00:00",
-    "ReservationCode": "BWVTZJ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "3",
-      "4"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 16,
+    "ID": 1,
     "ClientNumber": 0,
     "Name": "Henno Passchier",
-    "Email": "henno@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "HFQYGD",
+    "Email": "henno.passchier@gmail.com",
+    "Date": "2023-05-26T00:00:00",
+    "ReservationCode": "XF3S7M",
     "TimeSlot": "20:00:00",
     "Tables": [
       "1"
     ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 17,
-    "ClientNumber": 5,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy@gmail.com",
-    "Date": "2023-05-07T00:00:00",
-    "ReservationCode": "",
-    "TimeSlot": "22:00:00",
-    "Tables": [
-      "1"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 18,
-    "ClientNumber": 5,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "2"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 19,
-    "ClientNumber": 5,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy@gmail.com",
-    "Date": "2023-05-05T00:00:00",
-    "ReservationCode": "",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "8"
-    ],
-    "Amt_People": 4
-  },
-  {
-    "ID": 20,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "NWSGXB",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "4"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 21,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "MTETPV",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "2"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 22,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "GKCGEQ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "6"
-    ],
-    "Amt_People": 2
-  },
-  {
-    "ID": 23,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "TLUURZ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "4A"
-    ],
-    "Amt_People": 4
-  },
-  {
-    "ID": 24,
-    "ClientNumber": 0,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-11T00:00:00",
-    "ReservationCode": "VBMBEJ",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "7"
-    ],
-    "Amt_People": 2
+    "Amt_People": 2,
+    "CourseMenu": 0,
+    "Verified": false
   }
 ]

@@ -7,12 +7,19 @@ public class Reservation {
 
     static public void DisplayReservation() {
         List<ReservationModel> reservations = ReservationLogic.GetReservations();
-        Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafel nummers", "Aantal Pers.");
+
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine("Reservaties Tabel:");
+        Console.ForegroundColor = ConsoleColor.White;
+        Console.WriteLine("--------------------");
+        Console.WriteLine("{0,-5} {1,-30} {2,-15} {3,-15} {4,-15} {5,-10}", "ID", "Naam", "Datum", "Tijd", "Tafel nummers", "Aantal Pers.");
         
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
         foreach (ReservationModel reservation in reservations) {
-            Console.WriteLine("{0,-5} {1,-20} {2,-15} {3,-15} {4,-15} {5,-10}",
-                reservation.ID, reservation.Name, reservation.Date.ToString("dd-MM-yyyy"), reservation.TimeSlot, string.Join(", ", reservation.Tables), reservation.Amt_People);
+            Console.WriteLine("{0,-5} {1,-30} {2,-15} {3,-15} {4,-15} {5,-10}",
+                reservation.ID, reservation.Name, reservation.Date.ToString("dd-MM-yyyy"), reservation.TimeSlot.ToString(@"hh\:mm"), string.Join(", ", reservation.Tables), reservation.Amt_People);
         }
+        Console.ForegroundColor = ConsoleColor.Gray;
     }
 
     static public void MakeReservation() {
@@ -144,6 +151,13 @@ public class Reservation {
                 TimeSlot = Console.ReadLine();
             } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
+            string Amt_People;
+            do {
+                Console.Write("Aantal Personen: ");
+                Amt_People = Console.ReadLine();
+            } while (ValidationLogic.IsNumeric(Amt_People) != true);
+
+            Console.WriteLine("Beschikbare tafels: " + string.Join(", " ,TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People))));
             Console.WriteLine("Tafel nummers");
             List<string> Tables = new List<string> ();
             while (true) {
@@ -159,12 +173,6 @@ public class Reservation {
                 }
 
             }
-
-            string Amt_People;
-            do {
-                Console.Write("Aantal Personen: ");
-                Amt_People = Console.ReadLine();
-            } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
             // All values has been checked and ready to be changed
             bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));

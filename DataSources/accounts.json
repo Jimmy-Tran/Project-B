@@ -22,8 +22,8 @@
   },
   {
     "id": 4,
-    "emailAddress": "Joelverveer@hotmail.com",
-    "password": "Abc@123.nl",
+    "emailAddress": "joelverveer@hotmail.com",
+    "password": "ABC@123.nl",
     "fullName": "joel verveer",
     "level": 0
   },
@@ -39,6 +39,27 @@
     "emailAddress": "test@test.nl",
     "password": "Test123",
     "fullName": "test test",
+    "level": 0
+  },
+  {
+    "id": 7,
+    "emailAddress": "maruf@live.nl",
+    "password": "Mr22082003",
+    "fullName": "maruf",
+    "level": 0
+  },
+  {
+    "id": 8,
+    "emailAddress": "jan@live.nl",
+    "password": "wachtwoord",
+    "fullName": "jan jansen",
+    "level": 2
+  },
+  {
+    "id": 9,
+    "emailAddress": "henno.passchier@gmail.com",
+    "password": "abc",
+    "fullName": "Henno Passchier",
     "level": 0
   }
 ]
