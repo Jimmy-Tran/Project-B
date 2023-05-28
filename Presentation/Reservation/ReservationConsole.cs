@@ -23,7 +23,7 @@ class ReservationConsole
     public List<string> tables = new List<string>();
 
     bool reserveValid = true;
-    public string phoneNumber {get; set;}
+    public string phoneNumber { get; set; }
 
     public void Reserveren()
     {
