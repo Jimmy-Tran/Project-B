@@ -24,6 +24,9 @@ public class MenuPresentation
                 Console.WriteLine("\nHoofdgerecht:");
                 DisplayMenuItems(menu.Mains, includePrice: true);
 
+                Console.WriteLine("\nWijn:");
+                DisplayMenuItems(menu.Wijn, includePrice: false);
+
                 Console.WriteLine("\nDrinks:");
                 DisplayMenuItems(menu.Drinks, includePrice: true);
                 break;
@@ -38,6 +41,9 @@ public class MenuPresentation
                 Console.WriteLine("\nNagerecht:");
                 DisplayMenuItems(menu.Desserts, includePrice: true);
 
+                Console.WriteLine("\nWijn:");
+                DisplayMenuItems(menu.Wijn, includePrice: false);
+
                 Console.WriteLine("\nDrinks:");
                 DisplayMenuItems(menu.Drinks, includePrice: true);
                 break;
@@ -51,6 +57,9 @@ public class MenuPresentation
 
                 Console.WriteLine("\nNagerecht:");
                 DisplayMenuItems(menu.Desserts, includePrice: true);
+
+                Console.WriteLine("\nWijn:");
+                DisplayMenuItems(menu.Wijn, includePrice: false);
 
                 Console.WriteLine("\nDrinks:");
                 DisplayMenuItems(menu.Drinks, includePrice: true);
@@ -81,6 +90,9 @@ public class MenuPresentation
                 Console.WriteLine("\nHoofdgerecht:");
                 DisplayMenuItems(menu.Mains, username, id, includePrice: true);
 
+                Console.WriteLine("\nWijn:");
+                DisplayMenuItems(menu.Wijn, username, id, includePrice: false);
+
                 Console.WriteLine("\nDrinks:");
                 DisplayMenuItems(menu.Drinks, username, id, includePrice: true);
                 break;
@@ -95,6 +107,9 @@ public class MenuPresentation
                 Console.WriteLine("\nNagerecht:");
                 DisplayMenuItems(menu.Desserts, username, id, includePrice: true);
 
+                Console.WriteLine("\nWijn:");
+                DisplayMenuItems(menu.Wijn, username, id, includePrice: false);
+
                 Console.WriteLine("\nDrinks:");
                 DisplayMenuItems(menu.Drinks, username, id, includePrice: true);
                 break;
@@ -108,6 +123,9 @@ public class MenuPresentation
 
                 Console.WriteLine("\nNagerecht:");
                 DisplayMenuItems(menu.Desserts, username, id, includePrice: true);
+
+                Console.WriteLine("\nWijn:");
+                DisplayMenuItems(menu.Wijn, username, id, includePrice: false);
 
                 Console.WriteLine("\nDrinks:");
                 DisplayMenuItems(menu.Drinks, username, id, includePrice: true);

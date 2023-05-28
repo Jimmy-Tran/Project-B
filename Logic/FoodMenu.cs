@@ -14,14 +14,14 @@ public class Foodmenu
     public List<MenuItem> Mains { get; set; }
     public List<MenuItem> Desserts { get; set; }
     public List<MenuItem> Drinks { get; set; }
-
+    public List<MenuItem> Wijn { get; set; }
     public Foodmenu()
     {
-        // stel ze vast door een nieuwe lijst te maken
         Starters = new List<MenuItem>();
         Mains = new List<MenuItem>();
         Desserts = new List<MenuItem>();
         Drinks = new List<MenuItem>();
+        Wijn = new List<MenuItem>();
     }
 
 }
@@ -75,7 +75,10 @@ public class MenuImporter
         {
             menu.Drinks.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
         }
-
+        foreach (var item in data.Wijn)
+        {
+            menu.Wijn.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+        }
         return menu;
     }
     public static void AddMenuItem(Foodmenu menu, MenuItem item, string filename)
@@ -103,6 +106,11 @@ public class MenuImporter
                 item.Category = null; // set the category property to null
                 menu.Drinks.Add(item);
                 break;
+            case "Wijn":
+                item.ID = menu.Wijn.Count > 0 ? menu.Wijn.Max(i => i.ID) + 1 : 1;
+                item.Category = null; // set the category property to null
+                menu.Wijn.Add(item);
+                break;
             default:
                 throw new Exception("Invalid category specified");
         }
@@ -129,6 +137,9 @@ public class MenuImporter
             case "Drinks":
                 itemList = menu.Drinks;
                 break;
+            case "Wijn":
+                itemList = menu.Wijn;
+                break;
             default:
                 throw new Exception("Invalid category specified");
         }
@@ -153,7 +164,7 @@ public class MenuImporter
     public static void SaveMenuToJson(Foodmenu menu, string filename)
     {
         // Serialize the menu to JSON and write it to the file
-        string json = JsonConvert.SerializeObject(menu);
+        string json = JsonConvert.SerializeObject(menu, Formatting.Indented);
         File.WriteAllText(filename, json);
     }
 
