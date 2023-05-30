@@ -10,6 +10,7 @@ public class Foodmenu
 {
     // maak nu een lijst voor iedere gang en drinken
     public List<MenuItem> Starters { get; set; }
+    public List<MenuItem> Soups { get; set; }
     public List<MenuItem> Mains { get; set; }
     public List<MenuItem> Desserts { get; set; }
     public List<MenuItem> Drinks { get; set; }
@@ -17,6 +18,7 @@ public class Foodmenu
     public Foodmenu()
     {
         Starters = new List<MenuItem>();
+        Soups = new List<MenuItem>();
         Mains = new List<MenuItem>();
         Desserts = new List<MenuItem>();
         Drinks = new List<MenuItem>();

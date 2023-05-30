@@ -54,6 +54,10 @@ public class MenuImporter
         {
             menu.Wijn.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
         }
+        foreach (var item in data.Soups)
+        {
+            menu.Soups.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+        }
         return menu;
     }
     public static void AddMenuItem(Foodmenu menu, MenuItem item, string filename)
@@ -65,6 +69,11 @@ public class MenuImporter
                 item.ID = menu.Starters.Count > 0 ? menu.Starters.Max(i => i.ID) + 1 : 1;
                 item.Category = null; // set the category property to null
                 menu.Starters.Add(item);
+                break;
+            case "Soups":
+                item.ID = menu.Soups.Count > 0 ? menu.Soups.Max(i => i.ID) + 1 : 1;
+                item.Category = null; // set the category property to null
+                menu.Soups.Add(item);
                 break;
             case "Mains":
                 item.ID = menu.Mains.Count > 0 ? menu.Mains.Max(i => i.ID) + 1 : 1;
@@ -113,6 +122,9 @@ public class MenuImporter
                 itemList = menu.Drinks;
                 break;
             case "Wijn":
+                itemList = menu.Wijn;
+                break;
+            case "Soups":
                 itemList = menu.Wijn;
                 break;
             default:
