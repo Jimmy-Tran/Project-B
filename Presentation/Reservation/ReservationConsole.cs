@@ -240,7 +240,7 @@ class ReservationConsole
         // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
         Prijs geld = new Prijs();
         double money = geld.prijs(amt_people);
-        Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money} euro.");
+        Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money:f2} euro.");
         Console.WriteLine("Druk op iets om verder te gaan...");
         Console.ReadKey();
 
