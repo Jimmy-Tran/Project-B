@@ -34,7 +34,7 @@ public class MenuAanpassen
     }
     public static void AddItem(string username, int id)
     {
-        Console.WriteLine("Voer de categorie in: (Starters/Mains/Desserts/Drinks/Wijn)");
+        Console.WriteLine("Voer de categorie in: (Starters/Soups/Mains/Desserts/Drinks/Wijn)");
         Console.WriteLine("*Hoofdletter gevoelig");
         string category = Console.ReadLine();
 
@@ -42,6 +42,7 @@ public class MenuAanpassen
         switch (category)
         {
             case "Starters":
+            case "Soups":
             case "Mains":
             case "Desserts":
             case "Drinks":
@@ -91,7 +92,7 @@ public class MenuAanpassen
 
     public static void RemoveItem(string username, int user_id)
     {
-        Console.WriteLine("Voer de categorie in: (Starters/Mains/Desserts/Drinks/Wijn)");
+        Console.WriteLine("Voer de categorie in: (Starters/Soups/Mains/Desserts/Drinks/Wijn)");
         Console.WriteLine("*Hoofdletter gevoelig");
         string category = Console.ReadLine();
         string filenaam = @"DataSources/menu.json";
@@ -99,6 +100,7 @@ public class MenuAanpassen
         switch (category)
         {
             case "Starters":
+            case "Soups":
             case "Mains":
             case "Desserts":
             case "Drinks":
@@ -124,6 +126,9 @@ public class MenuAanpassen
         {
             case "Starters":
                 itemToRemove = menu.Starters.FirstOrDefault(i => i.ID == id);
+                break;
+            case "Soups":
+                itemToRemove = menu.Soups.FirstOrDefault(i => i.ID == id);
                 break;
             case "Mains":
                 itemToRemove = menu.Mains.FirstOrDefault(i => i.ID == id);
@@ -151,6 +156,9 @@ public class MenuAanpassen
         {
             case "Starters":
                 menu.Starters.Remove(itemToRemove);
+                break;
+            case "Soups":
+                menu.Soups.Remove(itemToRemove);
                 break;
             case "Mains":
                 menu.Mains.Remove(itemToRemove);

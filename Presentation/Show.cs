@@ -8,9 +8,9 @@ public class MenuPresentation
         Console.WriteLine("╔════════════════════════════════════════╗");
         Console.WriteLine("║            Restaurant Menu             ║");
         Console.WriteLine("╚════════════════════════════════════════╝");
-        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Nagerecht .........................15,50");
-        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Nagerecht .........20,50");
-        Console.WriteLine("4 Ganger menu ......2x Voorgerecht, 1x Hoofdgerecht, 1x Nagerecht ...........25,50");
+        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Nagerecht .................................15,50");
+        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Nagerecht .................20,50");
+        Console.WriteLine("4 Ganger menu ......1x Voorgerecht, 1x Soep 1x Hoofdgerecht, 1x Nagerecht ...........25,50");
 
         // maak functie om te kiezen welke menu de klant wilt
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu");
@@ -52,6 +52,9 @@ public class MenuPresentation
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, includePrice: true);
 
+                Console.WriteLine("\nSoepen:");
+                DisplayMenuItems(menu.Soups, includePrice: true);
+
                 Console.WriteLine("\nHoofdgerecht:");
                 DisplayMenuItems(menu.Mains, includePrice: true);
 
@@ -74,9 +77,9 @@ public class MenuPresentation
         Console.WriteLine("╔════════════════════════════════════════╗");
         Console.WriteLine("║            Restaurant Menu             ║");
         Console.WriteLine("╚════════════════════════════════════════╝");
-        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Nagerecht .........................15,50");
-        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Nagerecht .........20,50");
-        Console.WriteLine("4 Ganger menu ......2x Voorgerecht, 1x Hoofdgerecht, 1x Nagerecht ...........25,50");
+        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Nagerecht .................................15,50");
+        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Nagerecht .................20,50");
+        Console.WriteLine("4 Ganger menu ......1x Voorgerecht, 1x Soep 1x Hoofdgerecht, 1x Nagerecht ...........25,50");
 
         // maak functie om te kiezen welke menu de klant wilt
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu");
@@ -117,6 +120,9 @@ public class MenuPresentation
                 // 4 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, username, id, includePrice: true);
+
+                Console.WriteLine("\nSoepen:");
+                DisplayMenuItems(menu.Soups, username, id, includePrice: true);
 
                 Console.WriteLine("\nHoofdgerecht:");
                 DisplayMenuItems(menu.Mains, username, id, includePrice: true);
