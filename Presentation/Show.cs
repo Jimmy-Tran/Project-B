@@ -178,7 +178,7 @@ public class LocationPresentation
         Console.WriteLine("Adres: " + location.Address);
         Console.WriteLine("Telefoon: " + location.Phone);
         Console.WriteLine("E-mail: " + location.Email);
-        Console.WriteLine("Openingstijden:");
+        Console.WriteLine("\nOpeningstijden:");
         Console.WriteLine("zondag\t\t" + location.OpeningHours["zondag"]);
         Console.WriteLine("maandag\t\t" + location.OpeningHours["maandag"]);
         Console.WriteLine("dinsdag\t\t" + location.OpeningHours["dinsdag"]);

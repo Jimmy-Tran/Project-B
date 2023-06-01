@@ -39,11 +39,6 @@ public class MyReservation {
             if (reservation.ReservationCode == _ReservationCode) { //Search in the list if the Code excist
                 Found = true; // set Found to true so it wont show NotFound
 
-                if (ReservationLogic.AccessReservationSimulation(_ReservationCode) == true) {
-                    // Start Reservation Simulation
-                    break;
-                } else {
-
                 int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {"Reservatie Informatie:", $"Datum: {reservation.Date.ToString("dddd, dd MMMM yyyy")}", $"Tijd: {reservation.TimeSlot.ToString(@"hh\:mm")}", $"Reserverings Code: {reservation.ReservationCode}"}, "Bevestig reservering", "Annuleer reservering", "Terug");
 
                 switch (selectedClass) {
@@ -116,8 +111,6 @@ public class MyReservation {
                     }
                 }
             }
-            
-        }
 
         if (Found != true) {
             Console.WriteLine("\nGeen reservering gevonden, heeft u de juiste code ingevoerd?\nDruk op iets om door te gaan...");
@@ -137,11 +130,6 @@ public class MyReservation {
         foreach (ReservationModel reservation in reservations) {
             if (reservation.ReservationCode == _ReservationCode) { //Search in the list if the Code excist
                 Found = true; // set Found to true so it wont show NotFound
-
-                if (ReservationLogic.AccessReservationSimulation(_ReservationCode) == true) {
-                    // Start Reservation Simulation
-                    break;
-                } else {
 
                 int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {"Reservatie Informatie:", $"Datum: {reservation.Date.ToString("dddd, dd MMMM yyyy")}", $"Tijd: {reservation.TimeSlot.ToString(@"hh\:mm")}", $"Reserverings Code: {reservation.ReservationCode}"}, "Bevestig reservering", "Annuleer reservering", "Terug");
 
@@ -215,11 +203,9 @@ public class MyReservation {
                     }
                 }
             }
-            
-        }
 
         if (Found != true) {
-            Console.WriteLine("\nGeen reservering gevonden, heeft u de juiste code ingevoerd?\nDruk op iets om door te gaan...");
+            Console.WriteLine("\nGeen reservering gevonden\nDruk op iets om door te gaan...");
             Console.ReadKey();
             CustomerMenu.Start(username, id);
 

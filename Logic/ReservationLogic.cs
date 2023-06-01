@@ -191,26 +191,6 @@ namespace Project_B.Logic
                 return false;
             }
         }
-
-        public static bool AccessReservationSimulation(string _ReservationCode) {
-            try {
-                //Get reservations from other function
-                List<ReservationModel> reservations = GetReservations();
-
-                DateTime DateNow = DateTime.Now;
-
-                //Look in reservations for the reservationcode and if it is this day.
-                if (reservations.Any(r => r.ReservationCode == _ReservationCode && r.Date == DateNow.Date)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } 
-            catch (Exception ex) {
-                Console.WriteLine($"Kon geen reserveringen ophalen!");
-                return false;
-            }
-        }
         
         public static void UpdateTableAvailability(List<string> TablesList)
         {
@@ -300,10 +280,16 @@ namespace Project_B.Logic
 
         public static int GetLastID()
         {
+            List<Tuple<int>> ids = new ();
             //Get reservations from other function
             List<ReservationModel> reservations = GetReservations();
 
-            return reservations.Count() != 0 ? reservations.Last().ID : 0;
+            foreach (ReservationModel reservation in reservations) {
+                ids.Add(Tuple.Create<int>(reservation.ID));
+            }
+            
+
+            return reservations.Count() != 0 ? ids.Max(x => x.Item1) : 0;
         }
         
         public static string CodeGenerator()
