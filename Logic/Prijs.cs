@@ -7,6 +7,7 @@ public class Prijs
 
     // Field for the discount percentage
     public double discount = 0.1;
+    public double wijn_arrangement = 3.50;
 
     // Method to calculate the price
     public double prijs(int aantal)
@@ -31,10 +32,36 @@ public class Prijs
                 break;
         }
 
-        // Prompt for the number of people under 12
-        Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");
-        int onder_12 = Convert.ToInt32(Console.ReadLine());
+        bool validInput = false;
+        int onder_12 = 0;
+        int wineCount = 0;
+        while (!validInput)
+        {
+            Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");
+            onder_12 = Convert.ToInt32(Console.ReadLine());
 
+            Console.WriteLine($"Hoeveel van de {aantal} personen willen het wijnarrangement ({wijn_arrangement})?");
+            wineCount = Convert.ToInt32(Console.ReadLine());
+
+            if (onder_12 > aantal)
+            {
+                Console.WriteLine("Het aantal personen jonger dan 12 kan niet groter zijn dan het totale aantal personen.");
+            }
+            else if (wineCount > aantal)
+            {
+                Console.WriteLine("Het aantal personen dat wijn wil nemen kan niet groter zijn dan het totale aantal personen.");
+            }
+            else if (onder_12 + wineCount > aantal)
+            {
+                Console.WriteLine("Het totale aantal personen jonger dan 12 en het aantal personen dat wijn wil nemen kan niet groter zijn dan het totale aantal personen.");
+            }
+            else
+            {
+                validInput = true;
+                // All numbers are logical, continue with the rest of your code
+                // ...
+            }
+        }
         double menuPrijs = 0.0;
 
         // Calculate the price based on the chosen menu
@@ -60,7 +87,13 @@ public class Prijs
         // Apply the discount for people under 12
         double korting = menuPrijs * onder_12 * discount;
         totPrijs -= korting;
-
+        // zorg nu dat je de wijn erbij doet
+        if (wineCount > 0)
+        {
+            // indien er dus wel mensen zijn met wijn
+            double wijnprijs = wijn_arrangement * wineCount;
+            totPrijs += wijnprijs;
+        }
         return totPrijs;
     }
 }
