@@ -38,21 +38,25 @@ class ReservationConsole
         // Change class propperty to given variable after conditions are correct
         name = nameCheck;
 
+        Console.Clear();
+
         string phoneCheck;
         string phonePattern = @"^(?:\+31|0)6\d{8}$";
+        
         do
         {
-            Console.WriteLine("What is your phone number? (+31612345678 or 0612345678)");
+            Console.WriteLine("(Optioneel) Wat is uw telefoon nummer? (+31612345678 or 0612345678)");
             phoneCheck = Console.ReadLine();
 
 
             if (!Regex.IsMatch(phoneCheck, phonePattern))
             {
-                Console.WriteLine("Invalid phone number. Please enter a valid phone number.");
+                Console.WriteLine("Dit is geen valide telefoon nummer!");
             }
 
-        } while (!Regex.IsMatch(phoneCheck, phonePattern));
+        } while (!Regex.IsMatch(phoneCheck, phonePattern) && phoneCheck == null);
 
+        Console.Clear();
 
         string emailCheck;
         do
@@ -63,6 +67,7 @@ class ReservationConsole
 
         email = emailCheck;
 
+        Console.Clear();
 
         int amountPeopleCheck;
         do
@@ -98,7 +103,8 @@ class ReservationConsole
         // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
         Prijs geld = new Prijs();
         double money = geld.prijs(amt_people);
-        Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money} euro.");
+
+        Console.WriteLine($"\nIn totaal betaal je voor {amt_people} mensen {money} euro.");
         Console.WriteLine("Druk op iets om verder te gaan...");
         Console.ReadKey();
 
@@ -213,6 +219,8 @@ class ReservationConsole
         } while (amountPeopleCheck <= 0);
 
         amt_people = amountPeopleCheck;
+
+        Console.Clear();
 
         if (amountPeopleCheck > 6)
         {
