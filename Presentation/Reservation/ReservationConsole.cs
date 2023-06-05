@@ -42,7 +42,7 @@ class ReservationConsole
 
         string phoneCheck;
         string phonePattern = @"^(?:\+31|0)6\d{8}$";
-        
+
         do
         {
             Console.WriteLine("(Optioneel) Wat is uw telefoon nummer? (+31612345678 or 0612345678)");
@@ -186,8 +186,8 @@ class ReservationConsole
             {
                 ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Gelukt!");
-                Email.sendmail(email, name, reservationcode, date, timeslot);
-                Email.warning();
+                EmailFunction.sendmail(email, name, reservationcode, date, timeslot);
+                EmailFunction.warning();
             }
             catch
             {
@@ -330,8 +330,8 @@ class ReservationConsole
             {
                 ReservationLogic.AddReservation(id, clientnumber, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Geluk!");
-                Email.sendmail(email, name, reservationcode, date, timeslot);
-                Email.warning();
+                EmailFunction.sendmail(email, name, reservationcode, date, timeslot);
+                EmailFunction.warning();
             }
             catch (Exception e)
             {

@@ -5,7 +5,7 @@ public class MenuAanpassen
     {
         Console.WriteLine("[1] Item toevoegen");
         Console.WriteLine("[2] Item verwijderen");
-        Console.WriteLine("[3] Item aanpassen");
+        // Console.WriteLine("[3] Item aanpassen");
         Console.WriteLine("[T] Terug");
 
         string input = Console.ReadLine();
@@ -17,12 +17,12 @@ public class MenuAanpassen
             case "2":
                 RemoveItem(username, id);
                 break;
-            case "3":
-                Console.WriteLine("Functie momenteel buiten werking");
-                Console.ReadKey();
-                ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
-                // ChangeItem(username, id);
-                break;
+            // case "3":
+            //     Console.WriteLine("Functie momenteel buiten werking");
+            //     Console.ReadKey();
+            //     ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
+            //     // ChangeItem(username, id);
+            //     break;
             case "T":
                 ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
                 break;

@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Project_B.Logic;
-public static class Email
+public static class EmailFunction
 {
     public static void sendmail(string mail, string name, string ReservationCode, DateTime date, TimeSpan time)
     {
