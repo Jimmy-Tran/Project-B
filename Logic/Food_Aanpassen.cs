@@ -5,7 +5,7 @@ public class MenuAanpassen
     {
         Console.WriteLine("[1] Item toevoegen");
         Console.WriteLine("[2] Item verwijderen");
-        Console.WriteLine("[3] Item aanpassen");
+        Console.WriteLine("[3] Gangen menu prijs aanpassen");
         Console.WriteLine("[T] Terug");
 
         string input = Console.ReadLine();
@@ -18,11 +18,14 @@ public class MenuAanpassen
                 RemoveItem(username, id);
                 break;
             case "3":
-                Console.WriteLine("Functie momenteel buiten werking");
-                Console.ReadKey();
-                ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
-                // ChangeItem(username, id);
+                ChangePrice(username, id);
                 break;
+            // case "3":
+            //     Console.WriteLine("Functie momenteel buiten werking");
+            //     Console.ReadKey();
+            //     ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
+            //     // ChangeItem(username, id);
+            //     break;
             case "T":
                 ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
                 break;
@@ -177,6 +180,67 @@ public class MenuAanpassen
 
         Console.WriteLine($"Item {itemToRemove.Name} met ID {itemToRemove.ID} is succesvol verwijderd uit de categorie {category}.");
         ManagerMenu.Admin_menu(username, user_id);// zodat je terug gaat
+    }
+
+    // make method that makes sure that u can edit an "gangen menu's" price
+    public static void ChangePrice(string username, int user_id)
+    {
+        // get the menu stuff
+        string filenaam = @"DataSources/menu.json";
+        Foodmenu menu = MenuImporter.ImportFromJson(filenaam);
+
+        // let the admin choose what menu price he wants to change 
+        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu");
+        MenuItem GangenMenu = null;
+        switch (selectedClass)
+        {
+            case 0:
+                // it's the 2 gangen menu
+                GangenMenu = GetGangenMenu(1, menu.Gangen);
+                break;
+            case 1:
+                // it's the 3 gangen menu
+                GangenMenu = GetGangenMenu(2, menu.Gangen);
+                break;
+            case 2:
+                // it's the 4 gangen menu
+                GangenMenu = GetGangenMenu(3, menu.Gangen);
+                break;
+        }
+
+        // check if the menu item is found
+        if (GangenMenu != null)
+        {
+            // get the new price from the admin
+            Console.WriteLine($"Vul de nieuwe prijs voor {GangenMenu}:");
+            decimal newPrice = Convert.ToDecimal(Console.ReadLine());
+
+            // update the price of the menu item
+            GangenMenu.Price = newPrice;
+
+            // save the updated menu to the JSON file
+            MenuImporter.SaveMenuToJson(menu, filenaam);
+
+            Console.WriteLine($"De prijs van {GangenMenu.Name} is veranderd naar: {GangenMenu.Price}.");
+        }
+        else
+        {
+            Console.WriteLine("Er gaat iets fout!.");
+        }
+
+        ManagerMenu.Admin_menu(username, user_id); // return to the admin menu
+    }
+
+    private static MenuItem GetGangenMenu(int id, List<MenuItem> items)
+    {
+        foreach (MenuItem item in items)
+        {
+            if (item.ID == id)
+            {
+                return item;
+            }
+        }
+        return null;
     }
     // na vragen bij PO of item aanpas wel moest, zo ja pas hem ook aan voor wijn
     // public static void ChangeItem(string username, int user_id)

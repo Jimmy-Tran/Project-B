@@ -15,6 +15,7 @@ public class Foodmenu
     public List<MenuItem> Desserts { get; set; }
     public List<MenuItem> Drinks { get; set; }
     public List<MenuItem> Wijn { get; set; }
+    public List<MenuItem> Gangen { get; set; }
     public Foodmenu()
     {
         Starters = new List<MenuItem>();
@@ -23,6 +24,7 @@ public class Foodmenu
         Desserts = new List<MenuItem>();
         Drinks = new List<MenuItem>();
         Wijn = new List<MenuItem>();
+        Gangen = new List<MenuItem>();
     }
 
 }

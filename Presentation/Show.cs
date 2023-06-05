@@ -5,18 +5,13 @@ public class MenuPresentation
     public static void Menu()
     {
         Foodmenu menu = MenuImporter.ImportFromJson(@"DataSources/menu.json");
-        Console.WriteLine("╔════════════════════════════════════════╗");
-        Console.WriteLine("║            Restaurant Menu             ║");
-        Console.WriteLine("╚════════════════════════════════════════╝");
-        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Nagerecht .................................15,50");
-        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Nagerecht .................20,50");
-        Console.WriteLine("4 Ganger menu ......1x Voorgerecht, 1x Soep 1x Hoofdgerecht, 1x Nagerecht ...........25,50");
-
         // maak functie om te kiezen welke menu de klant wilt
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu");
         switch (selectedClass)
         {
             case 0:
+                // print the information
+                informatie(menu.Gangen);
                 // 2 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, includePrice: true);
@@ -31,6 +26,8 @@ public class MenuPresentation
                 DisplayMenuItems(menu.Drinks, includePrice: true);
                 break;
             case 1:
+                // print the information
+                informatie(menu.Gangen);
                 // 3 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, includePrice: true);
@@ -48,6 +45,8 @@ public class MenuPresentation
                 DisplayMenuItems(menu.Drinks, includePrice: true);
                 break;
             default:
+                // print the information
+                informatie(menu.Gangen);
                 // 4 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, includePrice: true);
@@ -74,18 +73,13 @@ public class MenuPresentation
     public static void Menu(string username, int id)
     {
         Foodmenu menu = MenuImporter.ImportFromJson(@"DataSources/menu.json");
-        Console.WriteLine("╔════════════════════════════════════════╗");
-        Console.WriteLine("║            Restaurant Menu             ║");
-        Console.WriteLine("╚════════════════════════════════════════╝");
-        Console.WriteLine("2 Gangen menu ......1x Hoofdgerecht en 1x Nagerecht .................................15,50");
-        Console.WriteLine("3 Ganger menu ......1x Voorgerecht, 1x Hoofdgerecht en 1x Nagerecht .................20,50");
-        Console.WriteLine("4 Ganger menu ......1x Voorgerecht, 1x Soep 1x Hoofdgerecht, 1x Nagerecht ...........25,50");
-
         // maak functie om te kiezen welke menu de klant wilt
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu");
         switch (selectedClass)
         {
             case 0:
+                // print the information
+                informatie(menu.Gangen);
                 // 2 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, username, id, includePrice: true);
@@ -100,6 +94,8 @@ public class MenuPresentation
                 DisplayMenuItems(menu.Drinks, username, id, includePrice: true);
                 break;
             case 1:
+                // print the information
+                informatie(menu.Gangen);
                 // 3 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, username, id, includePrice: true);
@@ -117,6 +113,8 @@ public class MenuPresentation
                 DisplayMenuItems(menu.Drinks, username, id, includePrice: true);
                 break;
             default:
+                // print the information
+                informatie(menu.Gangen);
                 // 4 gangen menu
                 Console.WriteLine("\nVoorgerecht:");
                 DisplayMenuItems(menu.Starters, username, id, includePrice: true);
@@ -140,6 +138,27 @@ public class MenuPresentation
         Console.ReadKey();
     }
 
+    private static void informatie(List<MenuItem> items)
+    {
+        Console.WriteLine("╔════════════════════════════════════════╗");
+        Console.WriteLine("║            Restaurant Menu             ║");
+        Console.WriteLine("╚════════════════════════════════════════╝");
+        foreach (MenuItem menu in items)
+        {
+            if (menu.Name == "2 Gangen menu")
+            {
+                Console.WriteLine($"{menu.Name}: 1x voorgerecht en 1x hoofdgerecht".PadRight(80, '.') + " " + menu.Price.ToString("F2"));
+            }
+            else if (menu.Name == "3 Gangen menu")
+            {
+                Console.WriteLine($"{menu.Name}: 1x voorgerecht, 1x hoofdgerecht en 1x nagerecht".PadRight(80, '.') + " " + menu.Price.ToString("F2"));
+            }
+            else if (menu.Name == "4 Gangen menu")
+            {
+                Console.WriteLine($"{menu.Name}: 1x voorgerecht, 1x soep, 1x hoofdgerecht en 1x nagerecht".PadRight(80, '.') + " " + menu.Price.ToString("F2"));
+            }
+        }
+    }
     private static void DisplayMenuItems(List<MenuItem> items, bool includePrice)
     {
         foreach (MenuItem item in items)
@@ -168,6 +187,11 @@ public class MenuPresentation
             }
         }
     }
+    // // mehtod return's Gangen menu in list <Item>
+    // private static List<MenuItem> GetGangenMenu(List<MenuItem> items, bool includePrice)
+    // {
+
+    // }
 }
 
 public class LocationPresentation
