@@ -4,13 +4,15 @@ public class ManagerMenu
 
     static public void Admin_menu(string username, int id)
     {
-        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] {}, "Menu", "Reserveringen ", "Medewerkers", "Log uit");
+        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "Menu", "Reserveringen ", "Medewerkers", "Restaurant informatie", "Log uit");
 
-        switch (selectedClass) {
+        switch (selectedClass)
+        {
             case 0:
-                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, "Menu aanpassen", "Menu bekijken", "Terug");
+                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { }, "Menu aanpassen", "Menu bekijken", "Terug");
 
-                switch (selectedClass) {
+                switch (selectedClass)
+                {
                     case 0:
                         MenuAanpassen.EditMenu(username, id);
                         break;
@@ -23,15 +25,15 @@ public class ManagerMenu
                         break;
                 }
                 break;
-            
-            case 1:
-                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, "Reservering bekijken", "Reservering maken", "Reservering aanpassen", "Reservering verwijderen", "Terug");
 
-                switch (selectedClass) {
+            case 1:
+                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { }, "Reservering bekijken", "Reservering maken", "Reservering aanpassen", "Reservering verwijderen", "Terug");
+
+                switch (selectedClass)
+                {
                     case 0:
                         Console.Clear();
                         Reservation.DisplayReservation();
-
                         Console.WriteLine("Druk op iets om verder te gaan...");
                         Console.ReadKey();
                         Admin_menu(username, id);
@@ -58,11 +60,12 @@ public class ManagerMenu
                         break;
                 }
                 break;
-            
-            case 2:
-                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, "Medewerkers toevoegen", "Terug");
 
-                switch (selectedClass) {
+            case 2:
+                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { }, "Medewerkers toevoegen", "Terug");
+
+                switch (selectedClass)
+                {
                     case 0:
                         Mederwerker.Toevoeg_Mederwerker_Menu(username, id);
                         break;
@@ -70,6 +73,21 @@ public class ManagerMenu
                         Admin_menu(username, id);
                         break;
                 }
+                break;
+            case 3:
+                // start de locatie class en show detail
+                Location location = Location.CreateLocation();
+                LocationPresentation.ShowLocation(location);
+                Console.ReadKey();
+                Admin_menu(username, id);
+                break;
+            case 4:
+                // uitloggen
+                Menu.Start();
+                break;
+            default:
+                // iets ging fout
+                Admin_menu(username, id);
                 break;
         }
     }
