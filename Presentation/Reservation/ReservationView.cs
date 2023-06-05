@@ -154,8 +154,16 @@ public class Reservation
         Console.Write("Zoeken (ID / Naam / Email): ");
         string Searchterm = Console.ReadLine();
 
-        if (ReservationLogic.GetReservation(Searchterm) != null)
-        {
+        List<ReservationModel> r = ReservationLogic.GetReservations(Searchterm);
+
+        if (r != null) {
+            if (r.Count() > 1) {
+                foreach (ReservationModel reservation in r) {
+                    Console.WriteLine($"[{reservation.ID}] {reservation.Email} - {reservation.TimeSlot}");
+                }
+                Searchterm = Console.ReadLine();
+            }
+
             string Name;
             do
             {
@@ -191,7 +199,7 @@ public class Reservation
                 Amt_People = Console.ReadLine();
             } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
-            Console.WriteLine("Beschikbare tafels: " + string.Join(", ", TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People))));
+            Console.WriteLine("Beschikbare tafels: " + string.Join(", ", TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People)).Select(x => x.Substring(1)).ToList()));
             Console.WriteLine("Tafel nummers");
             List<string> Tables = new List<string>();
             while (true)
