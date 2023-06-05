@@ -58,6 +58,10 @@ public class MenuImporter
         {
             menu.Soups.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
         }
+        foreach (var item in data.Gangen)
+        {
+            menu.Gangen.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+        }
         return menu;
     }
     public static void AddMenuItem(Foodmenu menu, MenuItem item, string filename)
@@ -95,6 +99,11 @@ public class MenuImporter
                 item.Category = null; // set the category property to null
                 menu.Wijn.Add(item);
                 break;
+            case "Gangen":
+                item.ID = menu.Gangen.Count > 0 ? menu.Gangen.Max(i => i.ID) + 1 : 1;
+                item.Category = null; // set the category property to null
+                menu.Gangen.Add(item);
+                break;
             default:
                 throw new Exception("Invalid category specified");
         }
@@ -126,6 +135,9 @@ public class MenuImporter
                 break;
             case "Soups":
                 itemList = menu.Wijn;
+                break;
+            case "Gangen":
+                itemList = menu.Gangen;
                 break;
             default:
                 throw new Exception("Invalid category specified");
