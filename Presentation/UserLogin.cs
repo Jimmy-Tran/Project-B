@@ -50,6 +50,10 @@ static class UserLogin
           {
             Menu.Admin(id, naam);
           }
+          else if (level == 1) // aka het is een medewerker
+          {
+            Menu.Worker(id, naam);
+          }
         }
         else
         {

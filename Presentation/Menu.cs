@@ -66,4 +66,10 @@ static class Menu
         Console.WriteLine($"Welkom admin : {username}");
         ManagerMenu.Admin_menu(username, id);
     }
+    // medewerker gedeelte ------------------------------------------------------------------------- medewerker gedeelte
+    static public void Worker(int id, string username)
+    {
+        Console.WriteLine($"Welkom Worker: {username}");
+        WorkerMenu.Start(username, id);
+    }
 }

@@ -88,4 +88,59 @@ public class AccountData
         }
 
     }
+
+    static public void StartWorker(int id) // ingelogd geef parameter's mee om aan te geven dat de persoon is ingelogd
+    {
+        AccountModel acc = accountsLogic.GetById(id);
+
+        int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {}, $"Email: {acc.EmailAddress}", $"Wachtwoord: {acc.Password}", $"Volledige naam: {acc.FullName}", "Terug");
+        if (selectedClass == 0)
+        {
+            // check syntax email, Will return an error message if not correct or the email already exists.
+            do
+            {
+                Console.WriteLine("Vul hier uw nieuwe email.");
+                acc.EmailAddress = Console.ReadLine().ToLower();
+            } while (ValidationLogic.IsValidEmail(acc.EmailAddress) != true && accountsLogic.CheckRegistration(acc.EmailAddress) != null);
+
+            // updates email to json and returns to StartWorker
+            accountsLogic.UpdateList(acc);
+            StartWorker(id);
+        }
+        else if (selectedClass == 1)
+        {
+            do{
+                Console.WriteLine("Graag hier je wachtwoord invullen:");
+                Console.WriteLine("De juiste syntax is minimaal 6 tekens lang, 1 hoofdletter en 1 cijfer");
+                acc.Password = Console.ReadLine();
+            } while (ValidationLogic.IsValidPassword(acc.Password) != true);
+
+            // updates password to json and returns to StartWorker
+            accountsLogic.UpdateList(acc);
+            StartWorker(id);
+        }
+        else if (selectedClass == 2)
+        {
+            do
+            {
+                Console.WriteLine("Graag hier je volledige naam invullen:");
+                acc.FullName = Console.ReadLine().ToLower();
+            if (!Regex.IsMatch(acc.FullName, @"^[A-Za-z\\s]+$"))
+            {
+                Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
+            }
+            } while (!Regex.IsMatch(acc.FullName, @"^[A-Za-z\\s]+$"));
+
+            // updates full name to json and returns to StartWorker
+            accountsLogic.UpdateList(acc);
+            StartWorker(id);
+        }
+
+        else if (selectedClass == 3)
+        {
+            // je wordt terug gestuurd naar de CustomerMenu
+            WorkerMenu.Start(acc.FullName, id);
+        }
+
+    }
 }
