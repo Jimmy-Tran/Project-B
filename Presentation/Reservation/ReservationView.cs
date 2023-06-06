@@ -154,8 +154,20 @@ public class Reservation
         Console.Write("Zoeken (ID / Naam / Email): ");
         string Searchterm = Console.ReadLine();
 
-        if (ReservationLogic.GetReservation(Searchterm) != null)
+        List<ReservationModel> r = ReservationLogic.GetReservations(Searchterm);
+
+        if (r != null)
         {
+            if (r.Count > 1) {
+                string[] r_choices = new string[] {};
+                foreach (ReservationModel reservation in r) {
+                    // r_choices.Add($"{reservation.ID}");
+                }
+
+                int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, r_choices);
+
+            }
+
             string Name;
             do
             {
