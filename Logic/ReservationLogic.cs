@@ -82,7 +82,7 @@ namespace Project_B.Logic
 
                 //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm || reservation.ReservationCode == _Searchterm) {
                         ResList.Add(reservation); //Return the reservation
                     }            
                 }
