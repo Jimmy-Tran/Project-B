@@ -95,6 +95,27 @@ namespace Project_B.Logic
             return new List<ReservationModel>();
         }
 
+        public static List<ReservationModel> GetReservations(int clientnumber) {
+            List<ReservationModel> ResList = new();
+            try {
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
+
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations) {
+                    if (reservation.ClientNumber == clientnumber) {
+                        ResList.Add(reservation); //Return the reservation
+                    }            
+                }
+                return ResList; //Return nothing if nothing came out
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return new List<ReservationModel>();
+        }
+
         public static ReservationModel GetReservation(string _Searchterm) {
             try {
                 //Try to get the reservation and convert them into a list
