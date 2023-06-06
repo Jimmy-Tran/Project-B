@@ -80,8 +80,6 @@ namespace Project_B.Logic
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
-                // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
-
                 //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
                     if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
@@ -103,8 +101,6 @@ namespace Project_B.Logic
 
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
-
-                // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
 
                 //Loop through the list and get the reservation by the given searchterm
                 foreach (ReservationModel reservation in reservations) {
