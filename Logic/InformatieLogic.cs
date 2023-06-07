@@ -95,7 +95,7 @@ public class RestaurantInformatie
 
         foreach (var kvp in openingHours)
         {
-            sb.AppendLine($"{kvp.Key}: {kvp.Value}");
+            sb.AppendLine($"  {kvp.Key}: {kvp.Value}");
         }
 
         return sb.ToString();
