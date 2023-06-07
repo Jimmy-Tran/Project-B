@@ -65,6 +65,7 @@ static class Menu
         else if (persoon is Employee)
         {
             // ga naarmederwerkers menu
+            WorkerMenu.Start(persoon.FullName, persoon.Id);
         }
         else if (persoon is Customer)
         {

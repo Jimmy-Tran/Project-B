@@ -28,5 +28,20 @@
     "Amt_People": 4,
     "CourseMenu": null,
     "Verified": false
+  },
+  {
+    "ID": 3,
+    "ClientNumber": 0,
+    "Name": "test test",
+    "Email": "test@test.nl",
+    "Date": "2023-06-07T00:00:00",
+    "ReservationCode": "GK2U8E",
+    "TimeSlot": "16:00:00",
+    "Tables": [
+      "1"
+    ],
+    "Amt_People": 2,
+    "CourseMenu": null,
+    "Verified": false
   }
 ]
