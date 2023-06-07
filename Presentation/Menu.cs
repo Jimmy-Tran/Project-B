@@ -54,17 +54,23 @@ static class Menu
         }
 
     }
-    static public void Continue(int id, string username)
+    static public void Continue(AccountModel persoon)
     {
         // je bent ingelogd
-        Console.WriteLine($"Welkom {username}, je id is: {id}");
-        CustomerMenu.Start(username, id);
-    }
-    // admin gedeelte ------------------------------------------------------------------------- admin gedeelte
-    static public void Admin(int id, string username)
-    {
-        Console.WriteLine($"Welkom admin : {username}");
-        ManagerMenu.Admin_menu(username, id);
+        if (persoon is Manager)
+        {
+            // ga naar managers menu
+            ManagerMenu.Admin_menu(persoon.FullName, persoon.Id);
+        }
+        else if (persoon is Employee)
+        {
+            // ga naarmederwerkers menu
+        }
+        else if (persoon is Customer)
+        {
+            // ga naar customers menu
+            CustomerMenu.Start(persoon.FullName, persoon.Id);
+        }
     }
     // medewerker gedeelte ------------------------------------------------------------------------- medewerker gedeelte
     static public void Worker(int id, string username)
