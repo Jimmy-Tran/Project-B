@@ -151,18 +151,26 @@ public class Reservation
 
     static public void ChangeReservation()
     {
-        Console.Write("Zoeken (ID / Naam / Email): ");
+        Console.Write("Zoeken (ID / Naam / Email / Reservering Code): ");
         string Searchterm = Console.ReadLine();
 
         List<ReservationModel> r = ReservationLogic.GetReservations(Searchterm);
 
-        if (r != null) {
-            if (r.Count() > 1) {
+        if (r != null)
+        {
+            if (r.Count > 1) {
+                List<string> r_choices = new List<string> {};
                 foreach (ReservationModel reservation in r) {
-                    Console.WriteLine($"[{reservation.ID}] {reservation.Email} - {reservation.TimeSlot}");
+                    r_choices.Add($"[{reservation.ID}] {reservation.ToString()}");
                 }
-                Searchterm = Console.ReadLine();
-            }
+
+                string[] Array_r_choices = r_choices.ToArray();
+
+                int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {$"Er zijn meerdere reserveringen gevonden met de zoekterm: {Searchterm}", "Kies de juiste reservering"}, Array_r_choices);
+                
+                Searchterm = Array_r_choices[selectedClass].Split("]")[0].Remove(0, 1);
+        
+            } 
 
             string Name;
             do
