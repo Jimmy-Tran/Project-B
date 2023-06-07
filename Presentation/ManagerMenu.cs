@@ -75,11 +75,24 @@ public class ManagerMenu
                 }
                 break;
             case 3:
-                // start de locatie class en show detail
-                Location location = Location.CreateLocation();
-                LocationPresentation.ShowLocation(location);
-                Console.ReadKey();
-                Admin_menu(username, id);
+                selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { }, "Locatie bekijken", "Locatie aanpassen", "Terug");
+
+                switch (selectedClass)
+                {
+                    case 0:
+                        // start de locatie class en show detail
+                        Location location = Location.CreateLocation();
+                        LocationPresentation.ShowLocation(location);
+                        Console.ReadKey();
+                        Admin_menu(username, id);
+                        break;
+                    case 1:
+                        RestaurantInformatie.UpdateLocation(username, id);
+                        break;
+                    case 2:
+                        Admin_menu(username, id);
+                        break;
+                }
                 break;
             case 4:
                 // uitloggen
