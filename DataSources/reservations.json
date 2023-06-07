@@ -1,7 +1,7 @@
 [
   {
     "ID": 1,
-    "ClientNumber": 0,
+    "ClientNumber": 9,
     "Name": "Henno Passchier",
     "Email": "henno.passchier@gmail.com",
     "Date": "2023-05-26T00:00:00",
@@ -26,21 +26,6 @@
       "4D"
     ],
     "Amt_People": 4,
-    "CourseMenu": null,
-    "Verified": false
-  },
-  {
-    "ID": 3,
-    "ClientNumber": 0,
-    "Name": "test",
-    "Email": "test@gmail.com",
-    "Date": "2023-06-07T00:00:00",
-    "ReservationCode": "ED3R7X",
-    "TimeSlot": "20:00:00",
-    "Tables": [
-      "1"
-    ],
-    "Amt_People": 2,
     "CourseMenu": null,
     "Verified": false
   }
