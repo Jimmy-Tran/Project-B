@@ -53,7 +53,7 @@ namespace Project_B.Logic
 
                 //Serialize the list to an object and write it back to the JSON file. Return true when all went good
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                File.WriteAllText(@"DataSources/reservations.json", updatedJson);
                 return true;
             }
             catch (Exception ex)
@@ -67,14 +67,14 @@ namespace Project_B.Logic
             try
             {
                 //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
+                string jsonContent = File.ReadAllText(@"DataSources/reservations.json");
                 List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
-                return reservations != null ? reservations : new List<ReservationModel>();
+                return reservations.Count > 0 ? reservations : new List<ReservationModel>();
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                // Console.WriteLine($"Error: {ex.Message}");
             }
             return new List<ReservationModel>();
         }
@@ -88,10 +88,30 @@ namespace Project_B.Logic
                 List<ReservationModel> reservations = GetReservations();
 
                 //Loop through the list and get the reservation by the given searchterm
-                foreach (ReservationModel reservation in reservations)
-                {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm)
-                    {
+              
+                foreach (ReservationModel reservation in reservations) {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm || reservation.ReservationCode == _Searchterm) {
+                        ResList.Add(reservation); //Return the reservation
+                    }            
+                }
+                return ResList; //Return nothing if nothing came out
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return new List<ReservationModel>();
+        }
+
+        public static List<ReservationModel> GetReservations(int clientnumber) {
+            List<ReservationModel> ResList = new();
+            try {
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
+
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations) {
+                    if (reservation.ClientNumber == clientnumber) {
                         ResList.Add(reservation); //Return the reservation
                     }
                 }
@@ -153,7 +173,7 @@ namespace Project_B.Logic
 
                 //Serialize the list and write it back to JSON file
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                File.WriteAllText(@"DataSources/reservations.json", updatedJson);
                 return true;
             }
             catch (Exception ex)
@@ -175,7 +195,7 @@ namespace Project_B.Logic
                 reservations.RemoveAll(x => x.ID == _ID);
 
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                File.WriteAllText(@"DataSources/reservations.json", updatedJson);
 
                 return true;
             }

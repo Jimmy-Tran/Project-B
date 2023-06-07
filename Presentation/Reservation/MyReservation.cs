@@ -20,17 +20,35 @@ public class MyReservation {
     public static string GetReservationCode(string username, int id) {
         try {
             //Try to find the reservation code by the id of the user. When it does not excist it will return a empty string
-            List<ReservationModel> reservations = ReservationLogic.GetReservations();
-            string ReservationCode = reservations.Find(x => x.ID == id).ReservationCode;
+            List<ReservationModel> reservations = ReservationLogic.GetReservations(id);
+            string ReservationCode;
 
+            if (reservations.Count > 1) {
+                List<string> r_choices = new List<string> {};
+                foreach (ReservationModel reservation in reservations) {
+                    r_choices.Add($"[{reservation.ID}] {reservation.ToString()}");
+                }
+
+                string[] Array_r_choices = r_choices.ToArray();
+
+                int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {$"Er zijn meerdere reserveringen gevonden onder uw naam", "Kies de juiste reservering"}, Array_r_choices);
+                
+                int r_id = Convert.ToInt32(Array_r_choices[selectedClass].Split("]")[0].Remove(0, 1));
+                Console.WriteLine(r_id);
+                ReservationCode = reservations.Find(x => x.ID == r_id).ReservationCode;
+            } else {
+                ReservationCode = reservations.Find(x => x.ClientNumber == id).ReservationCode;
+            }
+            Console.WriteLine(ReservationCode);
             return ReservationCode;
-        } catch {
+        } catch (Exception e) {
+            Console.WriteLine(e);
             return "";
         }
         
     }
 
-    static public void ShowReservationInfo( string _ReservationCode) {
+    static public void ShowReservationInfo(string _ReservationCode) {
         
         List<ReservationModel> reservations = ReservationLogic.GetReservations();
 
