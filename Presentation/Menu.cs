@@ -73,10 +73,4 @@ static class Menu
             CustomerMenu.Start(persoon.FullName, persoon.Id);
         }
     }
-    // medewerker gedeelte ------------------------------------------------------------------------- medewerker gedeelte
-    static public void Worker(int id, string username)
-    {
-        Console.WriteLine($"Welkom Worker: {username}");
-        WorkerMenu.Start(username, id);
-    }
 }
