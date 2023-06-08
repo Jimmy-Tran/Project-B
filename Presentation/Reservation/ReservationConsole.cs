@@ -68,13 +68,24 @@ class ReservationConsole
         email = emailCheck;
 
         Console.Clear();
-
         int amountPeopleCheck;
+        bool isValidAmount = false;
+
         do
         {
             Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
-            amountPeopleCheck = Convert.ToInt32(Console.ReadLine());
-        } while (amountPeopleCheck <= 0);
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out amountPeopleCheck) && amountPeopleCheck > 0)
+            {
+                isValidAmount = true;
+            }
+            else
+            {
+                Console.WriteLine("Ongeldige invoer. Voer een geldig aantal mensen in.");
+            }
+        } while (!isValidAmount);
+
 
         amt_people = amountPeopleCheck;
 
@@ -175,11 +186,11 @@ class ReservationConsole
         {
             Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
             tableCheck = Console.ReadLine();
-        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
+        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"{tableCheck.ToUpper()}"));
 
         id = ReservationLogic.GetLastID() + 1;
 
-        if (TableLogic.TableChecker($"_{tableCheck.ToUpper()}"))
+        if (TableLogic.TableChecker($"{tableCheck.ToUpper()}"))
         {
             tables.Add(tableCheck);
             try
@@ -188,6 +199,8 @@ class ReservationConsole
                 Console.WriteLine("Gelukt!");
                 EmailFunction.sendmail(email, name, reservationcode, date, timeslot);
                 EmailFunction.warning();
+                // terug naar de menu uitgelogd
+                Menu.Start();
             }
             catch
             {
@@ -212,11 +225,22 @@ class ReservationConsole
         email = AccountResult.EmailAddress;
 
         int amountPeopleCheck;
+        bool isValidAmount = false;
+
         do
         {
             Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
-            amountPeopleCheck = Convert.ToInt32(Console.ReadLine());
-        } while (amountPeopleCheck <= 0);
+            string input = Console.ReadLine();
+
+            if (int.TryParse(input, out amountPeopleCheck) && amountPeopleCheck > 0)
+            {
+                isValidAmount = true;
+            }
+            else
+            {
+                Console.WriteLine("Ongeldige invoer. Voer een geldig aantal mensen in.");
+            }
+        } while (!isValidAmount);
 
         amt_people = amountPeopleCheck;
 
@@ -319,23 +343,27 @@ class ReservationConsole
         {
             Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
             tableCheck = Console.ReadLine();
-        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
+        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"{tableCheck.ToUpper()}"));
 
         id = ReservationLogic.GetLastID() + 1;
 
-        if (TableLogic.TableChecker($"_{tableCheck.ToUpper()}"))
+        if (TableLogic.TableChecker($"{tableCheck.ToUpper()}"))
         {
             tables.Add(tableCheck);
             try
             {
                 ReservationLogic.AddReservation(id, clientnumber, name, email, date, reservationcode, timeslot, tables, amt_people);
-                Console.WriteLine("Geluk!");
+                Console.WriteLine("Gelukt!");
                 EmailFunction.sendmail(email, name, reservationcode, date, timeslot);
                 EmailFunction.warning();
+                // console read en dan terug naar de ingelogde scherm
+                Console.ReadKey();
+                Console.WriteLine("druk op een toets om terug te gaan naar de menu");
+                CustomerMenu.Start(username, client_id);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Niet Geluk!");
+                Console.WriteLine("Niet Gelukt!");
                 return;
             }
 
