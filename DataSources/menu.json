@@ -94,13 +94,19 @@
       "ID": 2,
       "Category": null,
       "Name": "3 Gangen menu",
-      "Price": 20.50
+      "Price": 20.5
     },
     {
       "ID": 3,
       "Category": null,
       "Name": "4 Gangen menu",
       "Price": 25.5
+    },
+    {
+      "ID": 4,
+      "Category": null,
+      "Name": "Wijn arrangement",
+      "Price": 4.50
     }
   ]
 }

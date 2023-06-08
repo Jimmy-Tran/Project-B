@@ -5,7 +5,7 @@ public class Prijs
     public decimal gangenmenu_2;
     public decimal gangenmenu_3;
     public decimal gangenmenu_4;
-
+    public decimal wijn_arrangement;
     public Prijs()
     {
         Foodmenu menu = MenuImporter.ImportFromJson(@"DataSources/menu.json");
@@ -23,12 +23,15 @@ public class Prijs
             {
                 gangenmenu_4 = x.Price;
             }
+            else if (x.Name == "Wijn arrangement")
+            {
+                wijn_arrangement = x.Price;
+            }
         }
     }
 
     // Field for the discount percentage
     public decimal discount = 0.1M;
-    public decimal wijn_arrangement = 3.50M;
 
     // Method to calculate the price
     public decimal prijs(int aantal)
@@ -59,10 +62,13 @@ public class Prijs
         while (!validInput)
         {
             Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");
-            onder_12 = Convert.ToInt32(Console.ReadLine());
+            string inputOnder12 = Console.ReadLine();
+            onder_12 = string.IsNullOrEmpty(inputOnder12) ? 0 : Convert.ToInt32(inputOnder12);
 
             Console.WriteLine($"Hoeveel van de {aantal} personen willen het wijnarrangement ({wijn_arrangement})?");
-            wineCount = Convert.ToInt32(Console.ReadLine());
+            string inputWineCount = Console.ReadLine();
+            wineCount = string.IsNullOrEmpty(inputWineCount) ? 0 : Convert.ToInt32(inputWineCount);
+
 
             if (onder_12 > aantal)
             {

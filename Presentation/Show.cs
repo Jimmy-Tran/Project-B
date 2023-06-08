@@ -157,6 +157,10 @@ public class MenuPresentation
             {
                 Console.WriteLine($"{menu.Name}: 1x voorgerecht, 1x soep, 1x hoofdgerecht en 1x nagerecht".PadRight(80, '.') + " " + menu.Price.ToString("F2"));
             }
+            else if (menu.Name == "Wijn arrangement")
+            {
+                Console.WriteLine($"{menu.Name} kost {menu.Price.ToString("F2")}");
+            }
         }
     }
     private static void DisplayMenuItems(List<MenuItem> items, bool includePrice)

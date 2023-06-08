@@ -190,7 +190,7 @@ public class MenuAanpassen
         Foodmenu menu = MenuImporter.ImportFromJson(filenaam);
 
         // let the admin choose what menu price he wants to change 
-        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu");
+        int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu", "Wijn arrangement");
         MenuItem GangenMenu = null;
         switch (selectedClass)
         {
@@ -205,6 +205,10 @@ public class MenuAanpassen
             case 2:
                 // it's the 4 gangen menu
                 GangenMenu = GetGangenMenu(3, menu.Gangen);
+                break;
+            case 3:
+                // het is de wijn arrangement
+                GangenMenu = GetGangenMenu(4, menu.Gangen);
                 break;
         }
 
