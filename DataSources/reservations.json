@@ -1,7 +1,7 @@
 [
   {
     "ID": 1,
-    "ClientNumber": 0,
+    "ClientNumber": 9,
     "Name": "Henno Passchier",
     "Email": "henno.passchier@gmail.com",
     "Date": "2023-05-26T00:00:00",
@@ -32,11 +32,11 @@
   {
     "ID": 3,
     "ClientNumber": 0,
-    "Name": "test",
-    "Email": "test@gmail.com",
+    "Name": "test test",
+    "Email": "test@test.nl",
     "Date": "2023-06-07T00:00:00",
-    "ReservationCode": "ED3R7X",
-    "TimeSlot": "20:00:00",
+    "ReservationCode": "GK2U8E",
+    "TimeSlot": "16:00:00",
     "Tables": [
       "1"
     ],

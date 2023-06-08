@@ -86,6 +86,6 @@ public class AccountData
             // je wordt terug gestuurd naar de CustomerMenu
             CustomerMenu.Start(acc.FullName, id);
         }
-
     }
+
 }

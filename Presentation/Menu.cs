@@ -65,11 +65,18 @@ static class Menu
         else if (persoon is Employee)
         {
             // ga naarmederwerkers menu
+            WorkerMenu.Start(persoon.FullName, persoon.Id);
         }
         else if (persoon is Customer)
         {
             // ga naar customers menu
             CustomerMenu.Start(persoon.FullName, persoon.Id);
         }
+    }
+    // medewerker gedeelte ------------------------------------------------------------------------- medewerker gedeelte
+    static public void Worker(int id, string username)
+    {
+        Console.WriteLine($"Welkom Worker: {username}");
+        WorkerMenu.Start(username, id);
     }
 }
