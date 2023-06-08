@@ -158,19 +158,21 @@ public class Reservation
 
         if (r != null)
         {
-            if (r.Count > 1) {
-                List<string> r_choices = new List<string> {};
-                foreach (ReservationModel reservation in r) {
+            if (r.Count > 1)
+            {
+                List<string> r_choices = new List<string> { };
+                foreach (ReservationModel reservation in r)
+                {
                     r_choices.Add($"[{reservation.ID}] {reservation.ToString()}");
                 }
 
                 string[] Array_r_choices = r_choices.ToArray();
 
-                int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] {$"Er zijn meerdere reserveringen gevonden met de zoekterm: {Searchterm}", "Kies de juiste reservering"}, Array_r_choices);
-                
+                int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { $"Er zijn meerdere reserveringen gevonden met de zoekterm: {Searchterm}", "Kies de juiste reservering" }, Array_r_choices);
+
                 Searchterm = Array_r_choices[selectedClass].Split("]")[0].Remove(0, 1);
-        
-            } 
+
+            }
 
             string Name;
             do
@@ -207,7 +209,7 @@ public class Reservation
                 Amt_People = Console.ReadLine();
             } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
-            Console.WriteLine("Beschikbare tafels: " + string.Join(", ", TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People)).Select(x => x.Substring(1)).ToList()));
+            Console.WriteLine("Beschikbare tafels: " + string.Join(", ", TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People))));
             Console.WriteLine("Tafel nummers");
             List<string> Tables = new List<string>();
             while (true)
