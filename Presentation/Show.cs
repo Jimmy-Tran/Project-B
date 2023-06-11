@@ -169,11 +169,11 @@ public class MenuPresentation
         {
             if (includePrice)
             {
-                Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2"));
+                Console.WriteLine(item.Name?.PadRight(30, '.') + " " + item.Price.ToString("F2"));
             }
             else
             {
-                Console.WriteLine(item.Name.PadRight(30, '.'));
+                Console.WriteLine(item.Name?.PadRight(30, '.'));
             }
         }
     }
@@ -183,11 +183,11 @@ public class MenuPresentation
         {
             if (includePrice)
             {
-                Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
+                Console.WriteLine(item.Name?.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
             }
             else
             {
-                Console.WriteLine(item.Name.PadRight(30, '.') + " ID: " + item.ID);
+                Console.WriteLine(item.Name?.PadRight(30, '.') + " ID: " + item.ID);
             }
         }
     }
