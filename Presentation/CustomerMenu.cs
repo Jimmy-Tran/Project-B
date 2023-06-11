@@ -33,6 +33,7 @@ public class CustomerMenu
             {
                 LocationPresentation.ShowLocation(location);
             }
+            Console.ReadKey();
             Start(username, id);
         }
         else if (selectedClass == 4)
