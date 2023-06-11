@@ -202,7 +202,7 @@ public class LocationPresentation
 {
     public static void ShowLocation(Location location)
     {
-        Console.WriteLine("Locatie: " + location.Name);
+        Console.WriteLine("Naam: " + location.Name);
         Console.WriteLine("Adres: " + location.Address);
         Console.WriteLine("Telefoon: " + location.Phone);
         Console.WriteLine("E-mail: " + location.Email);
