@@ -10,14 +10,16 @@ public class RestaurantInformatie
         bool menu = true;
         do
         {
-            int selectedOption = MenuLogic.MultipleChoice(true, "", 1, new string[] { },
-            "Save Changes",
-            "Annuleren",
-            $"Name: {location.Name}",
-            $"Address: {location.Address}",
-            $"Phone: {location.Phone}",
-            $"Email: {location.Email}",
-            $"Opening Hours: \n{GetFormattedOpeningHours(location.OpeningHours)}");
+            int selectedOption = MenuLogic.MultipleChoice(true, "",
+                1,
+                new string[] { },
+                "Save Changes",
+                "Annuleren",
+                $"Name:        {location.Name}",
+                $"Address:     {location.Address}",
+                $"Phone:       {location.Phone}",
+                $"Email:       {location.Email}",
+                $"Opening Hours:\n{GetFormattedOpeningHours(location.OpeningHours)}");
 
             switch (selectedOption)
             {
@@ -32,7 +34,7 @@ public class RestaurantInformatie
                     }
                     else
                     {
-                        Console.WriteLine("No changes were made. Nothing to save.");
+                        Console.WriteLine("geen veranderingen, niks om op te slaan.");
                         // ga terug naar admin menu
                         menu = false;
                     }
@@ -44,43 +46,48 @@ public class RestaurantInformatie
                     break;
                 case 2:
                     // Name
-                    Console.Write("Enter the new name: ");
+                    Console.Write("Vul een nieuwe naam in: ");
                     string newName = Console.ReadLine();
                     location.Name = newName;
                     isModified = true;
                     break;
                 case 3:
                     // Address
-                    Console.Write("Enter the new address: ");
+                    Console.Write("Vul een nieuwe adres in: ");
                     string newAddress = Console.ReadLine();
                     location.Address = newAddress;
                     isModified = true;
                     break;
                 case 4:
                     // Phone
-                    Console.Write("Enter the new phone number: ");
+                    Console.Write("Vul een nieuwe telefoon nummer in: ");
                     string newPhone = Console.ReadLine();
                     location.Phone = newPhone;
                     isModified = true;
                     break;
                 case 5:
                     // Email
-                    Console.Write("Enter the new email address: ");
+                    Console.Write("Vul een nieuwe email adress in: ");
                     string newEmail = Console.ReadLine();
                     location.Email = newEmail;
                     isModified = true;
                     break;
                 case 6:
                     // Opening Hours
-                    Dictionary<string, string> newOpeningHours = new Dictionary<string, string>();
-                    foreach (var day in location.OpeningHours.Keys)
+                    Console.WriteLine("Vul een dag in waarvan je tijden wilt aanpassen:");
+                    string dayToEdit = Console.ReadLine();
+
+                    if (location.OpeningHours.ContainsKey(dayToEdit))
                     {
-                        Console.Write($"Enter the new opening hours for {day}: ");
+                        Console.Write($"Pas de openingstijden aan voor {dayToEdit}: ");
                         string newHours = Console.ReadLine();
-                        newOpeningHours.Add(day, newHours);
+                        location.OpeningHours[dayToEdit] = newHours;
+                        isModified = true;
                     }
-                    location.OpeningHours = newOpeningHours;
-                    isModified = true;
+                    else
+                    {
+                        Console.WriteLine($"Invalid day: {dayToEdit}");
+                    }
                     break;
             }
         } while (menu);
