@@ -8,8 +8,8 @@ public class MenuAanpassen
         Console.WriteLine("[3] Gangen menu prijs aanpassen");
         Console.WriteLine("[T] Terug");
 
-        string input = Console.ReadLine();
-        switch (input.ToUpper())
+        string? input = Console.ReadLine();
+        switch (input?.ToUpper())
         {
             case "1":
                 AddItem(username, id);
@@ -39,7 +39,7 @@ public class MenuAanpassen
     {
         Console.WriteLine("Voer de categorie in: (Starters/Soups/Mains/Desserts/Drinks/Wijn)");
         Console.WriteLine("*Hoofdletter gevoelig");
-        string category = Console.ReadLine();
+        string? category = Console.ReadLine();
 
         // Check if the category is valid
         switch (category)
@@ -58,7 +58,7 @@ public class MenuAanpassen
         }
 
         Console.WriteLine("Voer de naam in:");
-        string name = Console.ReadLine();
+        string? name = Console.ReadLine();
 
         // Check if the name is not empty
         if (string.IsNullOrWhiteSpace(name))
@@ -97,7 +97,7 @@ public class MenuAanpassen
     {
         Console.WriteLine("Voer de categorie in: (Starters/Soups/Mains/Desserts/Drinks/Wijn)");
         Console.WriteLine("*Hoofdletter gevoelig");
-        string category = Console.ReadLine();
+        string? category = Console.ReadLine();
         string filenaam = @"DataSources/menu.json";
         // Check if the category is valid
         switch (category)
@@ -118,13 +118,19 @@ public class MenuAanpassen
 
         // ask for the ID of the item the user wants to remove
         Console.WriteLine("Voer de ID in van het item dat je wilt verwijderen:");
-        int id = int.Parse(Console.ReadLine());
+        string? input = Console.ReadLine();
+        int id;
+        while (!int.TryParse(input, out id))
+        {
+            Console.WriteLine("Invalid input. Please enter a valid ID:");
+            input = Console.ReadLine();
+        }
 
         // get the menu from the JSON file
         Foodmenu menu = MenuImporter.ImportFromJson(filenaam);
 
         // find the item in the menu based on the category and ID
-        MenuItem itemToRemove = null;
+        MenuItem? itemToRemove = null;
         switch (category)
         {
             case "Starters":
@@ -191,7 +197,7 @@ public class MenuAanpassen
 
         // let the admin choose what menu price he wants to change 
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu", "Wijn arrangement");
-        MenuItem GangenMenu = null;
+        MenuItem? GangenMenu = null;
         switch (selectedClass)
         {
             case 0:
@@ -235,7 +241,7 @@ public class MenuAanpassen
         ManagerMenu.Admin_menu(username, user_id); // return to the admin menu
     }
 
-    private static MenuItem GetGangenMenu(int id, List<MenuItem> items)
+    private static MenuItem? GetGangenMenu(int id, List<MenuItem> items)
     {
         foreach (MenuItem item in items)
         {
