@@ -6,7 +6,7 @@ public class MenuImporter
     public static int GetNextId(Foodmenu menu)
     {
         // Get the last item in the last non-empty menu category
-        MenuItem lastItem = menu.Drinks.LastOrDefault() ?? menu.Desserts.LastOrDefault() ?? menu.Mains.LastOrDefault() ?? menu.Starters.LastOrDefault();
+        MenuItem? lastItem = menu.Drinks.LastOrDefault() ?? menu.Desserts.LastOrDefault() ?? menu.Mains.LastOrDefault() ?? menu.Starters.LastOrDefault();
 
         // If there are no items in the menu, start with ID 1
         if (lastItem == null)
@@ -25,42 +25,45 @@ public class MenuImporter
         string json = File.ReadAllText(filename);
 
         // deserialize the JSON data into a dynamic object
-        dynamic data = JsonConvert.DeserializeObject(json);
+        dynamic? data = JsonConvert.DeserializeObject(json);
 
         // create a new instance of the Foodmenu class
         Foodmenu menu = new Foodmenu();
 
         // add the menu items to the corresponding lists
-        foreach (var item in data.Starters)
+        if (data != null)
         {
-            menu.Starters.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
-        }
+            foreach (var item in data.Starters)
+            {
+                menu.Starters.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
 
-        foreach (var item in data.Mains)
-        {
-            menu.Mains.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
-        }
+            foreach (var item in data.Mains)
+            {
+                menu.Mains.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
 
-        foreach (var item in data.Desserts)
-        {
-            menu.Desserts.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
-        }
+            foreach (var item in data.Desserts)
+            {
+                menu.Desserts.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
 
-        foreach (var item in data.Drinks)
-        {
-            menu.Drinks.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
-        }
-        foreach (var item in data.Wijn)
-        {
-            menu.Wijn.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
-        }
-        foreach (var item in data.Soups)
-        {
-            menu.Soups.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
-        }
-        foreach (var item in data.Gangen)
-        {
-            menu.Gangen.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            foreach (var item in data.Drinks)
+            {
+                menu.Drinks.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
+            foreach (var item in data.Wijn)
+            {
+                menu.Wijn.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
+            foreach (var item in data.Soups)
+            {
+                menu.Soups.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
+            foreach (var item in data.Gangen)
+            {
+                menu.Gangen.Add(new MenuItem { ID = item.ID, Name = item.Name, Price = item.Price });
+            }
         }
         return menu;
     }
@@ -144,7 +147,7 @@ public class MenuImporter
         }
 
         // Find the item with the specified ID in the list
-        MenuItem item = itemList.FirstOrDefault(i => i.ID == id);
+        MenuItem? item = itemList.FirstOrDefault(i => i.ID == id);
 
         // If the item was not found, display an error message and return
         if (item == null)
