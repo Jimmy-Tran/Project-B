@@ -16,7 +16,7 @@ class AccountsLogic
 
     public AccountsLogic()
     {
-        _accounts = AccountsAccess.LoadAll();
+        _accounts = AccountsAccess.LoadAll() ?? new List<AccountModel>();
     }
 
 

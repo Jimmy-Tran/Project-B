@@ -14,25 +14,25 @@ static class UserLogin
         bool accountNull = true;
         while (accountNull is true)
         {
-            int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { }, $"Email: {email}", $"Wachtwoord: {new string('*', password.Length)}", "", "Login", "Annuleren");
+            int selectedClass = MenuLogic.MultipleChoice(true, "", 1, new string[] { }, $"Email: {email ?? "N/A"}", $"Wachtwoord: {new string('*', password?.Length ?? 0)}", "", "Login", "Annuleren");
             if (selectedClass == 0)
             {
                 Console.WriteLine("Graag uw email invullen.");
-                email = Console.ReadLine();
+                email = Console.ReadLine() ?? string.Empty;
             }
             else if (selectedClass == 1)
             {
                 Console.WriteLine("Graag uw wachtwoord invullen.");
-                password = Console.ReadLine();
+                password = Console.ReadLine() ?? string.Empty;
             }
             else if (selectedClass == 4)
             {
                 Menu.Start();
             }
-            else if (selectedClass == 3)
+            else if (selectedClass == 3 && email != null && password != null)
             {
                 accountNull = false;
-                AccountModel acc = accountsLogic.CheckLogin(email, password);
+                AccountModel? acc = accountsLogic.CheckLogin(email, password);
                 if (acc != null)
                 {
                     //Console.WriteLine("Welcome back " + acc.FullName);
@@ -43,7 +43,7 @@ static class UserLogin
                     string mail = acc.EmailAddress;
                     string ww = acc.Password;
 
-                    AccountModel persoon = null;
+                    AccountModel? persoon = null;
                     // op basis van level geef de user zn eigen model
                     if (level == 1) // Manager
                     {
@@ -60,7 +60,15 @@ static class UserLogin
                         persoon = new Customer(id, mail, ww, naam, level);
                         // Additional customer-specific logic here
                     }
-                    Menu.Continue(persoon);
+                    if (persoon != null)
+                    {
+                        Menu.Continue(persoon);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Er ging iets fout! je word terug naar de menu gestuurd");
+                        Menu.Start();
+                    }
                 }
                 else
                 {
