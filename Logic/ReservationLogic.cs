@@ -58,6 +58,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             { // Catch the error and return false
+                Console.WriteLine(ex);
                 return false;
             }
         }
@@ -68,12 +69,13 @@ namespace Project_B.Logic
             {
                 //Try to get the reservations and convert them into a list
                 string jsonContent = File.ReadAllText(@"DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
-                return reservations.Count > 0 ? reservations : new List<ReservationModel>();
+                List<ReservationModel>? reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                return reservations?.Count > 0 ? reservations : new List<ReservationModel>();
 
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 // Console.WriteLine($"Error: {ex.Message}");
             }
             return new List<ReservationModel>();
@@ -88,30 +90,11 @@ namespace Project_B.Logic
                 List<ReservationModel> reservations = GetReservations();
 
                 //Loop through the list and get the reservation by the given searchterm
-              
-                foreach (ReservationModel reservation in reservations) {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm || reservation.ReservationCode == _Searchterm) {
-                        ResList.Add(reservation); //Return the reservation
-                    }            
-                }
-                return ResList; //Return nothing if nothing came out
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-            }
-            return new List<ReservationModel>();
-        }
 
-        public static List<ReservationModel> GetReservations(int clientnumber) {
-            List<ReservationModel> ResList = new();
-            try {
-                //Get reservations from other function
-                List<ReservationModel> reservations = GetReservations();
-
-                //Loop through the list and get the reservation by the given searchterm
-                foreach (ReservationModel reservation in reservations) {
-                    if (reservation.ClientNumber == clientnumber) {
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm || reservation.ReservationCode == _Searchterm)
+                    {
                         ResList.Add(reservation); //Return the reservation
                     }
                 }
@@ -124,7 +107,32 @@ namespace Project_B.Logic
             return new List<ReservationModel>();
         }
 
-        public static ReservationModel GetReservation(string _Searchterm)
+        public static List<ReservationModel> GetReservations(int clientnumber)
+        {
+            List<ReservationModel> ResList = new();
+            try
+            {
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
+
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (reservation.ClientNumber == clientnumber)
+                    {
+                        ResList.Add(reservation); //Return the reservation
+                    }
+                }
+                return ResList; //Return nothing if nothing came out
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+            return new List<ReservationModel>();
+        }
+
+        public static ReservationModel? GetReservation(string _Searchterm)
         {
             try
             {
@@ -141,10 +149,12 @@ namespace Project_B.Logic
                         return reservation; //Return the reservation
                     }
                 }
-                return null; //Return nothing if nothing came out
+                //Return nothing if nothing came out
+                return null;
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return null;
             }
         }

@@ -50,14 +50,14 @@ public class Mederwerker
 
         do
         {
-            Console.WriteLine("Graag hier je wachtwoord invullen:");
+            Console.WriteLine("Graag hier de wachtwoord invullen:");
             Console.WriteLine("De juiste syntax is minimaal 6 tekens lang, 1 hoofdletter, 1 kleine letter en 1 cijfer");
             password = Console.ReadLine()!;
         } while (ValidationLogic.IsValidPassword(password) != true);
 
         do
         {
-            Console.WriteLine("Graag hier je volledige naam invullen:");
+            Console.WriteLine("Graag hier de volledige naam invullen:");
             Console.WriteLine("De juiste syntax is minimaal 1 letter lang en bevat geen nummers");
             fullName = Console.ReadLine()!;
         } while (ValidationLogic.IsValidFullname(fullName) != true);

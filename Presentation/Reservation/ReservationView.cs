@@ -5,7 +5,7 @@ using System.Globalization;
 
 public class Reservation
 {
-    
+
     static private AccountsLogic accountsLogic = new AccountsLogic();
 
     static public void DisplayReservation()
@@ -33,7 +33,7 @@ public class Reservation
         do
         {
             Console.Write("Heeft de klant een account? (J/N): ");
-            HasAccount = Console.ReadLine().ToUpper();
+            HasAccount = Console.ReadLine()!.ToUpper();
         } while (HasAccount != "J" && HasAccount != "N");
 
         string ClientNumber = "0";
@@ -47,21 +47,21 @@ public class Reservation
             do
             {
                 Console.Write("Zoeken naar account (Email): ");
-                SearchTerm = Console.ReadLine().ToLower();
+                SearchTerm = Console.ReadLine()!.ToLower();
             } while (SearchTerm.Length == 0);
 
             try
             {
-                AccountModel AccountData = accountsLogic.GetByEmail(SearchTerm);
+                AccountModel? AccountData = accountsLogic.GetByEmail(SearchTerm);
 
-                ClientNumber = Convert.ToString(AccountData.Id);
+                ClientNumber = Convert.ToString(AccountData!.Id);
                 Name = AccountData.FullName;
                 Email = AccountData.EmailAddress;
 
             }
             catch (Exception e)
             {
-                Console.WriteLine("Account niet gevonden!");
+                Console.WriteLine(e);
                 HasAccount = "N";
             }
 
@@ -72,14 +72,14 @@ public class Reservation
             do
             {
                 Console.Write("Naam: ");
-                Name = Console.ReadLine();
+                Name = Console.ReadLine()!;
             } while (Name.Length <= 3);
 
 
             do
             {
                 Console.Write("Email: ");
-                Email = Console.ReadLine();
+                Email = Console.ReadLine()!;
             } while (ValidationLogic.IsValidEmail(Email) != true);
         }
 
@@ -111,7 +111,7 @@ public class Reservation
         do
         {
             Console.Write("Time (00:00): ");
-            TimeSlot = Console.ReadLine();
+            TimeSlot = Console.ReadLine()!;
         } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
 
@@ -124,7 +124,7 @@ public class Reservation
 
 
         List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
-        
+
 
         TimeSpan tempTime;
 
@@ -136,29 +136,36 @@ public class Reservation
         ReservationLogic.ShowTablesAvailability(tempDate, tempTime, Amt_People);
 
         List<string> CorrectedTables = new List<string>();
-        foreach(string table in AvailableTables) {
-            if(table.Length > 1) {
+        foreach (string table in AvailableTables)
+        {
+            if (table.Length > 1)
+            {
                 string tableCorrect;
-                tableCorrect = table.Remove(0,1);
+                tableCorrect = table.Remove(0, 1);
                 CorrectedTables.Add(tableCorrect);
             }
-            else {
+            else
+            {
                 CorrectedTables.Add(table);
             }
         }
-        
+
         Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", CorrectedTables));
 
         Console.WriteLine("Schrijf de tafel nummer?");
         List<string> Tables = new List<string>();
         bool TableChecker = true;
-        string TableNumber = Console.ReadLine();
-        while(TableChecker is true){
-            if (CorrectedTables.Contains(TableNumber)) {
+        string TableNumber = Console.ReadLine()!;
+        while (TableChecker is true)
+        {
+            if (CorrectedTables.Contains(TableNumber))
+            {
                 TableChecker = false;
-            } else {    
+            }
+            else
+            {
                 Console.WriteLine("Graag een geldige tafel nummer typen.");
-                TableNumber = Console.ReadLine();
+                TableNumber = Console.ReadLine()!;
             }
         }
 
@@ -181,7 +188,7 @@ public class Reservation
     static public void ChangeReservation()
     {
         Console.Write("Zoeken (ID / Naam / Email / Reservering Code): ");
-        string Searchterm = Console.ReadLine();
+        string Searchterm = Console.ReadLine()!;
 
         List<ReservationModel> r = ReservationLogic.GetReservations(Searchterm);
 
@@ -207,14 +214,14 @@ public class Reservation
             do
             {
                 Console.Write("Naam: ");
-                Name = Console.ReadLine();
+                Name = Console.ReadLine()!;
             } while (Name.Length <= 3);
 
             string Email;
             do
             {
                 Console.Write("Email: ");
-                Email = Console.ReadLine();
+                Email = Console.ReadLine()!;
             } while (ValidationLogic.IsValidEmail(Email) != true);
 
             string Date;
@@ -245,14 +252,14 @@ public class Reservation
             do
             {
                 Console.Write("Time (00:00): ");
-                TimeSlot = Console.ReadLine();
+                TimeSlot = Console.ReadLine()!;
             } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
             string Amt_People;
             do
             {
                 Console.Write("Aantal Personen: ");
-                Amt_People = Console.ReadLine();
+                Amt_People = Console.ReadLine()!;
             } while (ValidationLogic.IsNumeric(Amt_People) != true);
 
             Console.WriteLine("Beschikbare tafels: " + string.Join(", ", TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People))));
@@ -260,7 +267,7 @@ public class Reservation
             List<string> Tables = new List<string>();
             while (true)
             {
-                string Table_number = Console.ReadLine();
+                string Table_number = Console.ReadLine()!;
                 if (Table_number != "")
                 {
                     try
@@ -302,7 +309,7 @@ public class Reservation
         Console.WriteLine("ID");
         int ID = Convert.ToInt32(Console.ReadLine());
 
-        ReservationModel ReservationObject = ReservationLogic.GetReservation(Convert.ToString(ID));
+        ReservationModel? ReservationObject = ReservationLogic.GetReservation(Convert.ToString(ID));
 
         if (ReservationObject == null)
         {
@@ -319,7 +326,7 @@ public class Reservation
         do
         {
             Console.WriteLine($"(J/N)");
-            DeleteObjectbool = Console.ReadLine().ToUpper();
+            DeleteObjectbool = Console.ReadLine()!.ToUpper();
         }
         while (DeleteObjectbool != "J" && DeleteObjectbool != "N");
 
