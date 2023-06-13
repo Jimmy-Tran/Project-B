@@ -13,37 +13,41 @@ static class UserRegistration
   {
     Console.WriteLine("Welkom bij de registratiepagina");
     Console.WriteLine("[1] terug naar het startmenu");
-
+    
     string Email;
     do
     {
-      Console.WriteLine("Graag hier je email invullen:");
-      Email = Console.ReadLine().ToLower();
-      if (!Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+.[^@\s]+$") && Email != "1")
+      do 
       {
-        Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
+        Console.WriteLine("Graag hier je email invullen:");
+        Email = Console.ReadLine().ToLower();
+      } while ( ValidationLogic.IsValidEmail(Email) != true && Email != "1");
+
+      if (Email == "1")
+      {
+        Menu.Start();
+        return;
       }
-    } while (!Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+.[^@\s]+$") && Email != "1");
+    } while (Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$") != true);
 
-    if (Email == "1")
-    {
-      Menu.Start();
-      return;
-    }
-
-    string Password;
+    string? Password;
     do
     {
       Console.WriteLine("Graag hier je wachtwoord invullen:");
-      Console.WriteLine("De juiste syntax is minimaal 6 tekens lang, 1 hoofdletter en 1 cijfer");
+      Console.WriteLine("De juiste syntax is minimaal 6 tekens lang, 1 hoofdletter, 1 kleine letter en 1 cijfer");
       Password = Console.ReadLine();
 
     } while (ValidationLogic.IsValidPassword(Password) != true);
 
-    Console.WriteLine("Graag hier je volledige naam invullen:");
-    string FullName = Console.ReadLine();
+    string FullName;
+    do
+    {
+      Console.WriteLine("Graag hier je volledige naam invullen:");
+      Console.WriteLine("De juiste syntax is minimaal 1 letter lang en bevat geen nummers");
+      FullName = Console.ReadLine();
+    } while (ValidationLogic.IsValidFullname(FullName) != true);
 
-    AccountModel acc = accountsLogic.CheckRegistration(Email);
+    AccountModel? acc = accountsLogic.CheckRegistration(Email);
     if (acc == null)
     {
       AccountModel newAcc = new AccountModel(accountsLogic.GetLastID() + 1, Email, Password, FullName, Level);
