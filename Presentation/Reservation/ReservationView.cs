@@ -122,7 +122,12 @@ public class Reservation
             Amt_People = Convert.ToInt32(Console.ReadLine());
         } while (Amt_People <= 0);
 
-
+        if (TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People).Count < 1)
+        {
+            Console.WriteLine($"Er is geen plek meer voor vandaag probeer een andere dag");
+            Console.ReadKey();
+            return;
+        }
         List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
 
 

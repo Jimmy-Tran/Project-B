@@ -248,10 +248,10 @@ public class MyReservation
 
                         break;
                     case 2:
-                        Menu.Start();
+                        CustomerMenu.Start(username, id);
                         break;
                     default:
-                        Menu.Start();
+                        CustomerMenu.Start(username, id);
                         break;
                 }
             }

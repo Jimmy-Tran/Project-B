@@ -165,6 +165,12 @@ class ReservationConsole
         Console.Clear();
         Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
         Console.WriteLine(timeslot.ToString(@"hh\:mm"));
+        if (TableLogic.CheckTables(date, timeslot, amt_people).Count < 1)
+        {
+            Console.WriteLine($"Er is geen plek meer voor vandaag probeer een andere dag");
+            Console.ReadKey();
+            Menu.Start();
+        }
         ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
         Console.WriteLine("email: " + email);
 
@@ -175,6 +181,7 @@ class ReservationConsole
         } while (ValidationLogic.CodeExists(text) != true);
 
         reservationcode = text;
+
 
         string tableCheck;
         do
@@ -319,6 +326,12 @@ class ReservationConsole
         Console.Clear();
         Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
         Console.WriteLine(timeslot.ToString(@"hh\:mm"));
+        if (TableLogic.CheckTables(date, timeslot, amt_people).Count < 1)
+        {
+            Console.WriteLine($"Er is geen plek meer voor vandaag probeer een andere dag");
+            Console.ReadKey();
+            CustomerMenu.Start(username, client_id);
+        }
         ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
         Console.WriteLine("email: " + email);
 

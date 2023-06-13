@@ -40,7 +40,6 @@ public class ManagerMenu
                         break;
                     case 1:
                         Reservation.MakeReservation();
-
                         Console.WriteLine("Druk op iets om verder te gaan...");
                         Console.ReadKey();
                         Admin_menu(username, id);
