@@ -276,8 +276,13 @@ namespace Project_B.Logic
             else
             {
                 List<string> TablesList = TableLogic.CheckTables(date, timeslot, persons);
-                UpdateTableAvailability(TablesList);
-                ShowTables();
+                if (TablesList.Count > 0)
+                {
+                    UpdateTableAvailability(TablesList);
+                    ShowTables();
+                }
+
+
             }
         }
 

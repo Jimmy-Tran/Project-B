@@ -16,8 +16,7 @@ class WorkerMenu
         {
             // ga naar reserveren waar je een paar optie's weer krijgt
             // Reservatie res = new Reservatie();
-            ReservationConsole res = new ReservationConsole();
-            res.Reserveren();
+            Reservation.MakeReservation();
             Start(username, id);
         }
         else if (selectedClass == 2)
