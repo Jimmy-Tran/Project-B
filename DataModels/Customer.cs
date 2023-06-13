@@ -1,4 +1,4 @@
-class Customer : AccountModel
+class Customer : AccountModel, IAccount
 {
     public Customer(int id, string emailAddress, string password, string fullName, int level)
         : base(id, emailAddress, password, fullName, level)
