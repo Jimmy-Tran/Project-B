@@ -186,11 +186,11 @@ class ReservationConsole
         {
             Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
             tableCheck = Console.ReadLine();
-        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"{tableCheck.ToUpper()}"));
+        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
 
         id = ReservationLogic.GetLastID() + 1;
 
-        if (TableLogic.TableChecker($"{tableCheck.ToUpper()}"))
+        if (TableLogic.TableChecker($"_{tableCheck.ToUpper()}"))
         {
             tables.Add(tableCheck);
             try
@@ -343,11 +343,11 @@ class ReservationConsole
         {
             Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
             tableCheck = Console.ReadLine();
-        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"{tableCheck.ToUpper()}"));
+        } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
 
         id = ReservationLogic.GetLastID() + 1;
 
-        if (TableLogic.TableChecker($"{tableCheck.ToUpper()}"))
+        if (TableLogic.TableChecker($"_{tableCheck.ToUpper()}"))
         {
             tables.Add(tableCheck);
             try

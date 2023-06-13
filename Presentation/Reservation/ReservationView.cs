@@ -5,6 +5,7 @@ using System.Globalization;
 
 public class Reservation
 {
+    
     static private AccountsLogic accountsLogic = new AccountsLogic();
 
     static public void DisplayReservation()
@@ -123,31 +124,42 @@ public class Reservation
 
 
         List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
-        Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", AvailableTables));
+        
 
-        Console.WriteLine("Tafel nummers (klaar ENTER)");
+        TimeSpan tempTime;
+
+        TimeSpan.TryParse(TimeSlot, out tempTime);
+
+        DateTime tempDate;
+        DateTime.TryParse(Date, out tempDate);
+
+        ReservationLogic.ShowTablesAvailability(tempDate, tempTime, Amt_People);
+
+        List<string> CorrectedTables = new List<string>();
+        foreach(string table in AvailableTables) {
+            if(table.Length > 1) {
+                string tableCorrect;
+                tableCorrect = table.Remove(0,1);
+                CorrectedTables.Add(tableCorrect);
+            }
+            else {
+                CorrectedTables.Add(table);
+            }
+        }
+        
+        Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", CorrectedTables));
+
+        Console.WriteLine("Schrijf de tafel nummer?");
         List<string> Tables = new List<string>();
-        while (true)
-        {
-            string Table_number = Console.ReadLine();
-
-            // Keep looping until user pressed ENTER, only numeric
-            if (Table_number != "")
-            {
-                try
-                {
-                    Tables.Add(Table_number);
-                }
-                catch
-                {
-                    Console.WriteLine("Toevoegen mislukt, voer tafel nummers in!");
-                }
+        bool TableChecker = true;
+        string TableNumber = Console.ReadLine();
+        while(TableChecker is true){
+            if (CorrectedTables.Contains(TableNumber)) {
+                TableChecker = false;
+            } else {    
+                Console.WriteLine("Graag een geldige tafel nummer typen.");
+                TableNumber = Console.ReadLine();
             }
-            else
-            {
-                break;
-            }
-
         }
 
 

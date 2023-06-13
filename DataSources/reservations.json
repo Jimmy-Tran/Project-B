@@ -1,12 +1,12 @@
 [
   {
     "ID": 1,
-    "ClientNumber": 9,
-    "Name": "Henno Passchier",
-    "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-26T00:00:00",
-    "ReservationCode": "XF3S7M",
-    "TimeSlot": "20:00:00",
+    "ClientNumber": 0,
+    "Name": "12-09",
+    "Email": "adadam@gmail.com",
+    "Date": "2023-12-09T00:00:00",
+    "ReservationCode": "RL6S8P",
+    "TimeSlot": "16:00:00",
     "Tables": [
       "1"
     ],
@@ -17,29 +17,25 @@
   {
     "ID": 2,
     "ClientNumber": 0,
-    "Name": "Jimmy Tran",
-    "Email": "jimmy.trxn@gmail.com",
-    "Date": "2024-12-05T00:00:00",
-    "ReservationCode": "UH5C8S",
-    "TimeSlot": "18:00:00",
-    "Tables": [
-      "4D"
-    ],
-    "Amt_People": 4,
+    "Name": "jeffrey",
+    "Email": "jeffrey@het.com",
+    "Date": "2023-12-09T00:00:00",
+    "ReservationCode": "PM8H3K",
+    "TimeSlot": "16:00:00",
+    "Tables": [],
+    "Amt_People": 2,
     "CourseMenu": null,
     "Verified": false
   },
   {
     "ID": 3,
     "ClientNumber": 0,
-    "Name": "test test",
-    "Email": "test@test.nl",
-    "Date": "2023-06-07T00:00:00",
-    "ReservationCode": "GK2U8E",
+    "Name": "dkkda",
+    "Email": "daa@dada.co",
+    "Date": "2023-12-09T00:00:00",
+    "ReservationCode": "WA2F7M",
     "TimeSlot": "16:00:00",
-    "Tables": [
-      "1"
-    ],
+    "Tables": [],
     "Amt_People": 2,
     "CourseMenu": null,
     "Verified": false

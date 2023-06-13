@@ -1,4 +1,4 @@
-class Manager : AccountModel
+class Manager : AccountModel, IAccount
 {
     public Manager(int id, string emailAddress, string password, string fullName, int level)
         : base(id, emailAddress, password, fullName, level)

@@ -1,4 +1,4 @@
-class Employee : AccountModel
+class Employee : AccountModel, IAccount
 {
     public Employee(int id, string emailAddress, string password, string fullName, int level)
         : base(id, emailAddress, password, fullName, level)
