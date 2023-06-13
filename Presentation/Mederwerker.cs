@@ -42,7 +42,7 @@ public class Mederwerker
         {
             Console.WriteLine("Graag hier de email invullen:");
             emailAddress = Console.ReadLine()!.ToLower();
-            if (!Regex.IsMatch(emailAddress, @"^[^@\s]+@[^@\s]+.[^@\s]+$") && emailAddress != "1")
+            if (ValidationLogic.IsValidEmail(emailAddress) != true && emailAddress != "1")
             {
                 Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
             }
@@ -50,15 +50,17 @@ public class Mederwerker
 
         do
         {
-            Console.Write("Wachtwoord: ");
+            Console.WriteLine("Graag hier je wachtwoord invullen:");
+            Console.WriteLine("De juiste syntax is minimaal 6 tekens lang, 1 hoofdletter, 1 kleine letter en 1 cijfer");
             password = Console.ReadLine()!;
-        } while (string.IsNullOrWhiteSpace(password));
+        } while (ValidationLogic.IsValidPassword(password) != true);
 
         do
         {
-            Console.Write("Volledige naam: ");
+            Console.WriteLine("Graag hier je volledige naam invullen:");
+            Console.WriteLine("De juiste syntax is minimaal 1 letter lang en bevat geen nummers");
             fullName = Console.ReadLine()!;
-        } while (string.IsNullOrWhiteSpace(fullName));
+        } while (ValidationLogic.IsValidFullname(fullName) != true);
 
         // create new employee object
         AccountModel newEmployee = new AccountModel(
