@@ -8,8 +8,8 @@ public class MenuAanpassen
         Console.WriteLine("[3] Gangen menu prijs aanpassen");
         Console.WriteLine("[T] Terug");
 
-        string input = Console.ReadLine();
-        switch (input.ToUpper())
+        string? input = Console.ReadLine();
+        switch (input?.ToUpper())
         {
             case "1":
                 AddItem(username, id);
@@ -39,7 +39,7 @@ public class MenuAanpassen
     {
         Console.WriteLine("Voer de categorie in: (Starters/Soups/Mains/Desserts/Drinks/Wijn)");
         Console.WriteLine("*Hoofdletter gevoelig");
-        string category = Console.ReadLine();
+        string? category = Console.ReadLine();
 
         // Check if the category is valid
         switch (category)
@@ -57,24 +57,24 @@ public class MenuAanpassen
                 return;
         }
 
-        Console.WriteLine("Voer de naam in:");
-        string name = Console.ReadLine();
-
         // Check if the name is not empty
-        if (string.IsNullOrWhiteSpace(name))
+        string name;
+        do
         {
-            Console.WriteLine("Naam mag niet leeg zijn. Kies opnieuw.");
-            AddItem(username, id);
-            return;
-        }
+            Console.WriteLine("Voer de naam van het item in:");
+            name = Console.ReadLine()!;
+        } while (string.IsNullOrWhiteSpace(name));
 
-        Console.WriteLine("Voer de prijs in:");
-        if (!decimal.TryParse(Console.ReadLine(), out decimal price))
+        decimal price;
+        do
         {
-            Console.WriteLine("Ongeldige prijs. Kies opnieuw.");
-            AddItem(username, id);
-            return;
-        }
+            Console.WriteLine("Voer de prijs in:");
+            string priceInput = Console.ReadLine()!;
+            if (!decimal.TryParse(priceInput, out price))
+            {
+                Console.WriteLine("Ongeldige prijs. Kies opnieuw.");
+            }
+        } while (price <= 0);
         // Retrieve the menu object from the file
         string filenaam = @"DataSources/menu.json";
         Foodmenu menu = MenuImporter.ImportFromJson(filenaam);
@@ -97,7 +97,7 @@ public class MenuAanpassen
     {
         Console.WriteLine("Voer de categorie in: (Starters/Soups/Mains/Desserts/Drinks/Wijn)");
         Console.WriteLine("*Hoofdletter gevoelig");
-        string category = Console.ReadLine();
+        string? category = Console.ReadLine();
         string filenaam = @"DataSources/menu.json";
         // Check if the category is valid
         switch (category)
@@ -118,13 +118,19 @@ public class MenuAanpassen
 
         // ask for the ID of the item the user wants to remove
         Console.WriteLine("Voer de ID in van het item dat je wilt verwijderen:");
-        int id = int.Parse(Console.ReadLine());
+        string? input = Console.ReadLine();
+        int id;
+        while (!int.TryParse(input, out id))
+        {
+            Console.WriteLine("Invalid input. Please enter a valid ID:");
+            input = Console.ReadLine();
+        }
 
         // get the menu from the JSON file
         Foodmenu menu = MenuImporter.ImportFromJson(filenaam);
 
         // find the item in the menu based on the category and ID
-        MenuItem itemToRemove = null;
+        MenuItem? itemToRemove = null;
         switch (category)
         {
             case "Starters":
@@ -191,7 +197,7 @@ public class MenuAanpassen
 
         // let the admin choose what menu price he wants to change 
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "2 Gangen menu", "3 Gangen menu", "4 Gangen menu", "Wijn arrangement");
-        MenuItem GangenMenu = null;
+        MenuItem? GangenMenu = null;
         switch (selectedClass)
         {
             case 0:
@@ -215,9 +221,16 @@ public class MenuAanpassen
         // check if the menu item is found
         if (GangenMenu != null)
         {
-            // get the new price from the admin
-            Console.WriteLine($"Vul de nieuwe prijs voor {GangenMenu}:");
-            decimal newPrice = Convert.ToDecimal(Console.ReadLine());
+            decimal newPrice;
+            do
+            {
+                Console.WriteLine($"Vul de nieuwe prijs voor {GangenMenu}:");
+                string newPriceInput = Console.ReadLine()!;
+                if (!decimal.TryParse(newPriceInput, out newPrice))
+                {
+                    Console.WriteLine("Ongeldige prijs. Kies opnieuw.");
+                }
+            } while (newPrice <= 0);
 
             // update the price of the menu item
             GangenMenu.Price = newPrice;
@@ -235,7 +248,7 @@ public class MenuAanpassen
         ManagerMenu.Admin_menu(username, user_id); // return to the admin menu
     }
 
-    private static MenuItem GetGangenMenu(int id, List<MenuItem> items)
+    private static MenuItem? GetGangenMenu(int id, List<MenuItem> items)
     {
         foreach (MenuItem item in items)
         {

@@ -357,8 +357,8 @@ class ReservationConsole
                 EmailFunction.sendmail(email, name, reservationcode, date, timeslot);
                 EmailFunction.warning();
                 // console read en dan terug naar de ingelogde scherm
-                Console.ReadKey();
                 Console.WriteLine("druk op een toets om terug te gaan naar de menu");
+                Console.ReadKey();
                 CustomerMenu.Start(username, client_id);
             }
             catch (Exception e)

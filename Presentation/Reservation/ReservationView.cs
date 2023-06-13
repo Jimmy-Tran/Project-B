@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Project_B.Logic;
 using Project_B.DataModels;
+using System.Globalization;
 
 public class Reservation
 {
@@ -83,11 +84,27 @@ public class Reservation
         }
 
         string Date;
+        DateTime temp = DateTime.Now;
+        bool isValidDate = false;
+
         do
         {
             Console.Write("Date (DD-MM-JJJJ): ");
-            Date = Console.ReadLine();
-        } while (ValidationLogic.IsValidDate(Date) != true);
+            Date = Console.ReadLine()!;
+
+            if (!DateTime.TryParseExact(Date, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                Console.WriteLine("Veerkde datum. Vul een juiste formaat in: DD-MM-JJJJ.");
+            }
+            else if (parsedDate < temp)
+            {
+                Console.WriteLine("De datum moet wel in de toekomst zitten");
+            }
+            else
+            {
+                isValidDate = true;
+            }
+        } while (!isValidDate);
 
 
         string TimeSlot;
@@ -201,11 +218,28 @@ public class Reservation
             } while (ValidationLogic.IsValidEmail(Email) != true);
 
             string Date;
+            DateTime temp = DateTime.Now;
+            bool isValidDate = false;
+
             do
             {
                 Console.Write("Date (DD-MM-JJJJ): ");
-                Date = Console.ReadLine();
-            } while (ValidationLogic.IsValidDate(Date) != true);
+                Date = Console.ReadLine()!;
+
+                if (!DateTime.TryParseExact(Date, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                {
+                    Console.WriteLine("Veerkde datum. Vul een juiste formaat in: DD-MM-JJJJ.");
+                }
+                else if (parsedDate < temp)
+                {
+                    Console.WriteLine("De datum moet wel in de toekomst zitten");
+                }
+                else
+                {
+                    isValidDate = true;
+                }
+            } while (!isValidDate);
+
 
             string TimeSlot;
             do

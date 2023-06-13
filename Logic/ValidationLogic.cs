@@ -12,13 +12,52 @@ namespace Project_B.Logic
   {
     public static bool IsValidEmail(string email)
     {
-      if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+.[^@\s]+$"))
+      if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
       {
-        Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        if (!Regex.IsMatch(email, @"@[^@\s]"))
+        {
+          Console.WriteLine("Je hebt geen @ in je email, voeg deze toe.");
+        }
+        if (!Regex.IsMatch(email, @"\.[^@\s]"))
+        {
+          Console.WriteLine("Je hebt geen . in je email, voeg deze toe.");
+        }
+        if (Regex.IsMatch(email, @"\s"))
+        {
+          Console.WriteLine("Je email bevat een spatie, verwijder deze");
+        }
+        if (email.Length == 0)
+        {
+          Console.WriteLine("Je email moet minimaal 1 teken lang zijn");
+        }
+        Console.ForegroundColor = ConsoleColor.Gray;
         return false;
-
       }
-      else return true;
+      return true;
+    }
+
+    public static bool IsValidFullname(string name)
+    {
+      if (!Regex.IsMatch(name, @"^[A-Za-z]+ [A-Za-z]+$"))
+      {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
+        if (Regex.IsMatch(name, "[0-9]"))
+        {
+          Console.WriteLine("Je hebt een nummer in je naam, verwijder deze.");
+        }
+        if (!Regex.IsMatch(name, @"\s"))
+        {
+          Console.WriteLine("Je naam bevat geen spatie(tussen je voornaam en achternaam)");
+        }
+        if (name.Length == 0)
+        {
+          Console.WriteLine("Je naam moet minimaal 1 teken lang zijn");
+        }
+        Console.ForegroundColor = ConsoleColor.Gray;
+        return false;
+      }
+      return true;
     }
 
     public static bool IsValidDate(string date)
@@ -48,9 +87,10 @@ namespace Project_B.Logic
 
     public static bool IsValidPassword(string pass)
     {
-      Console.ForegroundColor = ConsoleColor.DarkRed;
+      
       if (!Regex.IsMatch(pass, "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$"))
       {
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         if (!Regex.IsMatch(pass, "[0-9]"))
         {
           Console.WriteLine("Je bent een nummer vergeten in je wachtwoord.");
@@ -59,6 +99,10 @@ namespace Project_B.Logic
         {
           Console.WriteLine("Je bent een hoofdletter vergeten in je wachtwoord.");
         }
+        if (!Regex.IsMatch(pass, "[a-z]"))
+        {
+          Console.WriteLine("Je bent een kleine letter vergeten in je wachtwoord.");
+        }
         if (pass.Length < 6)
         {
           Console.WriteLine("Het wachtwoord moet minimaal 6 tekens lang zijn");
@@ -66,14 +110,13 @@ namespace Project_B.Logic
         Console.ForegroundColor = ConsoleColor.Gray;
         return false;
       }
-      Console.ForegroundColor = ConsoleColor.Gray;
       return true;
     }
 
     public static bool CodeExists(string code) {
       string json = File.ReadAllText("./DataSources/reservations.json");
         // Deserialize the JSON into a list of Reservation objects
-        List<ReservationConsole> reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
+        List<ReservationConsole>? reservations = JsonConvert.DeserializeObject<List<ReservationConsole>>(json);
           if (reservations != null) {
             if (!reservations.Any(r => r.reservationcode == code)) {
                 return true;

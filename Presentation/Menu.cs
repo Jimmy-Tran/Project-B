@@ -32,8 +32,11 @@ static class Menu
         else if (selectedClass == 4)
         {
             // start de locatie class en show detail
-            Location location = Location.CreateLocation();
-            LocationPresentation.ShowLocation(location);
+            Location? location = Location.CreateLocation();
+            if (location != null)
+            {
+                LocationPresentation.ShowLocation(location);
+            }
             Console.ReadKey();
             Start();
         }

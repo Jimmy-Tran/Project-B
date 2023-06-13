@@ -61,5 +61,12 @@
     "password": "Abc123!",
     "fullName": "Henno Passchier",
     "level": 0
+  },
+  {
+    "id": 10,
+    "emailAddress": "ttt@test.nl",
+    "password": "Abc123",
+    "fullName": "qwee",
+    "level": 0
   }
 ]

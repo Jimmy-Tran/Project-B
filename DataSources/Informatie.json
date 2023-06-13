@@ -1,11 +1,11 @@
 {
-  "Name": "Jake\u0027s restaurant",
+  "Name": "Jake",
   "Address": "Wijnhaven 107",
   "Phone": "0695684596",
   "Email": "JakeRestaurant@gmail.com",
   "Website": null,
   "OpeningHours": {
-    "zondag": "18:00-22:00",
+    "zondag": "19:00-22:00",
     "maandag": "18:00-22:00",
     "dinsdag": "18:00-22:00",
     "woensdag": "18:00-22:00",

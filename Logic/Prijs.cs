@@ -62,11 +62,11 @@ public class Prijs
         while (!validInput)
         {
             Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");
-            string inputOnder12 = Console.ReadLine();
+            string? inputOnder12 = Console.ReadLine();
             onder_12 = string.IsNullOrEmpty(inputOnder12) ? 0 : Convert.ToInt32(inputOnder12);
 
             Console.WriteLine($"Hoeveel van de {aantal} personen willen het wijnarrangement ({wijn_arrangement})?");
-            string inputWineCount = Console.ReadLine();
+            string? inputWineCount = Console.ReadLine();
             wineCount = string.IsNullOrEmpty(inputWineCount) ? 0 : Convert.ToInt32(inputWineCount);
 
 
