@@ -32,8 +32,11 @@ static class Menu
         else if (selectedClass == 4)
         {
             // start de locatie class en show detail
-            Location location = Location.CreateLocation();
-            LocationPresentation.ShowLocation(location);
+            Location? location = Location.CreateLocation();
+            if (location != null)
+            {
+                LocationPresentation.ShowLocation(location);
+            }
             Console.ReadKey();
             Start();
         }
@@ -72,11 +75,5 @@ static class Menu
             // ga naar customers menu
             CustomerMenu.Start(persoon.FullName, persoon.Id);
         }
-    }
-    // medewerker gedeelte ------------------------------------------------------------------------- medewerker gedeelte
-    static public void Worker(int id, string username)
-    {
-        Console.WriteLine($"Welkom Worker: {username}");
-        WorkerMenu.Start(username, id);
     }
 }

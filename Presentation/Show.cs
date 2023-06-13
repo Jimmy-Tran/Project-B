@@ -169,11 +169,11 @@ public class MenuPresentation
         {
             if (includePrice)
             {
-                Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2"));
+                Console.WriteLine(item.Name?.PadRight(30, '.') + " " + item.Price.ToString("F2"));
             }
             else
             {
-                Console.WriteLine(item.Name.PadRight(30, '.'));
+                Console.WriteLine(item.Name?.PadRight(30, '.'));
             }
         }
     }
@@ -183,11 +183,11 @@ public class MenuPresentation
         {
             if (includePrice)
             {
-                Console.WriteLine(item.Name.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
+                Console.WriteLine(item.Name?.PadRight(30, '.') + " " + item.Price.ToString("F2") + " ID: " + item.ID);
             }
             else
             {
-                Console.WriteLine(item.Name.PadRight(30, '.') + " ID: " + item.ID);
+                Console.WriteLine(item.Name?.PadRight(30, '.') + " ID: " + item.ID);
             }
         }
     }
@@ -202,7 +202,7 @@ public class LocationPresentation
 {
     public static void ShowLocation(Location location)
     {
-        Console.WriteLine("Locatie: " + location.Name);
+        Console.WriteLine("Naam: " + location.Name);
         Console.WriteLine("Adres: " + location.Address);
         Console.WriteLine("Telefoon: " + location.Phone);
         Console.WriteLine("E-mail: " + location.Email);

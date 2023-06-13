@@ -9,22 +9,25 @@ public class Mederwerker
         // Mederwerker menu
         Console.WriteLine("[1] Persoon toevoegen");
         Console.WriteLine("[T] Terug gaan");
-        string input = Console.ReadLine();
-        switch (input.ToUpper())
+        string? input = Console.ReadLine();
+        if (input != null)
         {
-            case "1":
-                // persoon toevoegen
-                // ga eerst naar functie die vraagt voor gegevens
-                Mederwerker_gegevens(username, id);
-                break;
-            case "T":
-                ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
-                // code block
-                break;
-            default:
-                Console.WriteLine("Ongeldige optie. Kies opnieuw.");
-                Toevoeg_Mederwerker_Menu(username, id);
-                break;
+            switch (input.ToUpper())
+            {
+                case "1":
+                    // persoon toevoegen
+                    // ga eerst naar functie die vraagt voor gegevens
+                    Mederwerker_gegevens(username, id);
+                    break;
+                case "T":
+                    ManagerMenu.Admin_menu(username, id);// zodat je terug gaat
+                                                         // code block
+                    break;
+                default:
+                    Console.WriteLine("Ongeldige optie. Kies opnieuw.");
+                    Toevoeg_Mederwerker_Menu(username, id);
+                    break;
+            }
         }
     }
     public static void Mederwerker_gegevens(string username, int id)
@@ -32,16 +35,21 @@ public class Mederwerker
         AccountsLogic accountsLogic = new AccountsLogic();
         Console.WriteLine("Voer de gegevens van de medewerker in:");
         Console.Write("E-mailadres: ");
-        string emailAddress = Console.ReadLine();
+        string? emailAddress = Console.ReadLine();
 
         Console.Write("Wachtwoord: ");
-        string password = Console.ReadLine();
+        string? password = Console.ReadLine();
 
         Console.Write("Volledige naam: ");
-        string fullName = Console.ReadLine();
+        string? fullName = Console.ReadLine();
 
         // create new employee object
-        AccountModel newEmployee = new AccountModel(accountsLogic.GetLastID() + 1, emailAddress, password, fullName, 2);
+        AccountModel newEmployee = new AccountModel(
+      accountsLogic.GetLastID() + 1,
+      emailAddress ?? string.Empty,
+      password ?? string.Empty,
+      fullName ?? string.Empty,
+      2);
 
         // add new employee to accounts
         accountsLogic.UpdateList(newEmployee);
