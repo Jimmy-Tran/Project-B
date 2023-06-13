@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 namespace Project_B.Logic;
+using System.Text.RegularExpressions;
 public class Mederwerker
 {
     private const string ACCOUNT_FILE = @"DataSources/accounts.json";
@@ -34,14 +35,30 @@ public class Mederwerker
     {
         AccountsLogic accountsLogic = new AccountsLogic();
         Console.WriteLine("Voer de gegevens van de medewerker in:");
-        Console.Write("E-mailadres: ");
-        string? emailAddress = Console.ReadLine();
+        string emailAddress;
+        string password;
+        string fullName;
+        do
+        {
+            Console.WriteLine("Graag hier de email invullen:");
+            emailAddress = Console.ReadLine()!.ToLower();
+            if (!Regex.IsMatch(emailAddress, @"^[^@\s]+@[^@\s]+.[^@\s]+$") && emailAddress != "1")
+            {
+                Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
+            }
+        } while (!Regex.IsMatch(emailAddress, @"^[^@\s]+@[^@\s]+.[^@\s]+$") && emailAddress != "1");
 
-        Console.Write("Wachtwoord: ");
-        string? password = Console.ReadLine();
+        do
+        {
+            Console.Write("Wachtwoord: ");
+            password = Console.ReadLine()!;
+        } while (string.IsNullOrWhiteSpace(password));
 
-        Console.Write("Volledige naam: ");
-        string? fullName = Console.ReadLine();
+        do
+        {
+            Console.Write("Volledige naam: ");
+            fullName = Console.ReadLine()!;
+        } while (string.IsNullOrWhiteSpace(fullName));
 
         // create new employee object
         AccountModel newEmployee = new AccountModel(

@@ -57,24 +57,24 @@ public class MenuAanpassen
                 return;
         }
 
-        Console.WriteLine("Voer de naam in:");
-        string? name = Console.ReadLine();
-
         // Check if the name is not empty
-        if (string.IsNullOrWhiteSpace(name))
+        string name;
+        do
         {
-            Console.WriteLine("Naam mag niet leeg zijn. Kies opnieuw.");
-            AddItem(username, id);
-            return;
-        }
+            Console.WriteLine("Voer de naam van het item in:");
+            name = Console.ReadLine()!;
+        } while (string.IsNullOrWhiteSpace(name));
 
-        Console.WriteLine("Voer de prijs in:");
-        if (!decimal.TryParse(Console.ReadLine(), out decimal price))
+        decimal price;
+        do
         {
-            Console.WriteLine("Ongeldige prijs. Kies opnieuw.");
-            AddItem(username, id);
-            return;
-        }
+            Console.WriteLine("Voer de prijs in:");
+            string priceInput = Console.ReadLine()!;
+            if (!decimal.TryParse(priceInput, out price))
+            {
+                Console.WriteLine("Ongeldige prijs. Kies opnieuw.");
+            }
+        } while (price <= 0);
         // Retrieve the menu object from the file
         string filenaam = @"DataSources/menu.json";
         Foodmenu menu = MenuImporter.ImportFromJson(filenaam);
@@ -221,9 +221,16 @@ public class MenuAanpassen
         // check if the menu item is found
         if (GangenMenu != null)
         {
-            // get the new price from the admin
-            Console.WriteLine($"Vul de nieuwe prijs voor {GangenMenu}:");
-            decimal newPrice = Convert.ToDecimal(Console.ReadLine());
+            decimal newPrice;
+            do
+            {
+                Console.WriteLine($"Vul de nieuwe prijs voor {GangenMenu}:");
+                string newPriceInput = Console.ReadLine()!;
+                if (!decimal.TryParse(newPriceInput, out newPrice))
+                {
+                    Console.WriteLine("Ongeldige prijs. Kies opnieuw.");
+                }
+            } while (newPrice <= 0);
 
             // update the price of the menu item
             GangenMenu.Price = newPrice;
