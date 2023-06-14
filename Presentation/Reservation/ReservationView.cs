@@ -107,11 +107,23 @@ public class Reservation
         } while (!isValidDate);
 
 
-        string TimeSlot;
+        string TimeSlot = "";
         do
         {
-            Console.Write("Time (00:00): ");
-            TimeSlot = Console.ReadLine()!;
+            int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { $"{Date}", "Selecteer een tijdslot:" }, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
+
+            switch (selectedClass)
+            {
+                case 0:
+                    TimeSlot = "16:00";
+                    break;
+                case 1:
+                    TimeSlot = "18:00";
+                    break;
+                case 2:
+                    TimeSlot = "20:00";
+                    break;
+            }
         } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
 
@@ -128,6 +140,13 @@ public class Reservation
             Console.ReadKey();
             return;
         }
+        // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
+        Prijs geld = new Prijs();
+        decimal money = geld.prijs(Amt_People);
+
+        Console.WriteLine($"\nIn totaal betaal je voor {Amt_People} mensen {money} euro.");
+        Console.WriteLine("Druk op iets om verder te gaan...");
+        Console.ReadKey();
         List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
 
 
