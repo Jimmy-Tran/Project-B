@@ -48,11 +48,7 @@ public class AccountData
                 {
                     Console.WriteLine("Graag hier je volledige naam invullen:");
                     acc.FullName = Console.ReadLine()!.ToLower();
-                    if (!Regex.IsMatch(acc.FullName, @"^[A-Za-z\\s]+$"))
-                    {
-                        Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
-                    }
-                } while (!Regex.IsMatch(acc.FullName, @"^[A-Za-z\\s]+$"));
+                } while (ValidationLogic.IsValidFullname(acc.FullName) != true);
 
                 // updates full name to json and returns to Start
                 accountsLogic.UpdateList(acc);
@@ -60,7 +56,7 @@ public class AccountData
             }
             else if (selectedClass == 3)
             {
-                var ReservationList = ReservationLogic.GetReservations(acc.EmailAddress); // filters all reservations with this email, maybe change this to clientnumber
+                var ReservationList = ReservationLogic.GetReservations(id); // filters all reservations with this email, maybe change this to clientnumber
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine($"Reservaties Tabel van {acc.FullName}:");
                 Console.ForegroundColor = ConsoleColor.White;
