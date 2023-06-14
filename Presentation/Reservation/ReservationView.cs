@@ -92,25 +92,26 @@ public class Reservation
             Console.Write("Date (DD-MM-JJJJ): ");
             Date = Console.ReadLine()!;
 
-            if (!DateTime.TryParseExact(Date, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            if (!ValidationLogic.IsValidDate(Date))
             {
                 Console.WriteLine("Veerkde datum. Vul een juiste formaat in: DD-MM-JJJJ.");
             }
-            else if (parsedDate < temp)
+            else if (DateTime.Parse(Date) < temp)
             {
                 Console.WriteLine("De datum moet wel in de toekomst zitten");
             }
             else
             {
                 isValidDate = true;
+
             }
         } while (!isValidDate);
-
+        
 
         string TimeSlot = "";
         do
         {
-            int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { $"{Date}", "Selecteer een tijdslot:" }, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
+            int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { $"{DateTime.Parse(Date).ToString("dddd, dd MMMM yyyy")}", "Selecteer een tijdslot:" }, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
 
             switch (selectedClass)
             {
@@ -127,12 +128,14 @@ public class Reservation
         } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
 
-        int Amt_People;
+        string Amt_People_Check;
         do
         {
             Console.Write("Aantal Personen: ");
-            Amt_People = Convert.ToInt32(Console.ReadLine());
-        } while (Amt_People <= 0);
+            Amt_People_Check = Console.ReadLine()!;
+        } while (ValidationLogic.IsNumeric(Amt_People_Check) != true);
+
+        int Amt_People = Convert.ToInt32(Amt_People_Check);
 
         if (TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People).Count < 1)
         {
@@ -185,6 +188,7 @@ public class Reservation
             if (CorrectedTables.Contains(TableNumber))
             {
                 TableChecker = false;
+                Tables.Add(TableNumber);
             }
             else
             {
@@ -239,7 +243,7 @@ public class Reservation
             {
                 Console.Write("Naam: ");
                 Name = Console.ReadLine()!;
-            } while (Name.Length <= 3);
+            } while (ValidationLogic.IsValidFullname(Name) != true);
 
             string Email;
             do
@@ -257,58 +261,97 @@ public class Reservation
                 Console.Write("Date (DD-MM-JJJJ): ");
                 Date = Console.ReadLine()!;
 
-                if (!DateTime.TryParseExact(Date, "dd-MM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+                if (!ValidationLogic.IsValidDate(Date))
                 {
                     Console.WriteLine("Veerkde datum. Vul een juiste formaat in: DD-MM-JJJJ.");
                 }
-                else if (parsedDate < temp)
+                else if (DateTime.Parse(Date) < temp)
                 {
                     Console.WriteLine("De datum moet wel in de toekomst zitten");
                 }
                 else
                 {
                     isValidDate = true;
+
                 }
             } while (!isValidDate);
 
 
-            string TimeSlot;
+            string TimeSlot = "";
             do
             {
-                Console.Write("Time (00:00): ");
-                TimeSlot = Console.ReadLine()!;
+                int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { $"{DateTime.Parse(Date).ToString("dddd, dd MMMM yyyy")}", "Selecteer een tijdslot:" }, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
+
+                switch (selectedClass)
+                {
+                    case 0:
+                        TimeSlot = "16:00";
+                        break;
+                    case 1:
+                        TimeSlot = "18:00";
+                        break;
+                    case 2:
+                        TimeSlot = "20:00";
+                        break;
+                }
             } while (ValidationLogic.IsValidTime(TimeSlot) != true);
 
-            string Amt_People;
+
+            string Amt_People_Check;
             do
             {
                 Console.Write("Aantal Personen: ");
-                Amt_People = Console.ReadLine()!;
-            } while (ValidationLogic.IsNumeric(Amt_People) != true);
+                Amt_People_Check = Console.ReadLine()!;
+            } while (ValidationLogic.IsNumeric(Amt_People_Check) != true);
 
-            Console.WriteLine("Beschikbare tafels: " + string.Join(", ", TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Convert.ToInt32(Amt_People))));
-            Console.WriteLine("Tafel nummers");
-            List<string> Tables = new List<string>();
-            while (true)
+            int Amt_People = Convert.ToInt32(Amt_People_Check);
+            
+            List<string> AvailableTables = TableLogic.CheckTables(DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Amt_People);
+
+            TimeSpan tempTime;
+
+            TimeSpan.TryParse(TimeSlot, out tempTime);
+
+            DateTime tempDate;
+            DateTime.TryParse(Date, out tempDate);
+
+            ReservationLogic.ShowTablesAvailability(tempDate, tempTime, Amt_People);
+
+            List<string> CorrectedTables = new List<string>();
+            foreach (string table in AvailableTables)
             {
-                string Table_number = Console.ReadLine()!;
-                if (Table_number != "")
+                if (table.Length > 1)
                 {
-                    try
-                    {
-                        Tables.Add(Table_number);
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Toevoegen mislukt, voer tafel nummers in!");
-                    }
+                    string tableCorrect;
+                    tableCorrect = table.Remove(0, 1);
+                    CorrectedTables.Add(tableCorrect);
                 }
                 else
                 {
-                    break;
+                    CorrectedTables.Add(table);
                 }
-
             }
+
+            Console.WriteLine($"Tafelnummers beschikbaar: " + string.Join(", ", CorrectedTables));
+
+            Console.WriteLine("Schrijf de tafel nummer?");
+            List<string> Tables = new List<string>();
+            bool TableChecker = true;
+            string TableNumber = Console.ReadLine()!;
+            while (TableChecker is true)
+            {
+                if (CorrectedTables.Contains(TableNumber))
+                {
+                    TableChecker = false;
+                    Tables.Add(TableNumber);
+                }
+                else
+                {
+                    Console.WriteLine("Graag een geldige tafel nummer typen.");
+                    TableNumber = Console.ReadLine()!;
+                }
+            }
+
 
             // All values has been checked and ready to be changed
             bool ChangedValue = ReservationLogic.ChangeReservation(Searchterm, Name, Email, DateTime.Parse(Date), TimeSpan.Parse(TimeSlot), Tables, Convert.ToInt32(Amt_People));

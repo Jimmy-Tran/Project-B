@@ -22,20 +22,39 @@
     "Date": "2023-12-09T00:00:00",
     "ReservationCode": "PM8H3K",
     "TimeSlot": "16:00:00",
-    "Tables": [],
+    "Tables": [
+      "2"
+    ],
     "Amt_People": 2,
     "CourseMenu": null,
     "Verified": false
   },
   {
-    "ID": 3,
+    "ID": 5,
     "ClientNumber": 0,
-    "Name": "dkkda",
-    "Email": "daa@dada.co",
-    "Date": "2023-12-09T00:00:00",
-    "ReservationCode": "WA2F7M",
-    "TimeSlot": "16:00:00",
-    "Tables": [],
+    "Name": "Henno Passchier",
+    "Email": "henno.passchier@gmail.com",
+    "Date": "2023-06-15T00:00:00",
+    "ReservationCode": "LJ8V4G",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      "1"
+    ],
+    "Amt_People": 2,
+    "CourseMenu": null,
+    "Verified": false
+  },
+  {
+    "ID": 6,
+    "ClientNumber": 9,
+    "Name": "Henno Passchier",
+    "Email": "henno.passchier@gmail.com",
+    "Date": "2023-06-16T00:00:00",
+    "ReservationCode": "MN4Z4J",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      "4"
+    ],
     "Amt_People": 2,
     "CourseMenu": null,
     "Verified": false
