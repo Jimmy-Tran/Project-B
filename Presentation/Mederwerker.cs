@@ -42,11 +42,7 @@ public class Mederwerker
         {
             Console.WriteLine("Graag hier de email invullen:");
             emailAddress = Console.ReadLine()!.ToLower();
-            if (ValidationLogic.IsValidEmail(emailAddress) != true && emailAddress != "1")
-            {
-                Console.WriteLine("De email heeft niet de juiste syntax, probeer het opnieuw");
-            }
-        } while (!Regex.IsMatch(emailAddress, @"^[^@\s]+@[^@\s]+.[^@\s]+$") && emailAddress != "1");
+        } while (ValidationLogic.IsValidEmail(emailAddress) != true && emailAddress != "1");
 
         do
         {
@@ -64,11 +60,12 @@ public class Mederwerker
 
         // create new employee object
         AccountModel newEmployee = new AccountModel(
-      accountsLogic.GetLastID() + 1,
-      emailAddress ?? string.Empty,
-      password ?? string.Empty,
-      fullName ?? string.Empty,
-      2);
+            accountsLogic.GetLastID() + 1,
+            emailAddress ?? string.Empty,
+            password ?? string.Empty,
+            fullName ?? string.Empty,
+            2
+        );
 
         // add new employee to accounts
         accountsLogic.UpdateList(newEmployee);
