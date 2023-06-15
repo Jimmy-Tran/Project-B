@@ -123,4 +123,70 @@ public class Prijs
         }
         return totPrijs;
     }
+    // overload voor de test
+    public decimal prijs(int aantal, int selectedMenu, int onder12, int wineCount)
+    {
+
+        if (selectedMenu < 2 || selectedMenu > 4)
+        {
+            Console.WriteLine("Ongeldige menukeuze.");
+            return 0.0M; // Return 0 if an invalid menu choice is entered
+        }
+
+        if (onder12 > aantal)
+        {
+            Console.WriteLine("Het aantal personen jonger dan 12 kan niet groter zijn dan het totale aantal personen.");
+            return 0.0M;
+        }
+
+        if (wineCount > aantal)
+        {
+            Console.WriteLine("Het aantal personen dat wijn wil nemen kan niet groter zijn dan het totale aantal personen.");
+            return 0.0M;
+        }
+
+        if (onder12 + wineCount > aantal)
+        {
+            Console.WriteLine("Het totale aantal personen jonger dan 12 en het aantal personen dat wijn wil nemen kan niet groter zijn dan het totale aantal personen.");
+            return 0.0M;
+        }
+
+        // All input is valid, continue with the rest of your code
+
+        decimal menuPrijs = 0;
+
+        // Calculate the price based on the chosen menu
+        switch (selectedMenu)
+        {
+            case 2:
+                menuPrijs = gangenmenu_2;
+                break;
+            case 3:
+                menuPrijs = gangenmenu_3;
+                break;
+            case 4:
+                menuPrijs = gangenmenu_4;
+                break;
+            default:
+                Console.WriteLine("Ongeldige menukeuze.");
+                return 0.0M; // Return 0 if an invalid menu choice is entered
+        }
+
+        // Calculate the total price
+        decimal totPrijs = menuPrijs * aantal;
+
+        // Apply the discount for people under 12
+        decimal korting = menuPrijs * onder12 * discount;
+        totPrijs -= korting;
+
+        // Include the wine price
+        if (wineCount > 0)
+        {
+            decimal wijnprijs = wijn_arrangement * wineCount;
+            totPrijs += wijnprijs;
+        }
+
+        return totPrijs;
+    }
+
 }
