@@ -143,7 +143,7 @@ public class RestaurantInformatie
                             // maak nu functie om te kijken of de eind tijd wel later is dan de begin tijd
                             if (IsEndTimeLater(Neweindtijd, Newbegintijd))
                             {
-                                Console.WriteLine("Error: End time must be later than start time. Please try again. (press enter)");
+                                Console.WriteLine("Error: Sluitings tijd moet later zijn dan openingstijd, probeer opnieuw. (press enter)");
                                 Console.ReadKey();
                                 break;
                             }
