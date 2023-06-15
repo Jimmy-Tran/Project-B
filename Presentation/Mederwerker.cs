@@ -58,20 +58,35 @@ public class Mederwerker
             fullName = Console.ReadLine()!;
         } while (ValidationLogic.IsValidFullname(fullName) != true);
 
-        // create new employee object
-        AccountModel newEmployee = new AccountModel(
-            accountsLogic.GetLastID() + 1,
-            emailAddress ?? string.Empty,
-            password ?? string.Empty,
-            fullName ?? string.Empty,
-            2
-        );
 
-        // add new employee to accounts
-        accountsLogic.UpdateList(newEmployee);
 
-        Console.WriteLine("Nieuwe medewerker is toegevoegd.");
-        ManagerMenu.Admin_menu(username, id); // zodat je terug gaat
+        AccountModel? acc = accountsLogic.CheckRegistration(emailAddress);
+        if (acc == null)
+        {
+            // create new employee object
+            AccountModel newEmployee = new AccountModel(
+                accountsLogic.GetLastID() + 1,
+                emailAddress ?? string.Empty,
+                password ?? string.Empty,
+                fullName ?? string.Empty,
+                2
+            );
+            accountsLogic.UpdateList(newEmployee);
+            // add new employee to accounts
+            accountsLogic.UpdateList(newEmployee);
+
+            Console.WriteLine("Nieuwe medewerker is toegevoegd.");
+            Console.ReadKey();
+            ManagerMenu.Admin_menu(username, id); // zodat je terug gaat
+        }
+        else
+        {
+            Console.WriteLine("De email die u heeft ingevuld is al gekoppeld aan een account.");
+            Console.WriteLine("Probeer het opnieuw.");
+            Console.ReadKey();
+            ManagerMenu.Admin_menu(username, id);
+        }
+
     }
 
 
