@@ -5,6 +5,7 @@ static class Menu
     // start menu, niet ingelogd.
     static public void Start()
     {
+        ReservationLogic.AutoVerifing();
         Console.Clear();
 
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "Login", "Menu Kaart", "Reserveren", "Reservering ophalen", "Restaurant Informatie",

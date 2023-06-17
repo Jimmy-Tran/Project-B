@@ -61,7 +61,7 @@ public class Reservation
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("Account niet gevonden!");
                 HasAccount = "N";
             }
 

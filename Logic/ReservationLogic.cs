@@ -58,7 +58,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             { // Catch the error and return false
-                Console.WriteLine(ex);
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
@@ -75,7 +75,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("Niet gelukt!");
                 // Console.WriteLine($"Error: {ex.Message}");
             }
             return new List<ReservationModel>();
@@ -102,7 +102,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
             }
             return new List<ReservationModel>();
         }
@@ -127,7 +127,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
             }
             return new List<ReservationModel>();
         }
@@ -154,7 +154,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Console.WriteLine("Niet gelukt!");
                 return null;
             }
         }
@@ -188,7 +188,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
@@ -211,7 +211,7 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
@@ -234,8 +234,32 @@ namespace Project_B.Logic
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
                 return false;
+            }
+        }
+
+        public static void AutoVerifing()
+        {
+            try
+            {
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
+
+                DateTime temp = DateTime.Now;
+                //Set every date below today to Verified: true
+                reservations.Where(x => (x.Date.AddDays(-1)) <= temp).ToList().ForEach(x => x.Verified = true);
+
+                //Send data back to JSON file
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+                File.WriteAllText("DataSources/reservations.json", updatedJson);
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Niet gelukt!");
+                return ;
             }
         }
 
