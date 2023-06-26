@@ -5,7 +5,9 @@ static class Menu
     // start menu, niet ingelogd.
     static public void Start()
     {
+        ReservationLogic.AutoVerifing();
         Console.Clear();
+
         int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { }, "Login", "Menu Kaart", "Reserveren", "Reservering ophalen", "Restaurant Informatie",
         "Registreren", "Stoppen");
         if (selectedClass == 0)
@@ -22,6 +24,7 @@ static class Menu
         {
             ReservationConsole res = new ReservationConsole();
             res.Reserveren();
+            Start();
         }
         else if (selectedClass == 3)
         {
@@ -30,8 +33,11 @@ static class Menu
         else if (selectedClass == 4)
         {
             // start de locatie class en show detail
-            Location location = Location.CreateLocation();
-            LocationPresentation.ShowLocation(location);
+            Location? location = Location.CreateLocation();
+            if (location != null)
+            {
+                LocationPresentation.ShowLocation(location);
+            }
             Console.ReadKey();
             Start();
         }
@@ -52,16 +58,23 @@ static class Menu
         }
 
     }
-    static public void Continue(int id, string username)
+    static public void Continue(AccountModel persoon)
     {
         // je bent ingelogd
-        Console.WriteLine($"Welkom {username}, je id is: {id}");
-        CustomerMenu.Start(username, id);
-    }
-    // admin gedeelte ------------------------------------------------------------------------- admin gedeelte
-    static public void Admin(int id, string username)
-    {
-        Console.WriteLine($"Welkom admin : {username}");
-        ManagerMenu.Admin_menu(username, id);
+        if (persoon is Manager)
+        {
+            // ga naar managers menu
+            ManagerMenu.Admin_menu(persoon.FullName, persoon.Id);
+        }
+        else if (persoon is Employee)
+        {
+            // ga naarmederwerkers menu
+            WorkerMenu.Start(persoon.FullName, persoon.Id);
+        }
+        else if (persoon is Customer)
+        {
+            // ga naar customers menu
+            CustomerMenu.Start(persoon.FullName, persoon.Id);
+        }
     }
 }

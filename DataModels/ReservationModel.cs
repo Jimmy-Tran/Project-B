@@ -36,7 +36,7 @@ namespace Project_B.DataModels
         public int Amt_People {get; set;}
 
         [JsonPropertyName("Course_Menu")]
-        public int CourseMenu {get; set;}
+        public int? CourseMenu {get; set;}
 
         [JsonPropertyName("Verified")]
         public bool Verified {get; set;}
@@ -53,6 +53,11 @@ namespace Project_B.DataModels
             Amt_People = _amt_people;
             Verified = false;
     }
+
+        public override string ToString()
+        {
+            return $"{Email} - {Date.ToString("dd-MM-yyyy")} ({TimeSlot.ToString(@"hh\:mm")})";
+        }
     }
 
     

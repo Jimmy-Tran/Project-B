@@ -2,16 +2,61 @@
   {
     "ID": 1,
     "ClientNumber": 0,
+    "Name": "12-09",
+    "Email": "adadam@gmail.com",
+    "Date": "2023-12-09T00:00:00",
+    "ReservationCode": "RL6S8P",
+    "TimeSlot": "16:00:00",
+    "Tables": [
+      "1"
+    ],
+    "Amt_People": 2,
+    "CourseMenu": null,
+    "Verified": false
+  },
+  {
+    "ID": 2,
+    "ClientNumber": 0,
+    "Name": "jeffrey",
+    "Email": "jeffrey@het.com",
+    "Date": "2023-12-09T00:00:00",
+    "ReservationCode": "PM8H3K",
+    "TimeSlot": "16:00:00",
+    "Tables": [
+      "2"
+    ],
+    "Amt_People": 2,
+    "CourseMenu": null,
+    "Verified": false
+  },
+  {
+    "ID": 5,
+    "ClientNumber": 0,
     "Name": "Henno Passchier",
     "Email": "henno.passchier@gmail.com",
-    "Date": "2023-05-26T00:00:00",
-    "ReservationCode": "XF3S7M",
+    "Date": "2023-06-15T00:00:00",
+    "ReservationCode": "LJ8V4G",
     "TimeSlot": "20:00:00",
     "Tables": [
       "1"
     ],
     "Amt_People": 2,
-    "CourseMenu": 0,
+    "CourseMenu": null,
+    "Verified": false
+  },
+  {
+    "ID": 6,
+    "ClientNumber": 9,
+    "Name": "Henno Passchier",
+    "Email": "henno.passchier@gmail.com",
+    "Date": "2023-06-16T00:00:00",
+    "ReservationCode": "MN4Z4J",
+    "TimeSlot": "20:00:00",
+    "Tables": [
+      "4"
+    ],
+    "Amt_People": 2,
+    "CourseMenu": null,
     "Verified": false
   }
 ]

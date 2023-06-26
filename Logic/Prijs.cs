@@ -1,15 +1,40 @@
 public class Prijs
 {
+    // get the price's
     // Fields for the gangen menu prices
-    public double gangenmenu_2 = 15.50;
-    public double gangenmenu_3 = 20.50;
-    public double gangenmenu_4 = 25.50;
+    public decimal gangenmenu_2;
+    public decimal gangenmenu_3;
+    public decimal gangenmenu_4;
+    public decimal wijn_arrangement;
+    public Prijs()
+    {
+        Foodmenu menu = MenuImporter.ImportFromJson(@"DataSources/menu.json");
+        foreach (MenuItem x in menu.Gangen)
+        {
+            if (x.Name == "2 Gangen menu")
+            {
+                gangenmenu_2 = x.Price;
+            }
+            else if (x.Name == "3 Gangen menu")
+            {
+                gangenmenu_3 = x.Price;
+            }
+            else if (x.Name == "4 Gangen menu")
+            {
+                gangenmenu_4 = x.Price;
+            }
+            else if (x.Name == "Wijn arrangement")
+            {
+                wijn_arrangement = x.Price;
+            }
+        }
+    }
 
     // Field for the discount percentage
-    public double discount = 0.1;
+    public decimal discount = 0.1M;
 
     // Method to calculate the price
-    public double prijs(int aantal)
+    public decimal prijs(int aantal)
     {
         // Prompt for the chosen gangen menu
         Console.WriteLine("Welke gangen menu gaat u nemen?");
@@ -31,11 +56,40 @@ public class Prijs
                 break;
         }
 
-        // Prompt for the number of people under 12
-        Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");
-        int onder_12 = Convert.ToInt32(Console.ReadLine());
+        bool validInput = false;
+        int onder_12 = 0;
+        int wineCount = 0;
+        while (!validInput)
+        {
+            Console.WriteLine($"Hoeveel van de {aantal} personen zijn 12 jaar of jonger?");
+            string? inputOnder12 = Console.ReadLine();
+            onder_12 = string.IsNullOrEmpty(inputOnder12) ? 0 : Convert.ToInt32(inputOnder12);
 
-        double menuPrijs = 0.0;
+            Console.WriteLine($"Hoeveel van de {aantal} personen willen het wijnarrangement ({wijn_arrangement})?");
+            string? inputWineCount = Console.ReadLine();
+            wineCount = string.IsNullOrEmpty(inputWineCount) ? 0 : Convert.ToInt32(inputWineCount);
+
+
+            if (onder_12 > aantal)
+            {
+                Console.WriteLine("Het aantal personen jonger dan 12 kan niet groter zijn dan het totale aantal personen.");
+            }
+            else if (wineCount > aantal)
+            {
+                Console.WriteLine("Het aantal personen dat wijn wil nemen kan niet groter zijn dan het totale aantal personen.");
+            }
+            else if (onder_12 + wineCount > aantal)
+            {
+                Console.WriteLine("Het totale aantal personen jonger dan 12 en het aantal personen dat wijn wil nemen kan niet groter zijn dan het totale aantal personen.");
+            }
+            else
+            {
+                validInput = true;
+                // All numbers are logical, continue with the rest of your code
+                // ...
+            }
+        }
+        decimal menuPrijs = 0;
 
         // Calculate the price based on the chosen menu
         switch (menu)
@@ -51,16 +105,22 @@ public class Prijs
                 break;
             default:
                 Console.WriteLine("Ongeldige menukeuze.");
-                return 0.0; // Return 0 if an invalid menu choice is entered
+                return 0.0M; // Return 0 if an invalid menu choice is entered
         }
 
         // Calculate the total price
-        double totPrijs = menuPrijs * aantal;
+        decimal totPrijs = menuPrijs * aantal;
 
         // Apply the discount for people under 12
-        double korting = menuPrijs * onder_12 * discount;
+        decimal korting = menuPrijs * onder_12 * discount;
         totPrijs -= korting;
-
+        // zorg nu dat je de wijn erbij doet
+        if (wineCount > 0)
+        {
+            // indien er dus wel mensen zijn met wijn
+            decimal wijnprijs = wijn_arrangement * wineCount;
+            totPrijs += wijnprijs;
+        }
         return totPrijs;
     }
 }

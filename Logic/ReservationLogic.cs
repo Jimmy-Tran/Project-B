@@ -11,38 +11,40 @@ namespace Project_B.Logic
 {
     public static class ReservationLogic
     {
-    static string unavailable = "\u001b[31m";
-    static string available = "\u001b[32m";
-    static string cyan = "\u001b[36m";
+        static string unavailable = "\u001b[31m";
+        static string available = "\u001b[32m";
+        static string cyan = "\u001b[36m";
 
-    public static List<string> availableTables = new List<string>();
+        public static List<string> availableTables = new List<string>();
 
-    static string _6A = unavailable;
-    static string _6B = unavailable;
-    static string _4A = unavailable;
-    static string _4B = unavailable;
-    static string _4C = unavailable;
-    static string _4D = unavailable;
-    static string _4E = unavailable;
-    static string _1 = unavailable;
-    static string _2 = unavailable;
-    static string _3 = unavailable;
-    static string _4 = unavailable;
-    static string _5 = unavailable;
-    static string _6 = unavailable;
-    static string _7 = unavailable;
-    static string _8 = unavailable;
-    static string A = unavailable;
-    static string B = unavailable;
-    static string C = unavailable;
-    static string D = unavailable;
-    static string E = unavailable;
-    static string F = unavailable;
-    static string G = unavailable;
-    static string H = unavailable;
+        static string _6A = unavailable;
+        static string _6B = unavailable;
+        static string _4A = unavailable;
+        static string _4B = unavailable;
+        static string _4C = unavailable;
+        static string _4D = unavailable;
+        static string _4E = unavailable;
+        static string _1 = unavailable;
+        static string _2 = unavailable;
+        static string _3 = unavailable;
+        static string _4 = unavailable;
+        static string _5 = unavailable;
+        static string _6 = unavailable;
+        static string _7 = unavailable;
+        static string _8 = unavailable;
+        static string A = unavailable;
+        static string B = unavailable;
+        static string C = unavailable;
+        static string D = unavailable;
+        static string E = unavailable;
+        static string F = unavailable;
+        static string G = unavailable;
+        static string H = unavailable;
 
-        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
-            try {
+        public static bool AddReservation(int _id, int _clientnumber, string _name, string _email, DateTime _date, string _reservationcode, TimeSpan _timeslot, List<string> _tables, int _amt_people)
+        {
+            try
+            {
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
@@ -51,83 +53,124 @@ namespace Project_B.Logic
 
                 //Serialize the list to an object and write it back to the JSON file. Return true when all went good
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                File.WriteAllText(@"DataSources/reservations.json", updatedJson);
                 return true;
             }
-            catch (Exception ex) { // Catch the error and return false
+            catch (Exception ex)
+            { // Catch the error and return false
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
-          
-        public static List<ReservationModel> GetReservations() {
-            try {
+
+        public static List<ReservationModel> GetReservations()
+        {
+            try
+            {
                 //Try to get the reservations and convert them into a list
-                string jsonContent = File.ReadAllText("DataSources/reservations.json");
-                List<ReservationModel> reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
-                return reservations != null ? reservations : new List<ReservationModel>();
+                string jsonContent = File.ReadAllText(@"DataSources/reservations.json");
+                List<ReservationModel>? reservations = JsonConvert.DeserializeObject<List<ReservationModel>>(jsonContent);
+                return reservations?.Count > 0 ? reservations : new List<ReservationModel>();
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
+                // Console.WriteLine($"Error: {ex.Message}");
             }
             return new List<ReservationModel>();
         }
 
-        public static List<ReservationModel> GetReservations(string _Searchterm) {
+        public static List<ReservationModel> GetReservations(string _Searchterm)
+        {
             List<ReservationModel> ResList = new();
-            try {
+            try
+            {
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
-                // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
-
                 //Loop through the list and get the reservation by the given searchterm
-                foreach (ReservationModel reservation in reservations) {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm || reservation.ReservationCode == _Searchterm)
+                    {
                         ResList.Add(reservation); //Return the reservation
-                    }            
+                    }
                 }
                 return ResList; //Return nothing if nothing came out
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
             }
             return new List<ReservationModel>();
         }
 
-        public static ReservationModel GetReservation(string _Searchterm) {
-            try {
+        public static List<ReservationModel> GetReservations(int clientnumber)
+        {
+            List<ReservationModel> ResList = new();
+            try
+            {
+                //Get reservations from other function
+                List<ReservationModel> reservations = GetReservations();
+
+                //Loop through the list and get the reservation by the given searchterm
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (reservation.ClientNumber == clientnumber)
+                    {
+                        ResList.Add(reservation); //Return the reservation
+                    }
+                }
+                return ResList; //Return nothing if nothing came out
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Niet gelukt!");
+            }
+            return new List<ReservationModel>();
+        }
+
+        public static ReservationModel? GetReservation(string _Searchterm)
+        {
+            try
+            {
                 //Try to get the reservation and convert them into a list
 
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
-                // List<string> UpdatableFields = new() {"name", "email", "date", "timeslot", "tables", "amt_people"};
-
                 //Loop through the list and get the reservation by the given searchterm
-                foreach (ReservationModel reservation in reservations) {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm)
+                    {
                         return reservation; //Return the reservation
-                    }            
+                    }
                 }
-                return null; //Return nothing if nothing came out
+                //Return nothing if nothing came out
+                return null;
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Niet gelukt!");
                 return null;
             }
         }
 
-        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people) {
-            try {
+        public static bool ChangeReservation(string _Searchterm, string _name, string _email, DateTime _date, TimeSpan _timeslot, List<string> _tables, int _amt_people)
+        {
+            try
+            {
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
                 //Loop through the list and get the reservation by the given searchterm
-                foreach (ReservationModel reservation in reservations) {
-                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm) {
+                foreach (ReservationModel reservation in reservations)
+                {
+                    if (Convert.ToString(reservation.ID) == _Searchterm || reservation.Name == _Searchterm || reservation.Email == _Searchterm)
+                    {
                         //Change the old value to the new value
                         reservation.Name = _name;
                         reservation.Email = _email;
@@ -140,12 +183,12 @@ namespace Project_B.Logic
 
                 //Serialize the list and write it back to JSON file
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                File.WriteAllText(@"DataSources/reservations.json", updatedJson);
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
@@ -153,7 +196,8 @@ namespace Project_B.Logic
         public static bool DeleteReservation(int _ID)
         {
             //Todo: Add a parameter to GetReservation called ID. ID will also return a Object.
-            try {
+            try
+            {
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
@@ -161,19 +205,21 @@ namespace Project_B.Logic
                 reservations.RemoveAll(x => x.ID == _ID);
 
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
-                File.WriteAllText("DataSources/reservations.json", updatedJson);
+                File.WriteAllText(@"DataSources/reservations.json", updatedJson);
 
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
 
-        public static bool VerifyingReservation(int _ID) {
-            try {
+        public static bool VerifyingReservation(int _ID)
+        {
+            try
+            {
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
@@ -183,35 +229,40 @@ namespace Project_B.Logic
                 //Send data back to JSON file
                 string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
                 File.WriteAllText("DataSources/reservations.json", updatedJson);
-                
+
                 return true;
-            } 
-            catch (Exception ex) {
-                Console.WriteLine($"Error: {ex.Message}"); 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Niet gelukt!");
                 return false;
             }
         }
 
-        public static bool AccessReservationSimulation(string _ReservationCode) {
-            try {
+        public static void AutoVerifing()
+        {
+            try
+            {
                 //Get reservations from other function
                 List<ReservationModel> reservations = GetReservations();
 
-                DateTime DateNow = DateTime.Now;
+                DateTime temp = DateTime.Now;
+                //Set every date below today to Verified: true
+                reservations.Where(x => (x.Date.AddDays(-1)) <= temp).ToList().ForEach(x => x.Verified = true);
 
-                //Look in reservations for the reservationcode and if it is this day.
-                if (reservations.Any(r => r.ReservationCode == _ReservationCode && r.Date == DateNow.Date)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } 
-            catch (Exception ex) {
-                Console.WriteLine($"Kon geen reserveringen ophalen!");
-                return false;
+                //Send data back to JSON file
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+                File.WriteAllText("DataSources/reservations.json", updatedJson);
+
+                return;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Niet gelukt!");
+                return ;
             }
         }
-        
+
         public static void UpdateTableAvailability(List<string> TablesList)
         {
             _6A = TablesList.Contains("_6A") ? available : unavailable;
@@ -249,8 +300,13 @@ namespace Project_B.Logic
             else
             {
                 List<string> TablesList = TableLogic.CheckTables(date, timeslot, persons);
-                UpdateTableAvailability(TablesList);
-                ShowTables();
+                if (TablesList.Count > 0)
+                {
+                    UpdateTableAvailability(TablesList);
+                    ShowTables();
+                }
+
+
             }
         }
 
@@ -300,11 +356,19 @@ namespace Project_B.Logic
 
         public static int GetLastID()
         {
+            List<Tuple<int>> ids = new();
             //Get reservations from other function
             List<ReservationModel> reservations = GetReservations();
 
-            return reservations.Count() != 0 ? reservations.Last().ID : 0;
+            foreach (ReservationModel reservation in reservations)
+            {
+                ids.Add(Tuple.Create<int>(reservation.ID));
+            }
+
+
+            return reservations.Count() != 0 ? ids.Max(x => x.Item1) : 0;
         }
+
         public static string CodeGenerator()
         {
             //Creating object of random class

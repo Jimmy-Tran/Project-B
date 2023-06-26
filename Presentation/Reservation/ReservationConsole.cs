@@ -23,6 +23,7 @@ class ReservationConsole
     public List<string> tables = new List<string>();
 
     bool reserveValid = true;
+    public string? phoneNumber { get; set; }
 
     public void Reserveren()
     {
@@ -31,28 +32,59 @@ class ReservationConsole
         do
         {
             Console.WriteLine("Wat is uw voornaam en achternaam?");
-            nameCheck = Console.ReadLine();
+            nameCheck = Console.ReadLine()!;
         } while (nameCheck.Length <= 3);
 
         // Change class propperty to given variable after conditions are correct
         name = nameCheck;
 
+        Console.Clear();
+
+        string phoneCheck;
+        string phonePattern = @"^(?:\+31|0)6\d{8}$";
+
+        do
+        {
+            Console.WriteLine("(Optioneel) Wat is uw telefoon nummer? (+31612345678 or 0612345678)");
+            phoneCheck = Console.ReadLine()!;
+
+            if (!Regex.IsMatch(phoneCheck, phonePattern))
+            {
+                Console.WriteLine("Dit is geen valide telefoon nummer!");
+            }
+
+        } while (!Regex.IsMatch(phoneCheck, phonePattern) && phoneCheck == null);
+
+        Console.Clear();
+
         string emailCheck;
         do
         {
             Console.WriteLine("Wat is uw email adres? (bijv. John.Doe@gmail.com)");
-            emailCheck = Console.ReadLine().ToLower();
+            emailCheck = Console.ReadLine()!.ToLower();
         } while (ValidationLogic.IsValidEmail(emailCheck) != true); // Will return an error message if not correct.
 
         email = emailCheck;
 
-
+        Console.Clear();
         int amountPeopleCheck;
+        bool isValidAmount = false;
+
         do
         {
             Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
-            amountPeopleCheck = Convert.ToInt32(Console.ReadLine());
-        } while (amountPeopleCheck <= 0);
+            string input = Console.ReadLine()!;
+
+            if (int.TryParse(input, out amountPeopleCheck) && amountPeopleCheck > 0)
+            {
+                isValidAmount = true;
+            }
+            else
+            {
+                Console.WriteLine("Ongeldige invoer. Voer een geldig aantal mensen in.");
+            }
+        } while (!isValidAmount);
+
 
         amt_people = amountPeopleCheck;
 
@@ -70,7 +102,6 @@ class ReservationConsole
                         Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
                         amountPeopleCheck = Convert.ToInt32(Console.ReadLine());
                     } while (ValidationLogic.AmtPeopleCheck(amountPeopleCheck) != true); // Let the user pick the amount of people again with the validation of 6 or under.
-
                     amt_people = amountPeopleCheck;
                     break;
                 default:
@@ -80,17 +111,21 @@ class ReservationConsole
 
         // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
         Prijs geld = new Prijs();
-        double money = geld.prijs(amt_people);
-        Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money} euro.");
+        decimal money = geld.prijs(amt_people);
+
+        Console.WriteLine($"\nIn totaal betaal je voor {amt_people} mensen {money} euro.");
+        Console.WriteLine("Druk op iets om verder te gaan...");
+        Console.ReadKey();
 
         bool field4Valid = false;
         while (field4Valid is false)
         {
+            Console.Clear();
             string DateCheck;
             do
             {
                 Console.WriteLine("Welke datum wilt u reserveren? (DD-MM-JJJJ):");
-                DateCheck = Console.ReadLine();
+                DateCheck = Console.ReadLine()!;
             } while (ValidationLogic.IsValidDate(DateCheck) != true);
 
             if (DateTime.Parse(DateCheck) < DateTime.Today)
@@ -105,7 +140,7 @@ class ReservationConsole
 
                 date = DateTime.Parse(DateCheck);
 
-                string TimeSlotCheck;
+                string TimeSlotCheck = "";
                 do
                 {
                     int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { $"{date.ToString("dddd, dd MMMM yyyy")}", "Selecteer een tijdslot:" }, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
@@ -121,9 +156,6 @@ class ReservationConsole
                         case 2:
                             TimeSlotCheck = "20:00";
                             break;
-                        default:
-                            TimeSlotCheck = null;
-                            break;
                     }
                 } while (ValidationLogic.IsValidTime(TimeSlotCheck) != true);
                 timeslot = TimeSpan.Parse(TimeSlotCheck);
@@ -133,6 +165,12 @@ class ReservationConsole
         Console.Clear();
         Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
         Console.WriteLine(timeslot.ToString(@"hh\:mm"));
+        if (TableLogic.CheckTables(date, timeslot, amt_people).Count < 1)
+        {
+            Console.WriteLine($"Er is geen plek meer voor vandaag probeer een andere dag");
+            Console.ReadKey();
+            Menu.Start();
+        }
         ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
         Console.WriteLine("email: " + email);
 
@@ -144,11 +182,12 @@ class ReservationConsole
 
         reservationcode = text;
 
+
         string tableCheck;
         do
         {
             Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
-            tableCheck = Console.ReadLine();
+            tableCheck = Console.ReadLine()!;
         } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
 
         id = ReservationLogic.GetLastID() + 1;
@@ -160,8 +199,10 @@ class ReservationConsole
             {
                 ReservationLogic.AddReservation(id, 0, name, email, date, reservationcode, timeslot, tables, amt_people);
                 Console.WriteLine("Gelukt!");
-                Email.sendmail(email, name, date, timeslot);
-                Email.warning();
+                EmailFunction.sendmail(email, name, reservationcode, date, timeslot);
+                EmailFunction.warning();
+                // terug naar de menu uitgelogd
+                Menu.Start();
             }
             catch
             {
@@ -181,18 +222,31 @@ class ReservationConsole
         clientnumber = client_id;
         name = username;
         AccountsLogic AccountData = new AccountsLogic();
-        AccountModel AccountResult = AccountData.GetById(client_id);
+        AccountModel? AccountResult = AccountData.GetById(client_id);
 
-        email = AccountResult.EmailAddress;
+        email = AccountResult?.EmailAddress;
 
         int amountPeopleCheck;
+        bool isValidAmount = false;
+
         do
         {
             Console.WriteLine("Hoeveel mensen zullen er zijn inclusief u?");
-            amountPeopleCheck = Convert.ToInt32(Console.ReadLine());
-        } while (amountPeopleCheck <= 0);
+            string input = Console.ReadLine()!;
+
+            if (int.TryParse(input, out amountPeopleCheck) && amountPeopleCheck > 0)
+            {
+                isValidAmount = true;
+            }
+            else
+            {
+                Console.WriteLine("Ongeldige invoer. Voer een geldig aantal mensen in.");
+            }
+        } while (!isValidAmount);
 
         amt_people = amountPeopleCheck;
+
+        Console.Clear();
 
         if (amountPeopleCheck > 6)
         {
@@ -218,21 +272,21 @@ class ReservationConsole
 
 
         // je weet nu hoeveel mensen er zullen komen voeg (maruf) functie's toe om te weten hoeveel het zal kosten
-        // Gegevens begin = new Gegevens();
-        // // nu heb je een lijst met gegevens van de mensen op basis van hoeveel mensen gaan geef je dat door met de int
-        // List<Person> gegevens = begin.Gegevens_krijgen(amt_people);
-        // Prijs geld = new Prijs();
-        // List<double> betalen = geld.Prijs_berekenen(gegevens);
-        // Console.WriteLine($"intotaal betaal je voor {gegevens.Count} mensen {betalen.Sum()} euro.");
+        Prijs geld = new Prijs();
+        decimal money = geld.prijs(amt_people);
+        Console.WriteLine($"intotaal betaal je voor {amt_people} mensen {money:f2} euro.");
+        Console.WriteLine("Druk op iets om verder te gaan...");
+        Console.ReadKey();
 
         bool field4Valid = false;
         while (field4Valid is false)
         {
+            Console.Clear();
             string DateCheck;
             do
             {
                 Console.WriteLine("Welke datum wilt u reserveren? (DD-MM-JJJJ):");
-                DateCheck = Console.ReadLine();
+                DateCheck = Console.ReadLine()!;
             } while (ValidationLogic.IsValidDate(DateCheck) != true);
 
             if (DateTime.Parse(DateCheck) < DateTime.Today)
@@ -247,7 +301,7 @@ class ReservationConsole
 
                 date = DateTime.Parse(DateCheck);
 
-                string TimeSlotCheck;
+                string TimeSlotCheck = "";
                 do
                 {
                     int selectedClass = MenuLogic.MultipleChoice(true, "○", 1, new string[] { $"{date.ToString("dddd, dd MMMM yyyy")}", "Selecteer een tijdslot:" }, "16:00 - 18:00", "18:00 - 20:00", "20:00 - 22:00");
@@ -263,9 +317,6 @@ class ReservationConsole
                         case 2:
                             TimeSlotCheck = "20:00";
                             break;
-                        default:
-                            TimeSlotCheck = null;
-                            break;
                     }
                 } while (ValidationLogic.IsValidTime(TimeSlotCheck) != true);
                 timeslot = TimeSpan.Parse(TimeSlotCheck);
@@ -275,6 +326,12 @@ class ReservationConsole
         Console.Clear();
         Console.WriteLine(date.ToString("dddd, dd MMMM yyyy"));
         Console.WriteLine(timeslot.ToString(@"hh\:mm"));
+        if (TableLogic.CheckTables(date, timeslot, amt_people).Count < 1)
+        {
+            Console.WriteLine($"Er is geen plek meer voor vandaag probeer een andere dag");
+            Console.ReadKey();
+            CustomerMenu.Start(username, client_id);
+        }
         ReservationLogic.ShowTablesAvailability(date, timeslot, amt_people);
         Console.WriteLine("email: " + email);
 
@@ -290,7 +347,7 @@ class ReservationConsole
         do
         {
             Console.WriteLine("Welke tafel wilt u? (bijv. 4E of 2)");
-            tableCheck = Console.ReadLine();
+            tableCheck = Console.ReadLine()!;
         } while (!TableLogic.CheckTables(date, timeslot, amt_people).Contains($"_{tableCheck.ToUpper()}"));
 
         id = ReservationLogic.GetLastID() + 1;
@@ -300,14 +357,18 @@ class ReservationConsole
             tables.Add(tableCheck);
             try
             {
-                ReservationLogic.AddReservation(id, clientnumber, name, email, date, reservationcode, timeslot, tables, amt_people);
-                Console.WriteLine("Geluk!");
-                Email.sendmail(email, name, date, timeslot);
-                Email.warning();
+                ReservationLogic.AddReservation(id, clientnumber, name, email!, date, reservationcode, timeslot, tables, amt_people);
+                Console.WriteLine("Gelukt!");
+                EmailFunction.sendmail(email!, name, reservationcode, date, timeslot);
+                EmailFunction.warning();
+                // console read en dan terug naar de ingelogde scherm
+                Console.WriteLine("druk op een toets om terug te gaan naar de menu");
+                Console.ReadKey();
+                CustomerMenu.Start(username, client_id);
             }
             catch (Exception e)
             {
-                Console.WriteLine("Niet Geluk!");
+                Console.WriteLine(e);
                 return;
             }
 
